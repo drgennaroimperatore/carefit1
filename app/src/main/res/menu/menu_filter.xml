@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/filterbar_back_btn"
+        android:title="Cancel"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/filterbar_help_btn"
+        android:title="Help"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/filterbar_filter_btn"
+        android:title="@string/set_btn_txt"
+        app:showAsAction="ifRoom"/>
+
+</menu>

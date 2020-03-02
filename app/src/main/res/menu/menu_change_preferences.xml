@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context = ".Activities.ChangePreferencesActivity">
+
+    <item
+        android:id="@+id/preferencePage_help_btn"
+        android:title="Help"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/preferencePage_save_btn"
+        android:title="@string/save_btn_txt"
+        app:showAsAction="always|withText" />
+
+
+</menu>

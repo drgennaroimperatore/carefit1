@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TimePicker
+        android:id="@+id/time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:timePickerMode="spinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="false"
+        android:text="@string/set_days"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="10sp"
+        android:layout_gravity="center_horizontal">
+
+        <CheckBox
+            android:id="@+id/mondayCheck"
+            android:text="@string/monday"
+            android:textSize="20sp"
+            android:padding="10sp"/>
+
+        <CheckBox
+            android:id="@+id/tuesdayCheck"
+            android:text="@string/tuesday"
+            android:textSize="20sp"
+            android:padding="10sp"/>
+
+        <CheckBox
+            android:id="@+id/wednesdayCheck"
+            android:text="@string/wednesday"
+            android:textSize="20sp"
+            android:padding="10sp"/>
+
+        <CheckBox
+            android:id="@+id/thursdayCheck"
+            android:text="@string/thursday"
+            android:textSize="20sp"
+            android:padding="10sp"/>
+
+        <CheckBox
+            android:id="@+id/fridayCheck"
+            android:text="@string/friday"
+            android:textSize="20sp"
+            android:padding="10sp"/>
+
+        <CheckBox
+            android:id="@+id/saturdayCheck"
+            android:text="Saturday"
+            android:textSize="20sp"
+            android:padding="10sp"/>
+
+        <CheckBox
+            android:id="@+id/sundayCheck"
+            android:text="@string/sunday"
+            android:textSize="20sp"
+            android:padding="10sp"/>
+
+    </GridLayout>
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.sqlitesample.MainActivity">
+
+    <item
+        android:id="@+id/overflow"
+        android:icon="@drawable/brgr"
+        android:title="Menu"
+        app:showAsAction="always">
+
+        <menu>
+
+            <!-- "Change Preferences", should always appear in the overflow -->
+            <item
+                android:id="@+id/action_preferences"
+                android:title="@string/change_preferences"
+                app:showAsAction="always" />
+
+            <!--"Set Reminders", should appear as action button if possible -->
+            <item
+                android:id="@+id/action_reminders"
+                android:title="@string/reminders_btn"
+                app:showAsAction="always" />
+
+            <!--"Filter Exercises", should appear as action button if possible-->
+            <item
+                android:id="@+id/action_filter"
+                android:title="Search"
+                app:showAsAction="always" />
+
+            <!--"View Records", should always appear in the overflow -->
+            <item
+                android:id="@+id/action_records"
+                android:title="@string/records_btn"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_help"
+                android:title="Help"
+                app:showAsAction="always" />
+
+        </menu>
+
+    </item>
+
+
+
+</menu>

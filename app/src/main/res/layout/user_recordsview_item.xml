@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="10sp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:text="Your best time:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="textEnd"/>
+
+        <TextView
+            android:id="@+id/best_time_value"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="textEnd"/>
+
+        <TextView
+            android:text="Todays highest intensity:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="textEnd"/>
+
+        <TextView
+            android:id="@+id/highest_intensity_value"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="textEnd"/>
+
+        <TextView
+            android:text="Days used in a row:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="textEnd"/>
+
+        <TextView
+            android:id="@+id/streak_value"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="textEnd"/>
+
+    </GridLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/colorPrimaryDark"/>
+
+</LinearLayout>
