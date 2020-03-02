@@ -62,6 +62,7 @@ public class ExerciseListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_list);
+       // osetContentView(R.layout.home_screen);
         setTitle("CareFit");
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);

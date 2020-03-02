@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 /**
  * This is the Home Screen ACTIVITY
@@ -66,38 +69,38 @@ public class HomeScreenActivity extends AppCompatActivity {
         setContentView(R.layout.home_screen);
         setTitle("CareFit");
 
-        mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
-        mEditor = mSharedPreferences.edit();
-
-        firstTimeBoxRequired = mSharedPreferences.getBoolean("needsTutorial", false);
-
-        if (getIntent().getExtras() != null) {
-            firstTimeBoxRequired = getIntent().getBooleanExtra("firstTimeBox", false);
-        }
-
-
-        //Creating the recycler view for the exercises x_x
-        RecyclerView exRecyclerView = findViewById(R.id.exercise_recyclerview);
-        exListAdapter = new ExerciseListAdapter(this);
-        exRecyclerView.setAdapter(exListAdapter);
-        exRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-
-        //ViewModel creation
-        mHomeScreenViewModel = ViewModelProviders.of(this).get(HomeScreenViewModel.class);
-        //observeExercises();
-        mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-        mCategoriesViewModel = ViewModelProviders.of(this).get(CategoriesViewModel.class);
-        mTimeSetViewModel = ViewModelProviders.of(this).get(TimeSetViewModel.class);
-
-        user = null;
-        try {
-            user = mUserViewModel.getUserNotLive();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+//        mEditor = mSharedPreferences.edit();
 //
+//        firstTimeBoxRequired = mSharedPreferences.getBoolean("needsTutorial", false);
+//
+//        if (getIntent().getExtras() != null) {
+//            firstTimeBoxRequired = getIntent().getBooleanExtra("firstTimeBox", false);
+//        }
+
+
+//        //Creating the recycler view for the exercises x_x
+//        RecyclerView exRecyclerView = findViewById(R.id.exercise_recyclerview);
+//        exListAdapter = new ExerciseListAdapter(this);
+//        exRecyclerView.setAdapter(exListAdapter);
+//        exRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+//
+//        //ViewModel creation
+//        mHomeScreenViewModel = ViewModelProviders.of(this).get(HomeScreenViewModel.class);
+//        //observeExercises();
+//        mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+//        mCategoriesViewModel = ViewModelProviders.of(this).get(CategoriesViewModel.class);
+//        mTimeSetViewModel = ViewModelProviders.of(this).get(TimeSetViewModel.class);
+//
+//        user = null;
+//        try {
+//            user = mUserViewModel.getUserNotLive();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+////
 //        if (user != null) {
 //            //Working with the MessagesViewModel
 //            if (firstTimeBoxRequired) {
@@ -113,6 +116,10 @@ public class HomeScreenActivity extends AppCompatActivity {
  //       }
     }
 
+    public void openExercise(View view){
+        Intent intent = new Intent(this, ExerciseListActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed() {
         //Do nothing.

@@ -23,10 +23,7 @@
         <activity android:name=".Activities.SetPreferencesActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
+
         </activity>
 
         <activity android:name=".Activities.ChangePreferencesActivity"
@@ -53,7 +50,13 @@
 
         <activity android:name=".Activities.HomeScreenActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+        </activity>
 
         <receiver android:name=".Receivers.ReminderBootReceiver"
             android:enabled="false">
