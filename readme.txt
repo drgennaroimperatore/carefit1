@@ -15,6 +15,3 @@ To clear application data more easily, install the ADBIdea plugin.
 Manual tests can be found in the Appendix of the dissertation.
 
 If there is any confusion, please contact:
-lrhiggins97@gmail.com
-OR
-lauren.higgins.2015@uni.strath.ac.uk

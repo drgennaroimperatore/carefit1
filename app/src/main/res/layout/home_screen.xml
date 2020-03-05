@@ -28,8 +28,8 @@
 
             <Button
                 android:id="@+id/home_btn"
-                android:layout_width="30sp"
-                android:layout_height="match_parent"
+                android:layout_width="5dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/home_icon" />
 
@@ -42,7 +42,7 @@
 
             <Button
                 android:id="@+id/exercise_list_btn"
-                android:layout_width="30sp"
+                android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/exercise_icon"
