@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_home"
+        android:title="@string/home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/progress"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_progress"
+        android:title="@string/progress"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/exercise_list"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_exercise"
+        android:title="@string/exercise"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_profile"
+        android:title="@string/profile"
+        app:showAsAction="ifRoom" />
+</menu>
