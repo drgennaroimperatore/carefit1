@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/exercise_list"
+
+<RelativeLayout android:id="@+id/exercise_list"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorBackgroundPeach"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:src="@drawable/applogo"/>
+
 
     <LinearLayout
+        android:id="@+id/intensityguide"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
         android:orientation="vertical"
         android:padding="4sp">
+
 
         <TextView
             android:layout_width="match_parent"
@@ -74,14 +88,28 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:textSize="20sp"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exercise_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="660dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_below="@+id/intensityguide"
         tools:listitem="@layout/exerciselist_recyclerview_item" />
 
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        tools:listitem="@layout/navigation_bar" />
+
+
+</RelativeLayout>
+
+
+
+
 
 

@@ -58,6 +58,14 @@
 
         </activity>
 
+        <activity android:name=".Activities.ProgressScreenActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".Activities.ProfileScreenActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
+
         <receiver android:name=".Receivers.ReminderBootReceiver"
             android:enabled="false">
             <intent-filter>

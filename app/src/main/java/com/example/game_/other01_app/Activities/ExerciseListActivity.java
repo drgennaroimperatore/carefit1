@@ -38,7 +38,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * This is the MAIN ACTIVITY
+ * This is the Exercise Screen ACTIVITY
  */
 public class ExerciseListActivity extends AppCompatActivity {
 
@@ -61,6 +61,7 @@ public class ExerciseListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_exercise_list);
        // osetContentView(R.layout.home_screen);
         setTitle("CareFit");
@@ -80,6 +81,12 @@ public class ExerciseListActivity extends AppCompatActivity {
         exListAdapter = new ExerciseListAdapter(this);
         exRecyclerView.setAdapter(exListAdapter);
         exRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+        //Creating the recycler view for the nav bar
+        RecyclerView navRecyclerView = findViewById(R.id.navigation);
+        exListAdapter = new ExerciseListAdapter(this);
+        navRecyclerView.setAdapter(exListAdapter);
+        navRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
         //ViewModel creation
         mExerciseViewModel = ViewModelProviders.of(this).get(ExerciseListViewModel.class);
