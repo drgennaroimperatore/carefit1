@@ -114,6 +114,7 @@ public class ExercisesFragment extends Fragment {
 
         //Get The Layout area
         LinearLayout layout = rootView.findViewById(R.id.exercise_pref_btn_zone);
+
         //Get the back button
         Button backButton = new Button(rootView.getContext());
         backButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,

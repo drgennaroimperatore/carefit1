@@ -22,8 +22,16 @@
         android:src="@drawable/applogo"/>
     </FrameLayout>
 
+<!--    <fragment-->
+<!--        android:id="@+id/nav_host_fragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="@string/app_name"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        />-->
 <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/bottom_nav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
@@ -35,10 +43,5 @@
         app:itemIconTint="@color/colorBackgroundPeach"
         app:itemTextColor="@color/colorBackgroundPeach"
         app:menu="@menu/navigation"/>
-
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 

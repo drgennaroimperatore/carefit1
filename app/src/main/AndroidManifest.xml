@@ -13,6 +13,11 @@
         <activity android:name=".Activities.ExerciseListActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
         </activity>
 
         <activity android:name=".Activities.ExerciseInstructionsActivity"
@@ -56,10 +61,8 @@
         <activity android:name=".Activities.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
+
+
         </activity>
 
         <activity android:name=".Activities.ProgressScreenActivity"

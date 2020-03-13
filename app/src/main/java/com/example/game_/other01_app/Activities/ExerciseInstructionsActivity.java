@@ -148,9 +148,11 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
 
     private void setUpAesthetics(String exerciseName, String exerciseDesc){
         setTitle(exerciseName);
+
         ExerciseInstructionBoxFragment boxFragment = new ExerciseInstructionBoxFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.instructions_frag_holder, boxFragment).commit();
+
         ImageView image = findViewById(R.id.instructions_image);
         image.setImageResource(getApplicationContext().getResources().getIdentifier(
                 exerciseName.replaceAll("\\s+", "").toLowerCase(),

@@ -23,6 +23,7 @@ import com.example.game_.other01_app.ViewModels.ExerciseListViewModel;
 import com.example.game_.other01_app.ViewModels.MessagesViewModel;
 import com.example.game_.other01_app.ViewModels.TimeSetViewModel;
 import com.example.game_.other01_app.ViewModels.UserViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class ExerciseListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_exercise_list);
        // setContentView(R.layout.home_screen);
         setTitle("CareFit");
@@ -81,12 +82,6 @@ public class ExerciseListActivity extends AppCompatActivity {
         exListAdapter = new ExerciseListAdapter(this);
         exRecyclerView.setAdapter(exListAdapter);
         exRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-
-//        RecyclerView navRecyclerView = findViewById(R.id.navigation);
-//        navListAdapter = new navigationAdapter(this);
-//        navRecyclerView.setAdapter(navListAdapter);
-//        navRecyclerView.setLayoutManager(new GridLayoutManager(this, 4);
-
         //ViewModel creation
         mExerciseViewModel = ViewModelProviders.of(this).get(ExerciseListViewModel.class);
         observeExercises();
@@ -116,6 +111,39 @@ public class ExerciseListActivity extends AppCompatActivity {
             }
         }  else {
         }
+
+//        BottomNavigationView bar = findViewById(R.id.bottom_nav);
+//
+//        bar.setOnNavigationItemSelectedListener(item -> {
+//            //Fragment fragment=null;
+//            switch (item.getItemId()) {
+//                case R.id.home:
+//                    Toast.makeText(ExerciseListActivity.this, "home", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(this, MainActivity.class);
+//                    startActivity(intent);
+//                    break;
+//
+//                case R.id.progress:
+//                    Toast.makeText(ExerciseListActivity.this, "progress", Toast.LENGTH_SHORT).show();
+//                    break;
+//
+//                case R.id.exercise_list:
+//                    Toast.makeText(ExerciseListActivity.this, "exercise", Toast.LENGTH_SHORT).show();
+//
+//                    break;
+//
+//                case R.id.profile:
+//                    Toast.makeText(ExerciseListActivity.this, "profile", Toast.LENGTH_SHORT).show();
+//                    break;
+//
+//
+//            }
+//            return true;
+//        });
+
+
+
+
     }
 
     @Override
@@ -472,5 +500,10 @@ public class ExerciseListActivity extends AppCompatActivity {
         menu.findItem(R.id.action_records).setEnabled(false);
         menu.findItem(R.id.action_help).setEnabled(false);
     }
+
+
+
+
+
 
 }
