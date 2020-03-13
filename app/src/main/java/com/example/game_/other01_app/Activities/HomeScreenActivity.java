@@ -23,10 +23,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
+        BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomView.setOnNavigationItemSelectedListener(
+
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
+
+                    @Override
+
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()) {
@@ -84,17 +87,17 @@ public class HomeScreenActivity extends AppCompatActivity {
 
 //      public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 //                switch (item.getItemId()) {
-//                    case R.id.home:
+//                    case R.id.homeFragment:
 //                        Toast.makeText(HomeScreenActivity.this, "Home Screen clicked", Toast.LENGTH_SHORT).show();
 //                        break;
 //                    case R.id.progress:
-//                        Toast.makeText(HomeScreenActivity.this, "Progress screen clicked", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomeScreenActivity.this, "progressFragment screen clicked", Toast.LENGTH_SHORT).show();
 //                        break;
 //                    case R.id.exercise_list:
 //                        Toast.makeText(HomeScreenActivity.this, "Exercise screen clicked", Toast.LENGTH_SHORT).show();
 //                        break;
 //                    case R.id.profile:
-//                        Toast.makeText(HomeScreenActivity.this, "Profile screen clicked", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomeScreenActivity.this, "profileFragment screen clicked", Toast.LENGTH_SHORT).show();
 //                        break;
 //                }
 //                return true;

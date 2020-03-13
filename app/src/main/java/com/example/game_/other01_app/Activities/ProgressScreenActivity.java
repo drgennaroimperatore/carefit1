@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 /**
- * This is the Progress Screen ACTIVITY
+ * This is the progressFragment Screen ACTIVITY
  */
 
 public class ProgressScreenActivity extends AppCompatActivity {

@@ -69,7 +69,7 @@ public class RecordsActivity extends AppCompatActivity {
             }
         });
 
-        //Create the recylcer view
+        //Create the recycler view
         RecyclerView recordsRecyclerView = findViewById(R.id.record_recycler_view);
         final RecordListAdapter adapter = new RecordListAdapter(this);
         recordsRecyclerView.setAdapter(adapter);

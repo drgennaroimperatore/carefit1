@@ -59,8 +59,10 @@ public class ExercisesFragment extends Fragment {
 
         //Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_exercise_preferences, container, false);
+
         //Get the ViewModel
         mCategoriesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(CategoriesViewModel.class);
+
         //Add the RecyclerView
         RecyclerView categoryRecyclerView = rootView.findViewById(R.id.categoryRecyclerView);
 
@@ -76,24 +78,32 @@ public class ExercisesFragment extends Fragment {
                 TextView title = rootView.findViewById(R.id.exercise_preferences_title);
                 title.setVisibility(View.GONE);
             }
+
             changingPrefernces = args.getBoolean("changingPreferences");
+
             if(changingPrefernces){
                 changeTextToChangePreferences();
             }
         }
 
-
+        //this is for when user changes the categories of exercises
         adapter = new CategoriesListAdapter(getActivity(), changingPrefernces);
+
         categoryRecyclerView.setAdapter(adapter);
         categoryRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+
         //Add an observer for the LiveData returned by getAllCategories
         mCategoriesViewModel.getAllCategories().observe(this, new Observer<List<Category>>() {
+
             @Override
             public void onChanged(List<Category> categories) {
                 // Update the cached copy of the words in the adapter.
                 adapter.setmCategories(categories);
             }
         });
+
+
         //Check arguments to see if this is the beginning of the app or not
         return rootView;
     }
@@ -127,6 +137,8 @@ public class ExercisesFragment extends Fragment {
         nextButton.setGravity(Gravity.CENTER_HORIZONTAL);;
         layout.addView(nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
                 if(getInterested().isEmpty()){

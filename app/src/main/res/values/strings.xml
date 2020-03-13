@@ -9,6 +9,10 @@
 
     <string name="home_screen">home screen</string>
     <string name="app_name">CareFit</string>
+
+
+
+
     <string name="empty_exercise_list_text">No exercises to display</string>
     <string name="change_preferences">Change Preferences</string>
     <string name="enter_yourname">Your Name</string>

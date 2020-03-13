@@ -63,7 +63,7 @@ public class ExerciseListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_exercise_list);
-       // osetContentView(R.layout.home_screen);
+       // setContentView(R.layout.home_screen);
         setTitle("CareFit");
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
@@ -76,17 +76,16 @@ public class ExerciseListActivity extends AppCompatActivity {
         }
 
 
-        //Creating the recycler view for the exercises x_x
+        //Creating the recycler view for the exercises
         RecyclerView exRecyclerView = findViewById(R.id.exercise_recyclerview);
         exListAdapter = new ExerciseListAdapter(this);
         exRecyclerView.setAdapter(exListAdapter);
         exRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
-        //Creating the recycler view for the nav bar
-        RecyclerView navRecyclerView = findViewById(R.id.navigation);
-        exListAdapter = new ExerciseListAdapter(this);
-        navRecyclerView.setAdapter(exListAdapter);
-        navRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+//        RecyclerView navRecyclerView = findViewById(R.id.navigation);
+//        navListAdapter = new navigationAdapter(this);
+//        navRecyclerView.setAdapter(navListAdapter);
+//        navRecyclerView.setLayoutManager(new GridLayoutManager(this, 4);
 
         //ViewModel creation
         mExerciseViewModel = ViewModelProviders.of(this).get(ExerciseListViewModel.class);

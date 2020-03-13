@@ -19,7 +19,7 @@ import java.util.Objects;
 
 
 /**
- * This is the Profile Screen ACTIVITY
+ * This is the profileFragment Screen ACTIVITY
  */
 
 public class ProfileScreenActivity extends AppCompatActivity {
@@ -29,7 +29,7 @@ public class ProfileScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_main);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
