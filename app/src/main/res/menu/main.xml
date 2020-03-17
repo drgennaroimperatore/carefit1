@@ -7,10 +7,11 @@
     <item
         android:id="@+id/overflow"
         android:icon="@drawable/brgr"
-        android:title="Menu"
-        app:showAsAction="always">
+        android:title="@+id/Menu"
+        app:showAsAction="ifRoom">
 
-        <menu>
+        <menu
+            android:id="@+id/main_menu">
 
             <!-- "Change Preferences", should always appear in the overflow -->
             <item

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,8 +32,8 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
     private long MilliTime, StartTime, TimeBuffer, UpdateTime = 0L;
     private int Seconds, Minutes, MilliSeconds;
     private TextView timer;
-    private Button startBtn;
-    private Button pauseBtn;
+    private ImageButton startBtn;
+    private ImageButton pauseBtn;
     private SharedPreferences mSharedPreferences;
 
     public Handler getHandler() {
@@ -42,7 +43,8 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
     private Handler handler;
     private String exerciseName;
     private String exerciseIntensity;
-    private MenuItem backBtn;
+    private Button backBtn;
+    //private MenuItem backBtn2;
 
     private boolean tutorial;
 
@@ -64,6 +66,8 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
         timer = findViewById(R.id.instructions_timer);
         startBtn = findViewById(R.id.instructions_startBtn);
         pauseBtn = findViewById(R.id.instructions_pauseBtn);
+        backBtn = findViewById(R.id.instructions_finishBtn);
+       // backBtn2 = findViewById(R.id.instructions_back);
         handler = new Handler();
 
         startBtn.setOnClickListener(new View.OnClickListener() {
@@ -91,21 +95,10 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
             showDialog();
         }
 
-    }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_instructions, menu);
-        backBtn = menu.findItem(R.id.instructions_back);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.instructions_back:
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 handler.removeCallbacks(runnable);
                 Intent replyIntent = new Intent();
                 replyIntent.putExtra(EXERCISE_NAME_REPLY, exerciseName);
@@ -113,10 +106,35 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
                 replyIntent.putExtra(EXERCISE_LONG_REPLY, TimeBuffer);
                 setResult(RESULT_OK, replyIntent);
                 finish();
-                return true;
-            case R.id.instructions_help:
-                showDialog();
-                return true;
+            }
+        });
+
+
+    }
+
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_instructions, menu);
+//        backBtn2 = menu.findItem(R.id.instructions_back);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //            case R.id.instructions_finishBtn:
+        //                handler.removeCallbacks(runnable);
+        //                Intent replyIntent = new Intent();
+        //                replyIntent.putExtra(EXERCISE_NAME_REPLY, exerciseName);
+        //                replyIntent.putExtra(EXERCISE_INTENSITY_REPLY, exerciseIntensity);
+        //                replyIntent.putExtra(EXERCISE_LONG_REPLY, TimeBuffer);
+        //                setResult(RESULT_OK, replyIntent);
+        //                finish();
+        //                return true;
+        if (item.getItemId() == R.id.instructions_help) {
+            showDialog();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -153,6 +171,7 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.instructions_frag_holder, boxFragment).commit();
 
+        //setting up the corresponding image to the exercise
         ImageView image = findViewById(R.id.instructions_image);
         image.setImageResource(getApplicationContext().getResources().getIdentifier(
                 exerciseName.replaceAll("\\s+", "").toLowerCase(),

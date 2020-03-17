@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
         // bottomNavigation = findViewById(R.id.navigation);
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 //                new BottomNavigationView.OnNavigationItemSelectedListener() {
 
 
-        BottomNavigationView bar = findViewById(R.id.bottom_nav);
+        BottomNavigationView bar = findViewById(R.id.bottom_navigation);
 
         bar.setOnNavigationItemSelectedListener(item -> {
             //Fragment fragment=null;

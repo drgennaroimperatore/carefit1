@@ -53,6 +53,7 @@ public class Exercise {
                         "Hold for five to 10 seconds and repeat five times.", "cheststretch",
                         "low",
                         "Sitting,Back,Stretch"),
+
                 new Exercise(2, "Upper Body Twist",
                         "Sit upright with feet flat on the floor, cross your arms and reach for your shoulders.\n" +
                         "Without moving your hips, turn your upper body to the left as far as is comfortable.\n" +

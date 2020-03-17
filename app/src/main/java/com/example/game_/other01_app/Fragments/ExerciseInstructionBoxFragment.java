@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.game_.other01_app.AssistanceClasses.ListAssist;
@@ -21,11 +22,12 @@ public class ExerciseInstructionBoxFragment extends Fragment {
 
     private TextView instructionsTextView;
     private TextView pageCountTextView;
-    private Button backButton;
-    private Button nextButton;
+    private ImageButton backButton;
+    private ImageButton nextButton;
     private int maxPageCount;
     private int currentPageCount;
 
+    //Fills the instructions box with the correct text for each exercise
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,9 +43,11 @@ public class ExerciseInstructionBoxFragment extends Fragment {
         List<String> instructionsList = ListAssist.convertInstructionsToListOfStrings(instructions);
         maxPageCount = instructionsList.size();
         currentPageCount = 1;
-
         instructionsTextView = rootView.findViewById(R.id.instructions_text_view);
         pageCountTextView = rootView.findViewById(R.id.instructions_page_count);
+
+
+        //button for clicking forwards through the instructions
         backButton = rootView.findViewById(R.id.instructions_text_back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +56,8 @@ public class ExerciseInstructionBoxFragment extends Fragment {
                 changeThePage(instructionsList);
             }
         });
+
+        //button for clicking forwards through the instructions
         nextButton = rootView.findViewById(R.id.instructions_text_next);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

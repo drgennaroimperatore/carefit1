@@ -98,12 +98,6 @@
         android:layout_below="@+id/intensityguide"
         tools:listitem="@layout/exerciselist_recyclerview_item" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/navigation_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        tools:listitem="@layout/navigation_bar" />
 
 
 </RelativeLayout>

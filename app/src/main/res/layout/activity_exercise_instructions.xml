@@ -4,7 +4,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorBackgroundPeach">
+    android:background="@color/colorBackgroundPeach"
+    android:gravity="center_horizontal">
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,7 +15,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
             android:padding="10sp">
@@ -37,41 +40,13 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/instructions_timer"
-                android:text="@string/unstarted_timer_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/instructions_image_layout"
-                android:textSize="40sp"
-                android:textStyle="bold"
-                android:textColor="	#000000"
-                android:layout_centerHorizontal="true"/>
-
-            <Button
-                android:id="@+id/instructions_startBtn"
-                android:text="@string/start_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/instructions_timer"
-                android:layout_alignParentStart="true" />
-
-            <Button
-                android:id="@+id/instructions_pauseBtn"
-                android:text="@string/pause_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/instructions_startBtn"
-                android:layout_alignBottom="@id/instructions_startBtn"
-                android:layout_alignParentEnd="true"
-                android:enabled="false"/>
 
             <LinearLayout
                 android:id="@+id/instructions_frag_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@+id/instructions_startBtn"
+                android:layout_below="@+id/instructions_image_layout"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"/>
 
@@ -79,6 +54,76 @@
 
     </ScrollView>
 
+    <TextView
+        android:id="@+id/instructions_timer"
+        android:text="@string/unstarted_timer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="	#000000"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:padding="10sp">
+
+    <LinearLayout
+        android:id="@+id/buttonbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10sp">
+
+
+
+<!--            <item android:state_pressed="true"-->
+<!--                android:drawable="@drawable/button_pressed" /> &lt;!&ndash; pressed &ndash;&gt;-->
+<!--            <item android:state_focused="true"-->
+<!--                android:drawable="@drawable/button_focused" /> &lt;!&ndash; focused &ndash;&gt;-->
+<!--            <item android:drawable="@drawable/button_normal" /> &lt;!&ndash; default &ndash;&gt;-->
+<!--        </selector>-->
+
+
+
+        <ImageButton
+            android:id="@+id/instructions_startBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackgroundPeach"
+            android:scaleType="center"
+            android:text="@string/start_text"
+            android:src="@drawable/play_tinted"
+            android:textAlignment="center"
+            android:layout_marginEnd="10sp" />
+
+        <ImageButton
+            android:id="@+id/instructions_pauseBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackgroundPeach"
+            android:scaleType="center"
+            android:text="@string/start_text"
+            android:src="@drawable/pause_tinted"
+            android:textAlignment="center"
+            android:layout_marginEnd="10sp"/>
+
+
+    </LinearLayout>
+        <Button
+            android:id="@+id/instructions_finishBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorOrange"
+            android:scaleType="center"
+            android:text="Complete"
+            android:textAlignment="center"
+            android:layout_marginEnd="10sp"
+            android:onClick=""/>
+    </LinearLayout>
 
 
 </LinearLayout>
