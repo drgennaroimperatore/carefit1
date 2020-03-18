@@ -17,7 +17,6 @@ import com.example.game_.other01_app.Database.entities.User;
 import com.example.game_.other01_app.Fragments.ChangeNamesFragment;
 import com.example.game_.other01_app.Fragments.ExercisesFragment;
 import com.example.game_.other01_app.R;
-import com.example.game_.other01_app.Repositories.UserRepository;
 import com.example.game_.other01_app.ViewModels.UserViewModel;
 
 import java.util.concurrent.ExecutionException;

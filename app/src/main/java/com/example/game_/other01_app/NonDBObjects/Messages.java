@@ -21,7 +21,7 @@ public class Messages {
         return new Messages[] {
                 new Messages("Strength exercises can help to tone your muscles, which means you will be less likely to have an accident.","Strength" ),
                 new Messages("Regular exercise can help your ability to continue with everyday activities.","All"),
-                new Messages("Exercise is good for your brain and memory.","All" ),
+                new Messages("com.example.game_.other01_app.Activities.UserInterface.Exercise is good for your brain and memory.","All" ),
                 new Messages("Regular exercise can benefit your sense of wellbeing and self esteem.","All"),
                 new Messages("Older adults should aim to do about 30 minutes of moderate exercise per day.","All"),
                 new Messages("Aerobic exercise can be done anywhere and anytime - even while taking the stairs!","Aerobic"),

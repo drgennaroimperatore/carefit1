@@ -4,28 +4,27 @@
     android:background="@color/colorOrange">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/navigation_home"
         android:enabled="true"
         android:title="@string/home"
-        android:icon="@drawable/home_icon"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/ic_action_home" />
 
     <item
-        android:id="@+id/progress"
+        android:id="@+id/navigation_progress"
         android:enabled="true"
         android:icon="@drawable/ic_action_progress"
-        android:title="@string/progress"
-        app:showAsAction="ifRoom" />
+        android:title="@string/progress" />
+
     <item
-        android:id="@+id/exercise_list"
+        android:id="@+id/navigation_exercise"
         android:enabled="true"
         android:icon="@drawable/ic_action_exercise"
-        android:title="@string/exercise"
-        app:showAsAction="always" />
+        android:title="@string/exercise" />
+
     <item
-        android:id="@+id/profile"
+        android:id="@+id/navigation_profile"
         android:enabled="true"
         android:icon="@drawable/ic_action_profile"
-        android:title="@string/profile"
-        app:showAsAction="always" />
+        android:title="@string/profile" />
+
 </menu>

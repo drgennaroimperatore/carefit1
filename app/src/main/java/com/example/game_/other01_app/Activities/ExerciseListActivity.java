@@ -1,6 +1,5 @@
 package com.example.game_.other01_app.Activities;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import com.example.game_.other01_app.ViewModels.ExerciseListViewModel;
 import com.example.game_.other01_app.ViewModels.MessagesViewModel;
 import com.example.game_.other01_app.ViewModels.TimeSetViewModel;
 import com.example.game_.other01_app.ViewModels.UserViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,6 @@ import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -39,7 +36,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * This is the Exercise Screen ACTIVITY
+ * This is the com.example.game_.other01_app.Activities.UserInterface.Exercise Screen ACTIVITY
  */
 public class ExerciseListActivity extends AppCompatActivity {
 
@@ -64,7 +61,7 @@ public class ExerciseListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_exercise_list);
-       // setContentView(R.layout.home_screen);
+       // setContentView(R.layout.fragment_home);
         setTitle("CareFit");
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);

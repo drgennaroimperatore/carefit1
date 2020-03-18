@@ -10,6 +10,6 @@
     <item
         android:id="@+id/instructions_help"
         android:title="Help"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
 </menu>

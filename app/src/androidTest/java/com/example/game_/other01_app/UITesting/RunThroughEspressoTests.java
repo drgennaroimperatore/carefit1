@@ -123,7 +123,7 @@ public class RunThroughEspressoTests {
         onView(withText("Welcome back!")).check(matches(isDisplayed()));
         onView(withText("Okay")).perform(click());
         onView(withText("Okay")).perform(click());
-        onView(withText("Home")).perform(click());
+        onView(withText("com/example/game_/other01_app/Activities/UserInterface/Home")).perform(click());
 
 
         onView(withText("Okay")).perform(click());

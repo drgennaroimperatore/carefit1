@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 public class FilterExercisesActivity extends AppCompatActivity {
 

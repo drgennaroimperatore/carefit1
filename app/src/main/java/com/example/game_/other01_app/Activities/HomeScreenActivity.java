@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 /**
- * This is the Home Screen ACTIVITY
+ * This is the com.example.game_.other01_app.Activities.UserInterface.Home Screen ACTIVITY
  */
 
 public class HomeScreenActivity extends AppCompatActivity {
@@ -22,63 +22,65 @@ public class HomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-
-        BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomView.setOnNavigationItemSelectedListener(
-
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-                    @Override
-
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        openHome();
-                        return true;
-                    case R.id.progress:
-                        openProgress();
-                        return true;
-                    case R.id.exercise_list:
-                        openExercise();
-                        return true;
-                    case R.id.profile:
-                        openProfile();
-                        return true;
-                }
-                return HomeScreenActivity.super.onContextItemSelected(item);
-
-            }
-        });
-    }
-
-    public void openHome(){
-        Intent intent = new Intent(this, HomeScreenActivity.class);
-        startActivity(intent);
-    }
-
-    public void openProgress(){
-        Intent intent = new Intent(this, ProgressScreenActivity.class);
-        startActivity(intent);
-    }
-
-    public void openExercise(){
-        Intent intent = new Intent(this, ExerciseListActivity.class);
-        startActivity(intent);
-    }
-
-    public void openProfile(){
-        Intent intent = new Intent(this, ProfileScreenActivity.class);
-        startActivityForResult(intent, 1);
-    }
-
-
-
-    @Override
-    public void onBackPressed() {
-        //Do nothing.
     }
 }
+//
+//        BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+//        bottomView.setOnNavigationItemSelectedListener(
+
+//                new BottomNavigationView.OnNavigationItemSelectedListener() {
+//
+//                    @Override
+//
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//                switch (item.getItemId()) {
+//                    case R.id.home:
+//                        openHome();
+//                        return true;
+//                    case R.id.progress:
+//                        openProgress();
+//                        return true;
+//                    case R.id.exercise_list:
+//                        openExercise();
+//                        return true;
+//                    case R.id.profile:
+//                        openProfile();
+//                        return true;
+//                }
+//                return HomeScreenActivity.super.onContextItemSelected(item);
+//
+//            }
+//        });
+//    }
+//
+//    public void openHome(){
+//        Intent intent = new Intent(this, HomeScreenActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    public void openProgress(){
+//        Intent intent = new Intent(this, ProgressScreenActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    public void openExercise(){
+//        Intent intent = new Intent(this, ExerciseListActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    public void openProfile(){
+//        Intent intent = new Intent(this, ProfileScreenActivity.class);
+//        startActivityForResult(intent, 1);
+//    }
+
+
+//
+//    @Override
+//    public void onBackPressed() {
+//        //Do nothing.
+//    }
+//}
 
 
 
@@ -88,13 +90,13 @@ public class HomeScreenActivity extends AppCompatActivity {
 //      public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 //                switch (item.getItemId()) {
 //                    case R.id.homeFragment:
-//                        Toast.makeText(HomeScreenActivity.this, "Home Screen clicked", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomeScreenActivity.this, "com.example.game_.other01_app.Activities.UserInterface.Home Screen clicked", Toast.LENGTH_SHORT).show();
 //                        break;
 //                    case R.id.progress:
 //                        Toast.makeText(HomeScreenActivity.this, "progressFragment screen clicked", Toast.LENGTH_SHORT).show();
 //                        break;
 //                    case R.id.exercise_list:
-//                        Toast.makeText(HomeScreenActivity.this, "Exercise screen clicked", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomeScreenActivity.this, "com.example.game_.other01_app.Activities.UserInterface.Exercise screen clicked", Toast.LENGTH_SHORT).show();
 //                        break;
 //                    case R.id.profile:
 //                        Toast.makeText(HomeScreenActivity.this, "profileFragment screen clicked", Toast.LENGTH_SHORT).show();
