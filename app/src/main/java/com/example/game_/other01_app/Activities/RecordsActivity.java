@@ -1,6 +1,7 @@
 package com.example.game_.other01_app.Activities;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,10 +20,12 @@ import com.example.game_.other01_app.Database.entities.User;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.ViewModels.TimeSetViewModel;
 import com.example.game_.other01_app.ViewModels.UserViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -43,6 +46,7 @@ public class RecordsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_records_page);
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
@@ -88,7 +92,63 @@ public class RecordsActivity extends AppCompatActivity {
             showTutorialText();
         }
 
+        BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottomNavView_bar);
+
+        Menu menu = bottomView.getMenu();
+        MenuItem menuItem = menu.getItem(1);
+        menuItem.setChecked(true);
+
+        bottomView.setOnNavigationItemSelectedListener(
+
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+                    @Override
+
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                        switch (item.getItemId()) {
+                            case R.id.navigation_home:
+                                openHome();
+                                break;
+                            case R.id.navigation_progress:
+                                //openProgress();
+                                break;
+                            case R.id.navigation_exercise:
+                                openExercise();
+                                break;
+                            case R.id.navigation_profile:
+                                openProfile();
+                                break;
+                        }
+                        return false;
+
+                    }
+                });
     }
+
+
+    public void openHome(){
+        Intent intent1 = new Intent(RecordsActivity.this, HomeScreenActivity.class);
+        startActivity(intent1);
+    }
+
+    public void openProgress(){
+        Intent intent2 = new Intent(RecordsActivity.this, RecordsActivity.class);
+        startActivity(intent2);
+    }
+
+    public void openExercise(){
+        Intent intent3 = new Intent(RecordsActivity.this, ExerciseListActivity.class);
+        startActivity(intent3);
+    }
+
+    public void openProfile(){
+        Intent intent4 = new Intent(RecordsActivity.this, ProfileScreenActivity.class);
+        startActivityForResult(intent4,1);
+    }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

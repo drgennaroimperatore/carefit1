@@ -4,6 +4,23 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="TODAY"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_margin="50sp" />
+
+    <TextView
+        android:id="@+id/todays_date_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        />
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,6 +78,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2sp"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="@color/colorBackgroundPeach"/>
 
 </LinearLayout>

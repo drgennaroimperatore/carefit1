@@ -22,12 +22,14 @@ import com.example.game_.other01_app.ViewModels.ExerciseListViewModel;
 import com.example.game_.other01_app.ViewModels.MessagesViewModel;
 import com.example.game_.other01_app.ViewModels.TimeSetViewModel;
 import com.example.game_.other01_app.ViewModels.UserViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -61,7 +63,7 @@ public class ExerciseListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_exercise_list);
-       // setContentView(R.layout.fragment_home);
+        getSupportActionBar().hide();
         setTitle("CareFit");
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
@@ -109,39 +111,63 @@ public class ExerciseListActivity extends AppCompatActivity {
         }  else {
         }
 
-//        BottomNavigationView bar = findViewById(R.id.bottom_nav);
-//
-//        bar.setOnNavigationItemSelectedListener(item -> {
-//            //Fragment fragment=null;
-//            switch (item.getItemId()) {
-//                case R.id.home:
-//                    Toast.makeText(ExerciseListActivity.this, "home", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(this, MainActivity.class);
-//                    startActivity(intent);
-//                    break;
-//
-//                case R.id.progress:
-//                    Toast.makeText(ExerciseListActivity.this, "progress", Toast.LENGTH_SHORT).show();
-//                    break;
-//
-//                case R.id.exercise_list:
-//                    Toast.makeText(ExerciseListActivity.this, "exercise", Toast.LENGTH_SHORT).show();
-//
-//                    break;
-//
-//                case R.id.profile:
-//                    Toast.makeText(ExerciseListActivity.this, "profile", Toast.LENGTH_SHORT).show();
-//                    break;
-//
-//
-//            }
-//            return true;
-//        });
+        BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottomNavView_bar);
+
+        Menu menu = bottomView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
+
+        bottomView.setOnNavigationItemSelectedListener(
+
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+                    @Override
+
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                        switch (item.getItemId()) {
+                            case R.id.navigation_home:
+                                openHome();
+                                break;
+                            case R.id.navigation_progress:
+                                openProgress();
+                                break;
+                            case R.id.navigation_exercise:
+                                //openExercise();
+                                break;
+                            case R.id.navigation_profile:
+                                openProfile();
+                                break;
+                        }
+                        return false;
+
+                    }
+                }); }
 
 
-
-
+    public void openHome(){
+        Intent intent1 = new Intent(ExerciseListActivity.this, HomeScreenActivity.class);
+        startActivity(intent1);
     }
+
+    public void openProgress(){
+        Intent intent2 = new Intent(ExerciseListActivity.this, RecordsActivity.class);
+        startActivity(intent2);
+    }
+
+    public void openExercise(){
+        Intent intent3 = new Intent(ExerciseListActivity.this, ExerciseListActivity.class);
+        startActivity(intent3);
+    }
+
+    public void openProfile(){
+        Intent intent4 = new Intent(ExerciseListActivity.this, ProfileScreenActivity.class);
+        startActivityForResult(intent4,1);
+    }
+
+
+
+
 
     @Override
     public void onBackPressed() {

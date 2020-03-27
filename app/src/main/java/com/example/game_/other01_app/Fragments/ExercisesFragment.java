@@ -1,6 +1,5 @@
 package com.example.game_.other01_app.Fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,11 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.game_.other01_app.Activities.ChangePreferencesActivity;
 import com.example.game_.other01_app.Activities.ExerciseListActivity;
 import com.example.game_.other01_app.Adapters.CategoriesListAdapter;
 import com.example.game_.other01_app.Database.entities.Category;
-import com.example.game_.other01_app.FragmentChangeListener;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.ViewModels.CategoriesViewModel;
 

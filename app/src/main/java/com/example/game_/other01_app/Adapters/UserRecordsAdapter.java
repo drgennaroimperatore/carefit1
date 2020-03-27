@@ -14,6 +14,10 @@ import com.example.game_.other01_app.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class UserRecordsAdapter extends RecyclerView.Adapter<UserRecordsAdapter.UserRecordsViewHolder> {
 
     class UserRecordsViewHolder extends RecyclerView.ViewHolder {
@@ -21,14 +25,20 @@ public class UserRecordsAdapter extends RecyclerView.Adapter<UserRecordsAdapter.
         private final TextView bestTimeValue;
         private final TextView highestIntensityValue;
         private final TextView streakValue;
+        private final TextView todaysDate;
 
         public UserRecordsViewHolder(@NonNull View itemView) {
             super(itemView);
+            todaysDate = itemView.findViewById(R.id.todays_date_value);
             bestTimeValue = itemView.findViewById(R.id.best_time_value);
             highestIntensityValue = itemView.findViewById(R.id.highest_intensity_value);
             streakValue = itemView.findViewById(R.id.streak_value);
         }
     }
+
+
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
 
     private final LayoutInflater mInflater;
     private User mUser; //Cached copy of the user
@@ -53,7 +63,13 @@ public class UserRecordsAdapter extends RecyclerView.Adapter<UserRecordsAdapter.
             }
             holder.highestIntensityValue.setText(user.getRecentHighestIntensity());
             holder.streakValue.setText(Integer.toString(user.getStreak()));
+            holder.todaysDate.setText(date);
         }
+    }
+
+    public String getDate() {
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        return date;
     }
 
     @Override

@@ -31,31 +31,43 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
-                android:src="@drawable/applogo"/>
+                android:src="@drawable/applogo"
+                android:id="@+id/logo"/>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/relLayoutBottom"
-                android:layout_alignParentBottom="true">
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:id="@+id/hometext"
+                android:layout_below="@+id/logo"/>
 
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/bottomNavView_bar"
-                    android:background="@color/colorOrange"
-                    app:menu="@menu/navigation"
-                    app:itemHorizontalTranslationEnabled="false"/>
 
-            </RelativeLayout>
+
+
 
         </RelativeLayout>
 
-        <com.google.android.material.appbar.AppBarLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="50dp"
+            android:id="@+id/relLayoutBottom"
+            android:layout_alignParentBottom="true">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bottomNavView_bar"
+                android:background="@color/colorOrange"
+                app:menu="@menu/navigation"
+                app:itemHorizontalTranslationEnabled="false"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -63,8 +75,8 @@
             android:id="@+id/toolbarTop"
             android:background="@color/colorOrange"/>
 
-        </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
