@@ -1,6 +1,7 @@
 package com.example.game_.other01_app.Activities;
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -18,7 +19,10 @@ import android.view.Menu;
  */
 
 public class HomeScreenActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
+    private boolean firstTimeBoxRequired;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.hometext);
         title.setText("HOME PAGE");
 
+
+        mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        firstTimeBoxRequired = mSharedPreferences.getBoolean("needsTutorial", false);
+        if(getIntent().getExtras() != null){
+            firstTimeBoxRequired = getIntent().getBooleanExtra("firstTimeBox", false);
+        }
 
 
 

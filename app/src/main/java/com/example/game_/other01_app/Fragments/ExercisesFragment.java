@@ -49,7 +49,7 @@ public class ExercisesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         boolean firstTime = false;
-        boolean changingPrefernces = false;
+        boolean changingPreferences = false;
 
         mSharedPreferences = getActivity().getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
@@ -72,26 +72,26 @@ public class ExercisesFragment extends Fragment {
             if(firstTime) {
                 setUpBackAndNextButtons(rootView);
             } else {
-                TextView title = rootView.findViewById(R.id.exercise_preferences_title);
+                //TextView title = rootView.findViewById(R.id.exercise_preferences_title);
                 title.setVisibility(View.GONE);
             }
 
-            changingPrefernces = args.getBoolean("changingPreferences");
+            changingPreferences = args.getBoolean("changingPreferences");
 
-            if(changingPrefernces){
+            if(changingPreferences){
                 changeTextToChangePreferences();
             }
         }
 
         //this is for when user changes the categories of exercises
-        adapter = new CategoriesListAdapter(getActivity(), changingPrefernces);
+        adapter = new CategoriesListAdapter(getActivity(), changingPreferences);
 
         categoryRecyclerView.setAdapter(adapter);
-        categoryRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        categoryRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
 
 
         //Add an observer for the LiveData returned by getAllCategories
-        mCategoriesViewModel.getAllCategories().observe(this, new Observer<List<Category>>() {
+        mCategoriesViewModel.getAllCategories().observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
 
             @Override
             public void onChanged(List<Category> categories) {

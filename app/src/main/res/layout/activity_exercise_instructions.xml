@@ -8,7 +8,6 @@
     android:gravity="center_horizontal">
 
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -78,17 +77,6 @@
         android:gravity="center"
         android:padding="10sp">
 
-
-
-<!--            <item android:state_pressed="true"-->
-<!--                android:drawable="@drawable/button_pressed" /> &lt;!&ndash; pressed &ndash;&gt;-->
-<!--            <item android:state_focused="true"-->
-<!--                android:drawable="@drawable/button_focused" /> &lt;!&ndash; focused &ndash;&gt;-->
-<!--            <item android:drawable="@drawable/button_normal" /> &lt;!&ndash; default &ndash;&gt;-->
-<!--        </selector>-->
-
-
-
         <ImageButton
             android:id="@+id/instructions_startBtn"
             android:layout_width="wrap_content"
@@ -117,12 +105,11 @@
             android:id="@+id/instructions_finishBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorOrange"
+            android:backgroundTint="@color/colorOrange"
             android:scaleType="center"
             android:text="Complete"
             android:textAlignment="center"
-            android:layout_marginEnd="10sp"
-            android:onClick=""/>
+            android:layout_marginEnd="10sp"/>
     </LinearLayout>
 
 

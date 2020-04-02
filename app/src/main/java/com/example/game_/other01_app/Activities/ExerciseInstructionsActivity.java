@@ -52,6 +52,7 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
 
         tutorial = mSharedPreferences.getBoolean("needsTutorial", true);

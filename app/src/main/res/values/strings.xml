@@ -80,7 +80,7 @@
     <string name="low">Low</string>
     <string name="mid">Mid</string>
     <string name="high">High</string>
-    <string name="search_page_text">Select the categories you want an exercise to work out. Example: If you want a Strength exercise for your Arms, select Strength and Arms.</string>
+    <string name="search_page_text"> Select a type of exercise : </string>
 
 
 

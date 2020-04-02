@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import com.example.game_.other01_app.Adapters.ExerciseListAdapter;
 import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
+import com.example.game_.other01_app.AssistanceClasses.ListAssist;
 import com.example.game_.other01_app.Database.entities.Exercise;
 import com.example.game_.other01_app.Database.entities.User;
+import com.example.game_.other01_app.Fragments.ExercisesFragment;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.ViewModels.CategoriesViewModel;
 import com.example.game_.other01_app.ViewModels.ExerciseListViewModel;
@@ -58,13 +60,17 @@ public class ExerciseListActivity extends AppCompatActivity {
 
     private Menu menu;
 
+    public static final int FILTER_ACTIVITY_REQUEST_CODE = 3;
+    public static final String FILTER_REPLY = "filterReply";
+    private ExercisesFragment exercisesFragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_exercise_list);
         getSupportActionBar().hide();
-        setTitle("CareFit");
+        //setTitle("CareFit");
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
@@ -76,11 +82,25 @@ public class ExerciseListActivity extends AppCompatActivity {
         }
 
 
+        //adds in the filter for choosing exercises you want to view
+        Bundle args = new Bundle();
+        args.putBoolean("firstTime", false);
+
+        exercisesFragment = new ExercisesFragment();
+        exercisesFragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.filterPage_FragHolder, exercisesFragment).commit();
+
+
+
         //Creating the recycler view for the exercises
         RecyclerView exRecyclerView = findViewById(R.id.exercise_recyclerview);
         exListAdapter = new ExerciseListAdapter(this);
         exRecyclerView.setAdapter(exListAdapter);
         exRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+
         //ViewModel creation
         mExerciseViewModel = ViewModelProviders.of(this).get(ExerciseListViewModel.class);
         observeExercises();
@@ -142,7 +162,12 @@ public class ExerciseListActivity extends AppCompatActivity {
                         return false;
 
                     }
-                }); }
+                });
+
+
+
+
+    }
 
 
     public void openHome(){
@@ -166,6 +191,22 @@ public class ExerciseListActivity extends AppCompatActivity {
     }
 
 
+
+    public void applyFilter(View view){
+        ArrayList<String> interested = exercisesFragment.getInterested();
+        goBackToMainPage(true, interested);
+    }
+
+    private void goBackToMainPage(boolean filtersSet, ArrayList<String> interested) {
+        Intent replyIntent = new Intent(ExerciseListActivity.this, ExerciseListActivity.class);
+        if(filtersSet && interested != null){
+            replyIntent.putExtra(FILTER_REPLY, ListAssist.convertListToString(interested));
+            setResult(RESULT_OK,replyIntent);
+        } else {
+            setResult(RESULT_CANCELED);
+        }
+        startActivity(replyIntent);
+    }
 
 
 
@@ -523,10 +564,6 @@ public class ExerciseListActivity extends AppCompatActivity {
         menu.findItem(R.id.action_records).setEnabled(false);
         menu.findItem(R.id.action_help).setEnabled(false);
     }
-
-
-
-
 
 
 }

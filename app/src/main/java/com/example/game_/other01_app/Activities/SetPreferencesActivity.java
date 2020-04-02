@@ -51,6 +51,7 @@ public class SetPreferencesActivity extends FragmentActivity implements
             }
             //Create new ChangeNamesFragment to be placed in the activity layout
             SetNamesFragment firstFragment = new SetNamesFragment();
+
             //In case this activity was started with special instructions from an Intent,
             //pass the Intent's extras to the fragment as arguments
             //firstFragment.setArguments(getIntent().getExtras());
