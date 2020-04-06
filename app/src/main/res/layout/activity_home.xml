@@ -41,6 +41,21 @@
                 android:id="@+id/hometext"
                 android:layout_below="@+id/logo"/>
 
+            <LinearLayout
+                android:id="@+id/user_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/logo">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/user_records_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/user_recordsview_item" />
+
+            </LinearLayout>
+
 
 
 
@@ -57,6 +72,8 @@
                 android:layout_height="match_parent"
                 android:id="@+id/bottomNavView_bar"
                 android:background="@color/colorOrange"
+                app:itemIconTint="@color/colorBlack"
+                app:itemTextColor="@color/colorBlack"
                 app:menu="@menu/navigation"
                 app:itemHorizontalTranslationEnabled="false"/>
 
@@ -64,17 +81,6 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/toolbarTop"
-            android:background="@color/colorOrange"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

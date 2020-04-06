@@ -55,6 +55,8 @@
                 android:layout_height="match_parent"
                 android:id="@+id/bottomNavView_bar"
                 android:background="@color/colorOrange"
+                app:itemIconTint="@color/colorBlack"
+                app:itemTextColor="@color/colorBlack"
                 app:menu="@menu/navigation"
                 app:itemHorizontalTranslationEnabled="false"/>
 

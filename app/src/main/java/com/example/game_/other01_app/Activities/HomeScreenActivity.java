@@ -1,6 +1,5 @@
 package com.example.game_.other01_app.Activities;
 import android.app.Dialog;
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,9 +11,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.game_.other01_app.Adapters.ExerciseListAdapter;
+import com.example.game_.other01_app.Adapters.UserRecordsAdapter;
 import com.example.game_.other01_app.Database.entities.User;
 import com.example.game_.other01_app.Fragments.ExercisesFragment;
 import com.example.game_.other01_app.R;
@@ -28,6 +27,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.Menu;
 
 import java.util.List;
@@ -80,10 +84,31 @@ public class HomeScreenActivity extends AppCompatActivity {
             firstTimeBoxRequired = getIntent().getBooleanExtra("firstTimeBox", false);
         }
 
+        mTimeSetViewModel = ViewModelProviders.of(this).get(TimeSetViewModel.class);
+        mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        //Create the user recycler view
+        RecyclerView userRecyclerView = findViewById(R.id.user_records_recycler_view);
+        final UserRecordsAdapter userAdapter = new UserRecordsAdapter(this);
+        userRecyclerView.setAdapter(userAdapter);
+        userRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mUserViewModel.getUser().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                //Update the cached copy of the user in the adapter.
+                userAdapter.setUser(user);
+            }
+        });
+
+
+
+
+
         Bundle args = new Bundle();
         args.putBoolean("firstTime", true);
         exercisesFragment = new ExercisesFragment();
         exercisesFragment.setArguments(args);
+
 
         BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottomNavView_bar);
 

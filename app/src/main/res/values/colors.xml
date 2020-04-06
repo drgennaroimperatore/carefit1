@@ -9,4 +9,5 @@
     <color name="colorPink">#EB646E</color>
     <color name="colorOrange">#FEC282</color>
     <color name="colorDarkOrange">#FA8305</color>
+    <color name="colorBlack">#000000</color>
 </resources>

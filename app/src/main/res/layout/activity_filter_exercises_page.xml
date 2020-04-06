@@ -5,10 +5,48 @@
     android:background="@color/colorBackgroundPeach">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        >
+
+    <TextView
+        android:id="@+id/filter_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_page_text"
+        android:textSize="20sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:gravity="">
+
+        <ImageButton
+            android:id="@+id/filter_help_Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/help"
+            android:background="@color/colorBackgroundPeach"
+            android:onClick="filter_help"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+    <LinearLayout
         android:id="@+id/filterPage_FragHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" />
+
+
 
     <TextView
         android:layout_width="match_parent"

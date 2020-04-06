@@ -11,13 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.Filter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.game_.other01_app.Adapters.ExerciseListAdapter;
 import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
-import com.example.game_.other01_app.AssistanceClasses.ListAssist;
 import com.example.game_.other01_app.Database.entities.Exercise;
 import com.example.game_.other01_app.Database.entities.User;
 import com.example.game_.other01_app.Fragments.ExercisesFragment;
@@ -64,8 +62,6 @@ public class ExerciseListActivity extends AppCompatActivity {
 
     private Menu menu;
 
-    private Button mButton;
-
     public static final int FILTER_ACTIVITY_REQUEST_CODE = 3;
     public static final String FILTER_REPLY = "filterReply";
     private ExercisesFragment exercisesFragment;
@@ -75,8 +71,11 @@ public class ExerciseListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_exercise_list);
+
+        //action bar set background color and no title displayed
         actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FDECE4"))));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
         //setTitle("CareFit");
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
@@ -171,14 +170,6 @@ public class ExerciseListActivity extends AppCompatActivity {
                     }
                 });
 
-        mButton = findViewById(R.id.applyButton);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                startFilterActivity();
-            }
-        });
 
 
     }
@@ -268,41 +259,26 @@ public class ExerciseListActivity extends AppCompatActivity {
 
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.exercise_filter, menu);
         this.menu = menu;
-        enableEverything();
+
+
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_filter:
-                //startFilterActivity();
-                return true;
-            case R.id.action_preferences:
-                startPreferencesActivity();
-                return true;
-            case R.id.action_records:
-                startRecordsActivity();
-                return true;
-            case R.id.action_reminders:
-                startRemindersActivity();
-                return true;
-            case R.id.action_help:
-                showPopup();
-                return true;
+        if (item.getItemId() == R.id.filter_btn) {
+            startFilterActivity();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-
     private void startPreferencesActivity() {
-        Intent intent = new Intent(this, ChangePreferencesActivity.class);
+        Intent intent = new Intent(this, ProfileScreenActivity.class);
         startActivityForResult(intent, 1);
     }
 
@@ -319,19 +295,19 @@ public class ExerciseListActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == ChangePreferencesActivity.CHANGE_PREFERENCES_ACTIVITY_REQUEST_CODE &&
+        if(requestCode == ProfileScreenActivity.CHANGE_PREFERENCES_ACTIVITY_REQUEST_CODE &&
         resultCode == RESULT_OK) {
-            ArrayList<String> interested = Objects.requireNonNull(data.getExtras()).getStringArrayList(ChangePreferencesActivity.INTERESTED_LIST_REPLY);
-            ArrayList<String> notInterested = data.getExtras().getStringArrayList(ChangePreferencesActivity.NOT_INTERESTED_LIST_REPLY);
+            ArrayList<String> interested = Objects.requireNonNull(data.getExtras()).getStringArrayList(ProfileScreenActivity.INTERESTED_LIST_REPLY);
+            ArrayList<String> notInterested = data.getExtras().getStringArrayList(ProfileScreenActivity.NOT_INTERESTED_LIST_REPLY);
             mCategoriesViewModel.setPreferences(interested, notInterested);
-            User user = Objects.requireNonNull(data).getParcelableExtra(ChangePreferencesActivity.USER_REPLY);
+            User user = Objects.requireNonNull(data).getParcelableExtra(ProfileScreenActivity.USER_REPLY);
             mUserViewModel.createOrUpdateUser(user);
             if(firstTimeBoxRequired) {
                 showAfterChangePreferences();
             }
         } else if (requestCode == ExerciseInstructionsActivity.EXERCISE_INSTRUCTIONS_ACTIVITY_REQUEST_CODE &&
         resultCode == RESULT_OK) {
-            enableEverything();
+           // enableEverything();
             mTimeSetViewModel.updateTimeSet(
                     Objects.requireNonNull(data).getStringExtra(ExerciseInstructionsActivity.EXERCISE_NAME_REPLY),
                     data.getLongExtra(ExerciseInstructionsActivity.EXERCISE_LONG_REPLY, 0)
@@ -388,18 +364,18 @@ public class ExerciseListActivity extends AppCompatActivity {
             firstTimeBoxRequired = false;
             mEditor.putBoolean("needsTutorial", false);
             mEditor.commit();
-            enableEverything();
+           // enableEverything();
             dialog.show();
     }
 
-    private void enableEverything(){
-        menu.findItem(R.id.overflow).setEnabled(true);
-        menu.findItem(R.id.action_preferences).setEnabled(true);
-        menu.findItem(R.id.action_reminders).setEnabled(true);
-        menu.findItem(R.id.action_filter).setEnabled(true);
-        menu.findItem(R.id.action_records).setEnabled(true);
-        menu.findItem(R.id.action_help).setEnabled(true);
-    }
+//    private void enableEverything(){
+//        menu.findItem(R.id.overflow).setEnabled(true);
+//        menu.findItem(R.id.action_preferences).setEnabled(true);
+//        menu.findItem(R.id.action_reminders).setEnabled(true);
+//        menu.findItem(R.id.action_filter).setEnabled(true);
+//        menu.findItem(R.id.action_records).setEnabled(true);
+//        menu.findItem(R.id.action_help).setEnabled(true);
+//    }
 
     private void showPopup() {
         final Dialog dialog = new Dialog(ExerciseListActivity.this);

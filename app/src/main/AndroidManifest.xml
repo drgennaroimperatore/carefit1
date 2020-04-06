@@ -26,8 +26,9 @@
 
         </activity>
 
-        <activity android:name=".Activities.ChangePreferencesActivity"
-            android:configChanges="orientation"
+        <activity android:name=".Activities.ProfileScreenActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"></activity>
 
         <activity android:name=".Activities.RemindersListActivity"
@@ -61,7 +62,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".Activities.ProfileScreenActivity"
+        <activity android:name=".Activities.ProfileScreenActivity1"
             android:configChanges="orientation"
             android:screenOrientation="portrait"></activity>
 

@@ -8,11 +8,6 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/filterbar_help_btn"
-        android:title="Help"
-        app:showAsAction="ifRoom"/>
-
-    <item
         android:id="@+id/filterbar_filter_btn"
         android:title="@string/set_btn_txt"
         app:showAsAction="ifRoom"/>

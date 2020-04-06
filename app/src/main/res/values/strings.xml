@@ -1,14 +1,14 @@
 <resources>
 
-    <string name="home">home page</string>
-    <string name="progress">progress screen</string>
-    <string name="exercise">exercise screen</string>
-    <string name="profile">profile screen</string>
+    <string name="home">Home</string>
+    <string name="progress">Records</string>
+    <string name="exercise">exercises </string>
+    <string name="profile">profile</string>
 
 
 
     <string name="home_screen">home screen</string>
-    <string name="app_name"> </string>
+    <string name="app_name">CareFit</string>
 
 
 
@@ -56,7 +56,8 @@
     <string name="new_reminder_title">New Reminder</string>
     <string name="set_first_reminder_text">Let\'s set your first reminder</string>
     <string name="set_btn">Set</string>
-    <string name="set_btn_txt">Set</string>
+
+    <string name="set_btn_txt">Apply </string>
     <string name="records_btn">Records</string>
     <string name="no_records_text">No records.</string>
     <string name="set_repeating">Set Repeating:</string>
@@ -71,7 +72,7 @@
     <string name="sunday">Sunday</string>
     <string name="set_days">Set Days</string>
     <string name="welcome_title">Welcome to CareFit</string>
-    <string name="change_preferences_message">You can change these later from the Change Preferences page</string>
+    <string name="change_preferences_message">You can change these later from the Profile page</string>
     <string name="exercise_preferences_title">Exercise Preferences</string>
     <string name="error_select_day">You must select at least one day.</string>
     <string name="reminders_message">You can set more later from the Reminders menu</string>
@@ -80,7 +81,7 @@
     <string name="low">Low</string>
     <string name="mid">Mid</string>
     <string name="high">High</string>
-    <string name="search_page_text"> Select a type of exercise : </string>
+    <string name="search_page_text"> </string>
 
 
 

@@ -3,6 +3,9 @@ package com.example.game_.other01_app.Activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.drm.DrmStore;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.game_.other01_app.Adapters.RecordListAdapter;
-import com.example.game_.other01_app.Adapters.UserRecordsAdapter;
 import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
 import com.example.game_.other01_app.Database.entities.TimeSet;
 import com.example.game_.other01_app.Database.entities.User;
@@ -27,15 +29,15 @@ import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecordsActivity extends AppCompatActivity {
-
+    ActionBar actionBar;
     public static int RECORDS_ACTIVITY_REQUEST_CODE = 4;
     private TimeSetViewModel mTimeSetViewModel;
     private UserViewModel mUserViewModel;
@@ -46,7 +48,9 @@ public class RecordsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FDECE4"))));
         setContentView(R.layout.activity_records_page);
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
@@ -59,19 +63,19 @@ public class RecordsActivity extends AppCompatActivity {
         mTimeSetViewModel = ViewModelProviders.of(this).get(TimeSetViewModel.class);
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
-        //Create the user recycler view
-        RecyclerView userRecyclerView = findViewById(R.id.user_records_recycler_view);
-        final UserRecordsAdapter userAdapter = new UserRecordsAdapter(this);
-        userRecyclerView.setAdapter(userAdapter);
-        userRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mUserViewModel.getUser().observe(this, new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                //Update the cached copy of the user in the adapter.
-                userAdapter.setUser(user);
-            }
-        });
+//        //Create the user recycler view
+//        RecyclerView userRecyclerView = findViewById(R.id.user_records_recycler_view);
+//        final UserRecordsAdapter userAdapter = new UserRecordsAdapter(this);
+//        userRecyclerView.setAdapter(userAdapter);
+//        userRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//        mUserViewModel.getUser().observe(this, new Observer<User>() {
+//            @Override
+//            public void onChanged(User user) {
+//                //Update the cached copy of the user in the adapter.
+//                userAdapter.setUser(user);
+//            }
+//        });
 
         //Create the recycler view
         RecyclerView recordsRecyclerView = findViewById(R.id.record_recycler_view);

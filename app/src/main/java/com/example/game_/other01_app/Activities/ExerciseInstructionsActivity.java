@@ -3,6 +3,8 @@ package com.example.game_.other01_app.Activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -20,6 +22,7 @@ import com.example.game_.other01_app.Fragments.ExerciseInstructionBoxFragment;
 import com.example.game_.other01_app.R;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ExerciseInstructionsActivity extends AppCompatActivity {
@@ -47,11 +50,13 @@ public class ExerciseInstructionsActivity extends AppCompatActivity {
     //private MenuItem backBtn2;
 
     private boolean tutorial;
-
+    private ActionBar actionBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
 

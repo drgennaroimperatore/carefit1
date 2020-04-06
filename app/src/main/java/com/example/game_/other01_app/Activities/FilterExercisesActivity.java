@@ -3,6 +3,8 @@ package com.example.game_.other01_app.Activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -20,10 +23,11 @@ import com.example.game_.other01_app.R;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class FilterExercisesActivity extends AppCompatActivity {
-
+    private ActionBar actionBar;
     public static final int FILTER_ACTIVITY_REQUEST_CODE = 3;
     public static final String FILTER_REPLY = "filterReply";
 
@@ -33,6 +37,8 @@ public class FilterExercisesActivity extends AppCompatActivity {
     private boolean tutorial;
     private Menu menu;
 
+    ImageButton helpButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +46,11 @@ public class FilterExercisesActivity extends AppCompatActivity {
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
 
-       // tutorial = mSharedPreferences.getBoolean("needsTutorial", true);
+        // tutorial = mSharedPreferences.getBoolean("needsTutorial", true);
 
-        setTitle("Search");
+        setTitle("Filter Exercise");
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
 
         Bundle args = new Bundle();
         args.putBoolean("firstTime", false);
@@ -56,6 +64,18 @@ public class FilterExercisesActivity extends AppCompatActivity {
 //        if(tutorial) {
 //            showInstuctions();
 //        }
+        helpButton =(ImageButton)findViewById(R.id.filter_help_Btn);
+        helpButton.setOnClickListener(new View.OnClickListener()   {
+            public void onClick(View v)  {
+                try {
+                   showInstructions();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -69,11 +89,11 @@ public class FilterExercisesActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void disableButtons(){
+    private void disableButtons() {
         menu.findItem(R.id.filterbar_back_btn).setEnabled(false);
     }
 
-    private void enableButtons(){
+    private void enableButtons() {
         menu.findItem(R.id.filterbar_back_btn).setEnabled(true);
     }
 
@@ -88,12 +108,11 @@ public class FilterExercisesActivity extends AppCompatActivity {
                 enableButtons();
                 goBackToMainPage(true, interested);
                 return true;
-            case R.id.filterbar_help_btn:
-                showInstructions();
-                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 
 
@@ -114,8 +133,8 @@ public class FilterExercisesActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_first_exercise);
         TextView text = dialog.findViewById(R.id.custom_exercise_text);
-        text.setText("Select a type of exercise to filter your selection " +
-                " e.g Legs and Strength. Press APPLY to finish.");
+        text.setText("Select a type of exercise to filter your Exercise Page " +
+                " \n\ne.g Legs and Strength." + " \n\nPress APPLY to finish.\n");
         Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
         dialogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,5 +143,8 @@ public class FilterExercisesActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    public void showInstructions(View view) {
     }
 }

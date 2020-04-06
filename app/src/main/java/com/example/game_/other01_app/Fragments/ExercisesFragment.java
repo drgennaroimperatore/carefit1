@@ -1,5 +1,6 @@
 package com.example.game_.other01_app.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,9 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.game_.other01_app.Activities.ProfileScreenActivity;
 import com.example.game_.other01_app.Activities.ExerciseListActivity;
 import com.example.game_.other01_app.Adapters.CategoriesListAdapter;
 import com.example.game_.other01_app.Database.entities.Category;
+import com.example.game_.other01_app.FragmentChangeListener;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.ViewModels.CategoriesViewModel;
 
@@ -49,17 +52,15 @@ public class ExercisesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         boolean firstTime = false;
-        boolean changingPreferences = false;
+        boolean changingPrefernces = false;
 
         mSharedPreferences = getActivity().getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
 
         //Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_exercise_preferences, container, false);
-
         //Get the ViewModel
         mCategoriesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(CategoriesViewModel.class);
-
         //Add the RecyclerView
         RecyclerView categoryRecyclerView = rootView.findViewById(R.id.categoryRecyclerView);
 
@@ -72,35 +73,27 @@ public class ExercisesFragment extends Fragment {
             if(firstTime) {
                 setUpBackAndNextButtons(rootView);
             } else {
-                //TextView title = rootView.findViewById(R.id.exercise_preferences_title);
+                TextView title = rootView.findViewById(R.id.exercise_preferences_title);
                 title.setVisibility(View.GONE);
             }
-
-            changingPreferences = args.getBoolean("changingPreferences");
-
-            if(changingPreferences){
+            changingPrefernces = args.getBoolean("changingPreferences");
+            if(changingPrefernces){
                 changeTextToChangePreferences();
             }
         }
 
-        //this is for when user changes the categories of exercises
-        adapter = new CategoriesListAdapter(getActivity(), changingPreferences);
 
+        adapter = new CategoriesListAdapter(getActivity(), changingPrefernces);
         categoryRecyclerView.setAdapter(adapter);
-        categoryRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-
-
+        categoryRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         //Add an observer for the LiveData returned by getAllCategories
-        mCategoriesViewModel.getAllCategories().observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
-
+        mCategoriesViewModel.getAllCategories().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
                 // Update the cached copy of the words in the adapter.
                 adapter.setmCategories(categories);
             }
         });
-
-
         //Check arguments to see if this is the beginning of the app or not
         return rootView;
     }
@@ -111,7 +104,6 @@ public class ExercisesFragment extends Fragment {
 
         //Get The Layout area
         LinearLayout layout = rootView.findViewById(R.id.exercise_pref_btn_zone);
-
         //Get the back button
         Button backButton = new Button(rootView.getContext());
         backButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -135,8 +127,6 @@ public class ExercisesFragment extends Fragment {
         nextButton.setGravity(Gravity.CENTER_HORIZONTAL);;
         layout.addView(nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View view) {
                 if(getInterested().isEmpty()){
