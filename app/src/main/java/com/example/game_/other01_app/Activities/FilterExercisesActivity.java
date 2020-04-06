@@ -40,7 +40,7 @@ public class FilterExercisesActivity extends AppCompatActivity {
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
 
-        tutorial = mSharedPreferences.getBoolean("needsTutorial", true);
+       // tutorial = mSharedPreferences.getBoolean("needsTutorial", true);
 
         setTitle("Search");
 
@@ -52,10 +52,10 @@ public class FilterExercisesActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.filterPage_FragHolder, exercisesFragment).commit();
-
-        if(tutorial) {
-            showTutorial();
-        }
+//
+//        if(tutorial) {
+//            showInstuctions();
+//        }
     }
 
     @Override
@@ -89,11 +89,13 @@ public class FilterExercisesActivity extends AppCompatActivity {
                 goBackToMainPage(true, interested);
                 return true;
             case R.id.filterbar_help_btn:
-                showTutorial();
+                showInstructions();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     private void goBackToMainPage(boolean filtersSet, ArrayList<String> interested) {
         Intent replyIntent = new Intent();
@@ -106,14 +108,14 @@ public class FilterExercisesActivity extends AppCompatActivity {
         finish();
     }
 
-    private void showTutorial(){
+    private void showInstructions(){
         final Dialog dialog = new Dialog(FilterExercisesActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_first_exercise);
         TextView text = dialog.findViewById(R.id.custom_exercise_text);
-        text.setText("Follow the instructions on the page. If you feel stuck, try searching for " +
-                "Legs and Strength. Press SET to finish.");
+        text.setText("Select a type of exercise to filter your selection " +
+                " e.g Legs and Strength. Press APPLY to finish.");
         Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
         dialogBtn.setOnClickListener(new View.OnClickListener() {
             @Override

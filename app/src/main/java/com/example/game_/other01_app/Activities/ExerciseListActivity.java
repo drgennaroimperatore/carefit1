@@ -2,6 +2,8 @@ package com.example.game_.other01_app.Activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Filter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -43,7 +47,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * This is the com.example.game_.other01_app.Activities.UserInterface.Exercise Screen ACTIVITY
  */
 public class ExerciseListActivity extends AppCompatActivity {
-
+    private ActionBar actionBar;
     private ExerciseListViewModel mExerciseViewModel;
     private UserViewModel mUserViewModel;
     private CategoriesViewModel mCategoriesViewModel;
@@ -60,6 +64,8 @@ public class ExerciseListActivity extends AppCompatActivity {
 
     private Menu menu;
 
+    private Button mButton;
+
     public static final int FILTER_ACTIVITY_REQUEST_CODE = 3;
     public static final String FILTER_REPLY = "filterReply";
     private ExercisesFragment exercisesFragment;
@@ -69,7 +75,8 @@ public class ExerciseListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_exercise_list);
-        getSupportActionBar().hide();
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FDECE4"))));
         //setTitle("CareFit");
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
@@ -89,8 +96,8 @@ public class ExerciseListActivity extends AppCompatActivity {
         exercisesFragment = new ExercisesFragment();
         exercisesFragment.setArguments(args);
 
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.filterPage_FragHolder, exercisesFragment).commit();
+//        getSupportFragmentManager().beginTransaction()
+//                .add(R.id.filterPage_FragHolder, exercisesFragment).commit();
 
 
 
@@ -128,7 +135,7 @@ public class ExerciseListActivity extends AppCompatActivity {
                     openMessageDialog(messagesViewModel.getPraiseList());
                 }
             }
-        }  else {
+       // }  else {
         }
 
         BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottomNavView_bar);
@@ -164,7 +171,14 @@ public class ExerciseListActivity extends AppCompatActivity {
                     }
                 });
 
-
+        mButton = findViewById(R.id.applyButton);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                startFilterActivity();
+            }
+        });
 
 
     }
@@ -191,24 +205,11 @@ public class ExerciseListActivity extends AppCompatActivity {
     }
 
 
+    public void startFilterActivity() {
+        Intent intent = new Intent(this, FilterExercisesActivity.class);
+        startActivityForResult(intent, FilterExercisesActivity.FILTER_ACTIVITY_REQUEST_CODE);
 
-    public void applyFilter(View view){
-        ArrayList<String> interested = exercisesFragment.getInterested();
-        goBackToMainPage(true, interested);
     }
-
-    private void goBackToMainPage(boolean filtersSet, ArrayList<String> interested) {
-        Intent replyIntent = new Intent(ExerciseListActivity.this, ExerciseListActivity.class);
-        if(filtersSet && interested != null){
-            replyIntent.putExtra(FILTER_REPLY, ListAssist.convertListToString(interested));
-            setResult(RESULT_OK,replyIntent);
-        } else {
-            setResult(RESULT_CANCELED);
-        }
-        startActivity(replyIntent);
-    }
-
-
 
     @Override
     public void onBackPressed() {
@@ -280,7 +281,7 @@ public class ExerciseListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_filter:
-                startFilterActivity();
+                //startFilterActivity();
                 return true;
             case R.id.action_preferences:
                 startPreferencesActivity();
@@ -298,10 +299,7 @@ public class ExerciseListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void startFilterActivity() {
-        Intent intent = new Intent(this, FilterExercisesActivity.class);
-        startActivityForResult(intent, FilterExercisesActivity.FILTER_ACTIVITY_REQUEST_CODE);
-    }
+
 
     private void startPreferencesActivity() {
         Intent intent = new Intent(this, ChangePreferencesActivity.class);
