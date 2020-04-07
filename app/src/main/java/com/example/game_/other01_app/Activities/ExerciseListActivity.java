@@ -276,21 +276,21 @@ public class ExerciseListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    private void startPreferencesActivity() {
-        Intent intent = new Intent(this, ProfileScreenActivity.class);
-        startActivityForResult(intent, 1);
-    }
-
-    private void startRemindersActivity() {
-        Intent intent = new Intent(this, RemindersListActivity.class);
-        startActivityForResult(intent, RemindersListActivity.REMINDERS_LIST_REQUEST_CODE);
-    }
-
-    private void startRecordsActivity() {
-        Intent intent = new Intent(this, RecordsActivity.class);
-        startActivityForResult(intent, RecordsActivity.RECORDS_ACTIVITY_REQUEST_CODE);
-    }
+//
+//    private void startPreferencesActivity() {
+//        Intent intent = new Intent(this, ProfileScreenActivity.class);
+//        startActivityForResult(intent, 1);
+//    }
+//
+//    private void startRemindersActivity() {
+//        Intent intent = new Intent(this, RemindersListActivity.class);
+//        startActivityForResult(intent, RemindersListActivity.REMINDERS_LIST_REQUEST_CODE);
+//    }
+//
+//    private void startRecordsActivity() {
+//        Intent intent = new Intent(this, RecordsActivity.class);
+//        startActivityForResult(intent, RecordsActivity.RECORDS_ACTIVITY_REQUEST_CODE);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -329,17 +329,17 @@ public class ExerciseListActivity extends AppCompatActivity {
             filters = Objects.requireNonNull(data).getStringExtra(FilterExercisesActivity.FILTER_REPLY);
             observeExercises();
             if(firstTimeBoxRequired) {
-                showAfterFilters();
+            //    showAfterFilters();
             }
         } else if (requestCode == RecordsActivity.RECORDS_ACTIVITY_REQUEST_CODE &&
         resultCode == RESULT_OK) {
             if(firstTimeBoxRequired) {
-                showAfterRecords();
+               // showAfterRecords();
             }
         } else if(requestCode == RemindersListActivity.REMINDERS_LIST_REQUEST_CODE &&
         resultCode == RESULT_OK) {
             if(firstTimeBoxRequired) {
-                showAfterReminders();
+               // showAfterReminders();
             }
         }
     }
@@ -436,108 +436,108 @@ public class ExerciseListActivity extends AppCompatActivity {
             }
         });
         if(firstTimeBoxRequired){
-            disableAfterExercise();
+          //  disableAfterExercise();
         }
         dialog.show();
     }
 
-    private void disableAfterExercise(){
-        menu.findItem(R.id.overflow).setEnabled(true);
-        menu.findItem(R.id.action_preferences).setEnabled(false);
-        menu.findItem(R.id.action_reminders).setEnabled(false);
-        menu.findItem(R.id.action_filter).setEnabled(false);
-        menu.findItem(R.id.action_help).setEnabled(false);
-    }
+//    private void disableAfterExercise(){
+//        menu.findItem(R.id.overflow).setEnabled(true);
+//        menu.findItem(R.id.action_preferences).setEnabled(false);
+//        menu.findItem(R.id.action_reminders).setEnabled(false);
+//        menu.findItem(R.id.action_filter).setEnabled(false);
+//        menu.findItem(R.id.action_help).setEnabled(false);
+//    }
+////
+//    private void showAfterRecords(){
+//        final Dialog dialog = new Dialog(ExerciseListActivity.this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setCancelable(false);
+//        dialog.setContentView(R.layout.dialog_first_exercise);
+//        TextView text = dialog.findViewById(R.id.custom_exercise_text);
+//        text.setText("Now let's set your first reminder to use the app. Go to the Reminders page " +
+//                "in the MENU.");
+//        Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
+//        dialogBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialog.cancel();
+//            }
+//        });
+//        if(firstTimeBoxRequired){
+//            disableAfterRecords();
+//        }
+//        dialog.show();
+//    }
+//
+//    private void disableAfterRecords(){
+//        menu.findItem(R.id.overflow).setEnabled(true);
+//        menu.findItem(R.id.action_preferences).setEnabled(false);
+//        menu.findItem(R.id.action_reminders).setEnabled(true);
+//        menu.findItem(R.id.action_filter).setEnabled(false);
+//        menu.findItem(R.id.action_records).setEnabled(false);
+//        menu.findItem(R.id.action_help).setEnabled(false);
+//    }
 
-    private void showAfterRecords(){
-        final Dialog dialog = new Dialog(ExerciseListActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_first_exercise);
-        TextView text = dialog.findViewById(R.id.custom_exercise_text);
-        text.setText("Now let's set your first reminder to use the app. Go to the Reminders page " +
-                "in the MENU.");
-        Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
-        dialogBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-            }
-        });
-        if(firstTimeBoxRequired){
-            disableAfterRecords();
-        }
-        dialog.show();
-    }
+//    private void showAfterReminders(){
+//        final Dialog dialog = new Dialog(ExerciseListActivity.this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setCancelable(false);
+//        dialog.setContentView(R.layout.dialog_first_exercise);
+//        TextView text = dialog.findViewById(R.id.custom_exercise_text);
+//        text.setText("Now let's Search for an exercise that fits some of the categories from before. " +
+//                "Go to Search in the MENU.");
+//        Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
+//        dialogBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialog.cancel();
+//            }
+//        });
+//        if(firstTimeBoxRequired){
+//            disableAfterReminders();
+//        }
+//        dialog.show();
+//    }
 
-    private void disableAfterRecords(){
-        menu.findItem(R.id.overflow).setEnabled(true);
-        menu.findItem(R.id.action_preferences).setEnabled(false);
-        menu.findItem(R.id.action_reminders).setEnabled(true);
-        menu.findItem(R.id.action_filter).setEnabled(false);
-        menu.findItem(R.id.action_records).setEnabled(false);
-        menu.findItem(R.id.action_help).setEnabled(false);
-    }
+//    private void disableAfterReminders(){
+//        menu.findItem(R.id.overflow).setEnabled(true);
+//        menu.findItem(R.id.action_preferences).setEnabled(false);
+//        menu.findItem(R.id.action_reminders).setEnabled(false);
+//        menu.findItem(R.id.action_filter).setEnabled(true);
+//        menu.findItem(R.id.action_records).setEnabled(false);
+//        menu.findItem(R.id.action_help).setEnabled(false);
+//    }
 
-    private void showAfterReminders(){
-        final Dialog dialog = new Dialog(ExerciseListActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_first_exercise);
-        TextView text = dialog.findViewById(R.id.custom_exercise_text);
-        text.setText("Now let's Search for an exercise that fits some of the categories from before. " +
-                "Go to Search in the MENU.");
-        Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
-        dialogBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-            }
-        });
-        if(firstTimeBoxRequired){
-            disableAfterReminders();
-        }
-        dialog.show();
-    }
+//    private void showAfterFilters(){
+//        final Dialog dialog = new Dialog(ExerciseListActivity.this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setCancelable(false);
+//        dialog.setContentView(R.layout.dialog_first_exercise);
+//        TextView text = dialog.findViewById(R.id.custom_exercise_text);
+//        text.setText("Finally, to change your name and the exercise preferences you saw at the start, " +
+//                "go to Change Preferences in the MENU.\n\n Let's go there now.");
+//        Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
+//        dialogBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialog.cancel();
+//            }
+//        });
+//        if(firstTimeBoxRequired){
+//            disableAfterFilters();
+//        }
+//        dialog.show();
+//    }
 
-    private void disableAfterReminders(){
-        menu.findItem(R.id.overflow).setEnabled(true);
-        menu.findItem(R.id.action_preferences).setEnabled(false);
-        menu.findItem(R.id.action_reminders).setEnabled(false);
-        menu.findItem(R.id.action_filter).setEnabled(true);
-        menu.findItem(R.id.action_records).setEnabled(false);
-        menu.findItem(R.id.action_help).setEnabled(false);
-    }
-
-    private void showAfterFilters(){
-        final Dialog dialog = new Dialog(ExerciseListActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_first_exercise);
-        TextView text = dialog.findViewById(R.id.custom_exercise_text);
-        text.setText("Finally, to change your name and the exercise preferences you saw at the start, " +
-                "go to Change Preferences in the MENU.\n\n Let's go there now.");
-        Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
-        dialogBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-            }
-        });
-        if(firstTimeBoxRequired){
-            disableAfterFilters();
-        }
-        dialog.show();
-    }
-
-    private void disableAfterFilters(){
-        menu.findItem(R.id.overflow).setEnabled(true);
-        menu.findItem(R.id.action_preferences).setEnabled(true);
-        menu.findItem(R.id.action_reminders).setEnabled(false);
-        menu.findItem(R.id.action_filter).setEnabled(false);
-        menu.findItem(R.id.action_records).setEnabled(false);
-        menu.findItem(R.id.action_help).setEnabled(false);
-    }
+//    private void disableAfterFilters(){
+//        menu.findItem(R.id.overflow).setEnabled(true);
+//        menu.findItem(R.id.action_preferences).setEnabled(true);
+//        menu.findItem(R.id.action_reminders).setEnabled(false);
+//        menu.findItem(R.id.action_filter).setEnabled(false);
+//        menu.findItem(R.id.action_records).setEnabled(false);
+//        menu.findItem(R.id.action_help).setEnabled(false);
+//    }
 
 
 }

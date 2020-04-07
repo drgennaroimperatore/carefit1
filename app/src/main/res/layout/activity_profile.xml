@@ -13,19 +13,12 @@
         android:layout_height="match_parent"
         android:id="@+id/relLayout">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/relLayoutTop"
-            android:layout_alignParentTop="true">
 
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/relLayoutMiddle"
-            android:layout_below="@id/relLayoutTop"
             android:layout_above="@id/relLayoutBottom">
 
             <ImageView

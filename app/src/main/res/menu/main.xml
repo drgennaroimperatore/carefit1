@@ -15,8 +15,8 @@
 
             <!-- "Change Preferences", should always appear in the overflow -->
             <item
-                android:id="@+id/action_preferences"
-                android:title="@string/change_preferences"
+                android:id="@+id/action_help"
+                android:title="Help"
                 app:showAsAction="always" />
 
             <!--"Set Reminders", should appear as action button if possible -->
@@ -27,19 +27,14 @@
 
             <!--"Filter Exercises", should appear as action button if possible-->
             <item
-                android:id="@+id/action_filter"
-                android:title="Search"
+                android:id="@+id/action_info"
+                android:title="Carer Info"
                 app:showAsAction="always" />
 
             <!--"View Records", should always appear in the overflow -->
             <item
-                android:id="@+id/action_records"
-                android:title="@string/records_btn"
-                app:showAsAction="always" />
-
-            <item
-                android:id="@+id/action_help"
-                android:title="Help"
+                android:id="@+id/action_disclaimer"
+                android:title="disclaimer"
                 app:showAsAction="always" />
 
         </menu>

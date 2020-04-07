@@ -48,16 +48,18 @@ public class RecordsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getSupportActionBar().hide();
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FDECE4"))));
         setContentView(R.layout.activity_records_page);
+
+        actionBar = getSupportActionBar();
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
+
+
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
 
         tutorial = mSharedPreferences.getBoolean("needsTutorial", true);
 
-        setTitle("Best Times");
 
         //get the viewmodel from the viewmodel provider
         mTimeSetViewModel = ViewModelProviders.of(this).get(TimeSetViewModel.class);
@@ -96,6 +98,7 @@ public class RecordsActivity extends AppCompatActivity {
             showTutorialText();
         }
 
+        //set up the bottom navigation for each page
         BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottomNavView_bar);
 
         Menu menu = bottomView.getMenu();
@@ -164,10 +167,6 @@ public class RecordsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.records_back:
-                setResult(RESULT_OK);
-                finish();
-                return true;
             case R.id.records_help:
                 showTutorialText();
                 return true;
@@ -181,65 +180,18 @@ public class RecordsActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_first_exercise);
         TextView text = dialog.findViewById(R.id.custom_exercise_text);
-        text.setText("Here, you can see your best exercises times, the highest " +
-                "level of exercise you have tried, and how many days in a row you've been using " +
-                "the app.\n\nThis info is used to highlight your exercise achievements with a " +
-                "new message once a day.");
+        text.setText("Here, you can see your records for each exercise " +
+                "\nThis info is used to highlight your exercise achievements");
         Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
-        dialogBtn.setText("Show Message");
+        dialogBtn.setText("Okay");
         dialogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.cancel();
-                showSampleMessage();
+               // showSampleMessage();
             }
         });
         dialog.show();
     }
 
-    private void showSampleMessage(){
-        User user = null;
-        try {
-            user = mUserViewModel.getUserNotLive();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        final Dialog dialog = new Dialog(RecordsActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_daily_message);
-        TextView text = dialog.findViewById(R.id.daily_achievement);
-        text.setText("Hi, " + user.getUserName() + " last time you improved your total exercise time by " +
-                DateTimeAssist.longToTimerString(user.getRecentTotalExerciseTime()) + ". Well done!");
-        TextView tipText = dialog.findViewById(R.id.daily_tip);
-        tipText.setText("You will receive messages like this once per day when you start up CareFit.");
-        Button dialogBtn = dialog.findViewById(R.id.daily_okay_button);
-        dialogBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-                showFinalText();
-            }
-        });
-        dialog.show();
-    }
-
-    private void showFinalText(){
-        final Dialog dialog = new Dialog(RecordsActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_first_exercise);
-        TextView text = dialog.findViewById(R.id.custom_exercise_text);
-        text.setText("Press HOME to go back.");
-        Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
-        dialogBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-            }
-        });
-        dialog.show();
-    }
 }

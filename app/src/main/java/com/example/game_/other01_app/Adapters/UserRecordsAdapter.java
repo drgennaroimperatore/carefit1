@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
@@ -27,17 +28,32 @@ public class UserRecordsAdapter extends RecyclerView.Adapter<UserRecordsAdapter.
         private final TextView streakValue;
         private final TextView todaysDate;
 
+
+
         public UserRecordsViewHolder(@NonNull View itemView) {
             super(itemView);
             todaysDate = itemView.findViewById(R.id.todays_date_value);
             bestTimeValue = itemView.findViewById(R.id.best_time_value);
             highestIntensityValue = itemView.findViewById(R.id.highest_intensity_value);
             streakValue = itemView.findViewById(R.id.streak_value);
+
         }
-    }
 
 
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+
+
+
+
+
+
+}
+
+
+
+
+
+        String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
 
     private final LayoutInflater mInflater;

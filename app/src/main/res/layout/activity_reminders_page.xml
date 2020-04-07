@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundPeach">
 
     <LinearLayout
         android:id="@+id/reminder_toolbar_space"
@@ -21,7 +22,7 @@
             android:id="@+id/reminder_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorBackgroundPeach"
             tools:listitem="@layout/list_item_reminders" />
 
     </LinearLayout>

@@ -64,6 +64,8 @@ public class FilterExercisesActivity extends AppCompatActivity {
 //        if(tutorial) {
 //            showInstuctions();
 //        }
+
+
         helpButton =(ImageButton)findViewById(R.id.filter_help_Btn);
         helpButton.setOnClickListener(new View.OnClickListener()   {
             public void onClick(View v)  {

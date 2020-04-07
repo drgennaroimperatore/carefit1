@@ -3,6 +3,8 @@ package com.example.game_.other01_app.Activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,11 +26,12 @@ import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 public class ProfileScreenActivity extends AppCompatActivity {
-
+    ActionBar actionBar;
     public static final String USER_REPLY = "preferenceUserReply";
 
     public static final int CHANGE_PREFERENCES_ACTIVITY_REQUEST_CODE = 1;
@@ -46,6 +49,10 @@ public class ProfileScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        actionBar = getSupportActionBar();
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
 

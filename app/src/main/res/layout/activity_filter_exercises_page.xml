@@ -16,7 +16,7 @@
         android:id="@+id/filter_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/search_page_text"
+        android:text="Select a type of Exercise: "
         android:textSize="20sp"/>
 
         <LinearLayout
@@ -31,8 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/help"
-            android:background="@color/colorBackgroundPeach"
-            android:onClick="filter_help"/>
+            android:background="@color/colorBackgroundPeach" />
 
     </LinearLayout>
 

@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:text="Welcome!"
         android:textSize="25sp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorOrange"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorOrange"
         android:padding="4sp"
         android:textStyle="bold"/>
 
@@ -30,9 +30,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tap on an exercise: "
+        android:text="Tap on the exercise page icon on the bottom navigation bar "
         android:layout_gravity="center_horizontal"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="20dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="45sp"
@@ -42,13 +44,13 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:src="@drawable/innerthighstretch"
+        android:src="@drawable/exercise_icon"
         android:background="@drawable/greenbg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -57,7 +59,8 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="to get started."
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:padding="20dp"/>
 
     <Button
         android:id="@+id/custom_opening_button"

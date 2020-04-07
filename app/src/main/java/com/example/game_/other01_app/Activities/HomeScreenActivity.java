@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.game_.other01_app.Adapters.ExerciseListAdapter;
@@ -58,6 +59,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     private boolean firstTimeBoxRequired;
 
     private Menu menu;
+    ImageButton helpButton;
 
     public static final int FILTER_ACTIVITY_REQUEST_CODE = 3;
     public static final String FILTER_REPLY = "filterReply";
@@ -68,13 +70,24 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FDECE4"))));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
 
 //        TextView title = (TextView) findViewById(R.id.hometext);
 //        title.setText("HOME PAGE");
 
-
+        helpButton =(ImageButton)findViewById(R.id.home_help_Btn);
+        helpButton.setOnClickListener(new View.OnClickListener()   {
+            public void onClick(View v)  {
+                try {
+                    showInstructions();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
 
@@ -86,6 +99,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         mTimeSetViewModel = ViewModelProviders.of(this).get(TimeSetViewModel.class);
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
         //Create the user recycler view
         RecyclerView userRecyclerView = findViewById(R.id.user_records_recycler_view);
         final UserRecordsAdapter userAdapter = new UserRecordsAdapter(this);
@@ -189,20 +203,17 @@ public class HomeScreenActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_filter:
-                //startFilterActivity();
-                return true;
-            case R.id.action_preferences:
-                //startPreferencesActivity();
-                return true;
-            case R.id.action_records:
-                //startRecordsActivity();
-                return true;
-            case R.id.action_reminders:
-                //startRemindersActivity();
-                return true;
             case R.id.action_help:
                 showPopup();
+                return true;
+            case R.id.action_reminders:
+                startRemindersActivity();
+                return true;
+            case R.id.action_info:
+                showCarersInfo();
+                return true;
+            case R.id.action_disclaimer:
+                showDisclaimer();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -234,20 +245,39 @@ public class HomeScreenActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_opening_message);
         TextView text = dialog.findViewById(R.id.custom_opening_text);
-        text.setText("Hi there, " + user.getUserName() + ", welcome to CareFit.\n" +
+        text.setText("Welcome to CareFit.\n" +
                 "CareFit is designed to help you fit in more exercises while you look" +
-                " after " + user.getCareName() + ".\n");
+                " after your loved one " + ".\n");
         Button dialogBtn = dialog.findViewById(R.id.custom_opening_button);
         dialogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.cancel();
-                showDisclaimer();
+                //showDisclaimer();
             }
         });
         dialog.show();
     }
 
+    private void startRemindersActivity() {
+        Intent intent = new Intent(this, RemindersListActivity.class);
+        startActivityForResult(intent, RemindersListActivity.REMINDERS_LIST_REQUEST_CODE);
+    }
+
+    private void showCarersInfo(){
+        final Dialog dialog = new Dialog(HomeScreenActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_carer_info);
+        Button dialogBtn = dialog.findViewById(R.id.carer_dialog_button);
+        dialogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+    }
 
     private void showDisclaimer(){
         final Dialog dialog = new Dialog(HomeScreenActivity.this);
@@ -261,9 +291,26 @@ public class HomeScreenActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-        if(firstTimeBoxRequired){
-          //  disableMenu();
-        }
         dialog.show();
     }
+
+
+    private void showInstructions(){
+        final Dialog dialog = new Dialog(HomeScreenActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_first_exercise);
+        TextView text = dialog.findViewById(R.id.custom_exercise_text);
+        text.setText("Here, you can see your personal best time spent exercising," +
+                " \n the highest intensity level today, " + " \n and the amount of days youve spent using the app.\n");
+        Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
+        dialogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+    }
+
 }

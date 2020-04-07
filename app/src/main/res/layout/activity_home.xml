@@ -11,21 +11,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relLayout">
+        android:id="@+id/relLayout"
+        android:nestedScrollingEnabled="false">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/relLayoutTop"
-            android:layout_alignParentTop="true">
 
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/relLayoutMiddle"
-            android:layout_below="@id/relLayoutTop"
             android:layout_above="@id/relLayoutBottom">
 
             <ImageView
@@ -34,19 +28,39 @@
                 android:src="@drawable/applogo"
                 android:id="@+id/logo"/>
 
+            <LinearLayout
+                android:id="@+id/homehelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:gravity="end"
+                android:layout_below="@id/logo">
+
+                <ImageButton
+                    android:id="@+id/home_help_Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorBackgroundPeach"
+                    android:src="@drawable/help" />
+
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:id="@+id/hometext"
-                android:layout_below="@+id/logo"/>
+                android:layout_below="@+id/homehelp"/>
+
+
 
             <LinearLayout
                 android:id="@+id/user_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@id/logo">
+                android:layout_below="@id/homehelp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/user_records_recycler_view"
