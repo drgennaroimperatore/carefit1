@@ -42,7 +42,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * This is the com.example.game_.other01_app.Activities.UserInterface.Exercise Screen ACTIVITY
+ * This is the activity for the exercise page
  */
 public class ExerciseListActivity extends AppCompatActivity {
     private ActionBar actionBar;

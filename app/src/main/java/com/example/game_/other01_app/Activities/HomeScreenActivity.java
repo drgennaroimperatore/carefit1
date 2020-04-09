@@ -39,7 +39,7 @@ import java.util.List;
 
 
 /**
- * This is the com.example.game_.other01_app.Activities.UserInterface.Home Screen ACTIVITY
+ * This is the main activity - the home screen for the app
  */
 
 public class HomeScreenActivity extends AppCompatActivity {

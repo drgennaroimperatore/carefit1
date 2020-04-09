@@ -35,7 +35,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+/**
+ * This is the records activity - the records page for the app
+ */
 public class RecordsActivity extends AppCompatActivity {
     ActionBar actionBar;
     public static int RECORDS_ACTIVITY_REQUEST_CODE = 4;

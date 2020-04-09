@@ -12,6 +12,6 @@ tests and androidTests contain the test classes for the application. Please clea
 
 To clear application data more easily, install the ADBIdea plugin.
 
-Manual tests can be found in the Appendix of the dissertation.
 
-If there is any confusion, please contact:
+
+

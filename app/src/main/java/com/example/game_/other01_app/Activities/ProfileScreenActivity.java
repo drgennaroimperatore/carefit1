@@ -29,7 +29,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
-
+/**
+ * This is the profile activity - the profile screen for the app
+ */
 public class ProfileScreenActivity extends AppCompatActivity {
     ActionBar actionBar;
     public static final String USER_REPLY = "preferenceUserReply";
@@ -164,9 +166,7 @@ public class ProfileScreenActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Saves the entered data and checks for erroneous input
-     */
+
     private void saveDecisions(){
         Intent replyIntent = new Intent();
         if(changeNamesFragment.getUserName().trim().isEmpty()){
