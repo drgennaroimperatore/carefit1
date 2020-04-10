@@ -151,7 +151,7 @@ public class ProfileScreenActivity extends AppCompatActivity {
     }
 
     public void openProgress(){
-        Intent intent2 = new Intent(ProfileScreenActivity.this, ProgressScreenActivity.class);
+        Intent intent2 = new Intent(ProfileScreenActivity.this, RecordsActivity.class);
         startActivity(intent2);
     }
 

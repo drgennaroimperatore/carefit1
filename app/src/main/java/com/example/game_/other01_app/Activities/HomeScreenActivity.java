@@ -302,7 +302,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_first_exercise);
         TextView text = dialog.findViewById(R.id.custom_exercise_text);
         text.setText("Here, you can see your personal best time spent exercising," +
-                " \n the highest intensity level today, " + " \n and the amount of days youve spent using the app.\n");
+                " \n\n the highest intensity level today, " + " \n\n and the total days you have spent using the app.\n");
         Button dialogBtn = dialog.findViewById(R.id.custom_exercise_button);
         dialogBtn.setOnClickListener(new View.OnClickListener() {
             @Override

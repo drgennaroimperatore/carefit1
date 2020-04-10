@@ -115,26 +115,8 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:textSize="20sp"
+                android:layout_below="@id/intensityguide"
                 android:visibility="gone"/>
-
-<!--        <LinearLayout-->
-<!--                android:id="@+id/apply_button"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/intensityguide"-->
-<!--                android:gravity="end">-->
-
-<!--            <Button-->
-<!--            android:id="@+id/applyButton"-->
-<!--            android:layout_width="70dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:text="Filter"-->
-<!--            android:backgroundTint="@color/colorOrange"-->
-<!--            android:layout_gravity="end"-->
-<!--            android:layout_below="@id/intensityguide"-->
-<!--            />-->
-
-<!--        </LinearLayout>-->
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -167,11 +149,7 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </com.google.android.material.appbar.AppBarLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
