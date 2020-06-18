@@ -70,7 +70,6 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         actionBar = getSupportActionBar();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));

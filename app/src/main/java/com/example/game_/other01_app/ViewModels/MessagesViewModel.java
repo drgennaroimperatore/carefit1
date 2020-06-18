@@ -34,6 +34,11 @@ public class MessagesViewModel {
         this.categoriesViewModel = categoriesViewModel;
         try {
             user = mUserViewModel.getUserNotLive();
+           /* if(user==null)
+            {
+                mUserViewModel.createOrUpdateUser(user);
+            }*/
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -80,6 +85,9 @@ public class MessagesViewModel {
      * @return
      */
     public boolean buildNotification(){
+
+        if(user==null)
+            return false;
         if(atLeastADayHasPassed(user.getLast_log_in().longValue())) {
             if (increasedTotalExerciseTime()) {
                 praiseList.add("Yesterday you improved your total exercise time by:  " +

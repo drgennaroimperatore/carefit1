@@ -29,6 +29,7 @@ public class UserRepository {
 
     public void createNewUser(User user) {
       //  User user = new User(id, yourName, theirName, checked);
+
         new createUserAsyncTask(mUserDao).execute(user);
     }
 
@@ -56,6 +57,7 @@ public class UserRepository {
 
         @Override
         protected Void doInBackground(final User... params) {
+            mUserDao.deleteAll();
             mUserDao.insert(params[0]);
             return null;
         }

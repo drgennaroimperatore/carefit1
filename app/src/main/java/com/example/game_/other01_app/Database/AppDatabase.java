@@ -119,8 +119,12 @@ public abstract class AppDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-          //  mUserDao.deleteAll();
-           // mUserDao.insert(User.defaultUserData());
+           // mUserDao.deleteAll();
+            mUserDao.insert(new User(0, "The user", "Carer", true,
+           System.currentTimeMillis(), 0,
+           0, "low",
+                    "low", "low",
+           0));
             return null;
         }
     }

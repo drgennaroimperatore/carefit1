@@ -18,6 +18,7 @@ public class UserViewModel extends AndroidViewModel {
         super(application);
         userRepository = new UserRepository(application);
         mUser = userRepository.getUser();
+       User user= mUser.getValue();
     }
 
     public LiveData<User> getUser() {
@@ -29,6 +30,7 @@ public class UserViewModel extends AndroidViewModel {
      * @param user
      */
     public void createOrUpdateUser(User user) {
+
         userRepository.createNewUser(user);
     }
 

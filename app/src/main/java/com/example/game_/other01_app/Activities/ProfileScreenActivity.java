@@ -95,11 +95,8 @@ public class ProfileScreenActivity extends AppCompatActivity {
         }
 
         bottomView.setOnNavigationItemSelectedListener(
-
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
-
                     @Override
-
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                         switch (item.getItemId()) {
@@ -191,6 +188,7 @@ public class ProfileScreenActivity extends AppCompatActivity {
             replyIntent.putStringArrayListExtra(INTERESTED_LIST_REPLY, exercisesFragment.getInterested());
             replyIntent.putStringArrayListExtra(NOT_INTERESTED_LIST_REPLY, exercisesFragment.getNotInterested());
             User user = createUserEntity();
+            mUserViewModel.createOrUpdateUser(user);
             replyIntent.putExtra(USER_REPLY, user);
             setResult(RESULT_OK, replyIntent);
             finish();

@@ -40,17 +40,7 @@ public class UserRecordsAdapter extends RecyclerView.Adapter<UserRecordsAdapter.
         }
 
 
-
-
-
-
-
-
-
 }
-
-
-
 
 
         String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
