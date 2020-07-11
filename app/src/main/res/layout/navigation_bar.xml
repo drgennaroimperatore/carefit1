@@ -13,13 +13,13 @@ android:background="@color/colorBackgroundPeach">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorOrange"
+        android:background="@color/colorDarkOrange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation"
-        app:itemIconTint="@color/colorBackgroundPeach"
-        app:itemTextColor="@color/colorBackgroundPeach">
+        app:itemIconTint="@color/colorBlack"
+        app:itemTextColor="@color/colorBlack">
 
 </com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>

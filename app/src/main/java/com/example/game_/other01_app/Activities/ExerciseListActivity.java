@@ -75,7 +75,8 @@ public class ExerciseListActivity extends AppCompatActivity {
         //action bar set background color and no title displayed
         actionBar = getSupportActionBar();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FA8305")));
+
         //setTitle("CareFit");
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);

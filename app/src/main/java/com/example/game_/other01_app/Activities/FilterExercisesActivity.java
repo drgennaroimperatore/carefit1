@@ -50,7 +50,8 @@ public class FilterExercisesActivity extends AppCompatActivity {
 
         setTitle("Filter Exercise");
         actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FA8305")));
+
 
         Bundle args = new Bundle();
         args.putBoolean("firstTime", false);

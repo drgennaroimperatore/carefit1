@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackgroundPeach"
+    android:background="@color/colorDarkOrange"
     >
 
 
@@ -13,7 +13,7 @@
         android:layout_height="200sp"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
-        android:background="@color/colorBackgroundPeach">
+        android:background="@color/colorDarkOrange">
 
         <ImageButton
             android:id="@+id/instructions_text_back"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20sp"
-            android:background="@color/colorBackgroundPeach"
+            android:background="@color/colorBlack"
             android:src="@drawable/back11" />
 
         <TextView
@@ -33,7 +33,8 @@
             android:textIsSelectable="false"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
 
         <ImageButton
             android:id="@+id/instructions_text_next"

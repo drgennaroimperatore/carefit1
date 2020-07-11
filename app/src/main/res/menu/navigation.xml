@@ -8,6 +8,12 @@
         android:icon="@drawable/ic_action_home" />
 
     <item
+        android:id="@+id/navigation_workout"
+        android:enabled="true"
+        android:title="Workouts"
+        android:icon="@drawable/ic_action_exercise"/>
+
+    <item
         android:id="@+id/navigation_progress"
         android:enabled="true"
         android:icon="@drawable/ic_action_progress"
@@ -24,5 +30,8 @@
         android:enabled="true"
         android:icon="@drawable/ic_action_profile"
         android:title="@string/profile" />
+
+
+
 
 </menu>

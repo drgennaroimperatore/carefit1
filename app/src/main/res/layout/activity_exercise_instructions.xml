@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorBackgroundPeach"
+    android:background="@color/colorDarkOrange"
     android:gravity="center_horizontal">
 
 
@@ -28,8 +28,8 @@
 
                 <ImageView
                     android:id="@+id/instructions_image"
-                    android:layout_width="250sp"
-                    android:layout_height="0dp"
+                    android:layout_width="239dp"
+                    android:layout_height="196dp"
                     android:src="@drawable/grapevine"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:1"
@@ -81,23 +81,25 @@
             android:id="@+id/instructions_startBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorBackgroundPeach"
+
             android:scaleType="center"
             android:text="@string/start_text"
             android:src="@drawable/play_tinted"
             android:textAlignment="center"
-            android:layout_marginEnd="10sp" />
+            android:layout_marginEnd="10sp"
+            style="@style/ExerciseInstructionButtonStyle"/>
 
         <ImageButton
             android:id="@+id/instructions_pauseBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorBackgroundPeach"
+
             android:scaleType="center"
             android:text="@string/start_text"
             android:src="@drawable/pause_tinted"
             android:textAlignment="center"
-            android:layout_marginEnd="10sp"/>
+            android:layout_marginEnd="10sp"
+            style="@style/ExerciseInstructionButtonStyle"/>
 
 
     </LinearLayout>
@@ -105,11 +107,11 @@
             android:id="@+id/instructions_finishBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorOrange"
             android:scaleType="center"
             android:text="Complete"
             android:textAlignment="center"
-            android:layout_marginEnd="10sp"/>
+            android:layout_marginEnd="10sp"
+            style="@style/ExerciseInstructionButtonStyle"/>
     </LinearLayout>
 
 

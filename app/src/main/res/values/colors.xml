@@ -3,11 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-
     <color name="colorBackgroundPeach">#FDECE4</color>
     <color name="colorTeal">#68C4A2</color>
     <color name="colorPink">#EB646E</color>
     <color name="colorOrange">#FEC282</color>
     <color name="colorDarkOrange">#FA8305</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundPeach"
+    android:background="@color/colorDarkOrange"
     tools:context="com.example.game_.other01_app.Activities.HomeScreenActivity">
 
     <RelativeLayout
@@ -71,8 +71,6 @@
             </LinearLayout>
 
 
-
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -85,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/bottomNavView_bar"
-                android:background="@color/colorOrange"
+                android:background="@color/colorDarkOrange"
                 app:itemIconTint="@color/colorBlack"
                 app:itemTextColor="@color/colorBlack"
                 app:menu="@menu/navigation"

@@ -54,7 +54,8 @@ public class ProfileScreenActivity extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FA8305")));
+
 
         mSharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
 

@@ -72,7 +72,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         actionBar = getSupportActionBar();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        actionBar.setBackgroundDrawable((new ColorDrawable(Color.parseColor("#FEC282"))));
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FA8305")));
 
 //        TextView title = (TextView) findViewById(R.id.hometext);
 //        title.setText("HOME PAGE");

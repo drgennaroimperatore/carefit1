@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackgroundPeach">
+    android:background="@color/colorDarkOrange">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,13 +21,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:id="@+id/record_exercise_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textColor="@color/colorBlack"/>
 
         </LinearLayout>
 

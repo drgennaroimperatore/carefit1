@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/bottomNavView_bar"
-                    android:background="@color/colorOrange"
+                    android:background="@color/colorDarkOrange"
                     app:menu="@menu/navigation"
                     app:itemHorizontalTranslationEnabled="false"/>
 
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/toolbarTop"
-            android:background="@color/colorOrange"/>
+            android:background="@color/colorDarkOrange"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
