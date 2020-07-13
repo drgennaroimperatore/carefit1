@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.game_.other01_app">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,82 +11,77 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-
-        <activity android:name=".Activities.ExerciseListActivity"
+        <activity
+            android:name=".Activities.CreateWorkoutActivity"
+            android:label="@string/title_activity_create_workout"
+            android:theme="@style/NoActionBar"></activity>
+        <activity
+            android:name=".Activities.ExerciseListActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".Activities.ExerciseInstructionsActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.ExerciseInstructionsActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".Activities.SetPreferencesActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.SetPreferencesActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".Activities.ProfileScreenActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.ProfileScreenActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".Activities.RemindersListActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".Activities.NewReminderActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".Activities.FilterExercisesActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Activities.RemindersListActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".Activities.RecordsActivity"
+        <activity
+            android:name=".Activities.NewReminderActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".Activities.HomeScreenActivity"
+        <activity
+            android:name=".Activities.FilterExercisesActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.RecordsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.HomeScreenActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Activities.ProgressScreenActivity"
+        <activity
+            android:name=".Activities.ProgressScreenActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".Activities.ProfileScreenActivity1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.ProfileScreenActivity1"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
-        <receiver android:name=".Receivers.ReminderBootReceiver"
+        <receiver
+            android:name=".Receivers.ReminderBootReceiver"
             android:enabled="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name=".Receivers.ReminderReceiver"></receiver>
-
+        <receiver android:name=".Receivers.ReminderReceiver" />
         <receiver android:name=".Receivers.ReminderTimeChangeReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
-                <action android:name="android.intent.action.TIME_SET"/>
-                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
             </intent-filter>
         </receiver>
-
     </application>
-
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
 </manifest>
