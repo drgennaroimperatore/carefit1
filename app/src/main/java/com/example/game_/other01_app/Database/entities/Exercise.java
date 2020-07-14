@@ -29,6 +29,8 @@ public class Exercise {
     @NonNull
     private final String categories;
 
+
+
     public Exercise(int id, String name, String desc, String image,
                     String intensity, String categories){
 

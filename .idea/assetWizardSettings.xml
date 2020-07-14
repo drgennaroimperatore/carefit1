@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\spike\AppData\Local\Temp\baseline_add_box_24.xml" />
+                                                <entry key="imagePath" value="C:\Users\spike\AppData\Local\Temp\outline_find_in_page_24.xml" />
                                                 <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
@@ -36,7 +36,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/add_box/baseline_add_box_24.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialiconsoutlined/find_in_page/outline_find_in_page_24.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -82,9 +82,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="imageAsset" value="C:\Users\spike\Downloads\exerciseicon.png" />
-                                      <entry key="outputName" value="ic_action_plus" />
+                                      <entry key="outputName" value="ic_view" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="000000" />
+                                      <entry key="themeColor" value="3c7bff" />
                                     </map>
                                   </option>
                                 </PersistentState>
