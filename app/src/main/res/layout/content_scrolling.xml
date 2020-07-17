@@ -46,7 +46,7 @@
            android:width="64dp"
            android:textColor="@color/colorWhite"
            android:textSize="15sp"
-           android:text="Add Flexibility">
+           android:text="Add Balance">
 
        </Button>
 
@@ -58,7 +58,7 @@
         android:width="64dp"
         android:textColor="@color/colorBlack"
         android:textSize="15sp"
-        android:text="Add Strength">
+        android:text="Add Muscle">
     </Button>
 
     <Button android:layout_width="wrap_content"

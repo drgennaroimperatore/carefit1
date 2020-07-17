@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:layout_gravity="center_horizontal"
+        android:text="Activity 1">
+
+    </TextView>
+
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:rowCount="4"
+    android:columnCount="1"
+    android:useDefaultMargins="true">
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_dist"
+        android:gravity="center_vertical|center_horizontal"
+        android:height="32dp"
+        android:width="32dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:text="+ Cardio">
+
+    </Button>
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_flex"
+        android:gravity="center_vertical|center_horizontal"
+        android:height="32dp"
+        android:width="32dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp"
+        android:text="+ Balance">
+
+    </Button>
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_str"
+        android:gravity="center_vertical|center_horizontal"
+        android:height="32dp"
+        android:width="32dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:text="+ Muscle">
+    </Button>
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:height="32dp"
+        android:width="32dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        android:text="+ Other">
+    </Button>
+
+
+</GridLayout>
+</LinearLayout>
