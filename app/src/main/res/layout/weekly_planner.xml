@@ -7,109 +7,55 @@
     android:layout_height="match_parent"
     android:background="@color/colorDarkOrange">
 
+
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:src="@drawable/applogo" />
 
-    <GridLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rowCount="6"
-        android:columnCount="2"
-
-      >
-
-    <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:text="Monday">
+        android:text="Previous"
+        android:layout_weight="0.3"
+        android:textSize="18sp"
+        android:textStyle="bold">
 
     </TextView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/weekly_planner_list_add"
-        tools:itemCount="3"
-
-        android:orientation="horizontal">
-
-
-
-    </androidx.recyclerview.widget.RecyclerView>
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:text="Monday">
-
-        </TextView>
-
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/weekly_planner_list_add"
-            tools:itemCount="2"
-
-            android:orientation="horizontal">
-
-
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:text="Monday">
+            android:text="Current Week"
+            android:layout_weight="0.3"
+            android:textSize="18sp"
+            android:textStyle="bold">
 
         </TextView>
-
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/weekly_planner_list_add"
-            tools:itemCount="2"
-
-            android:orientation="horizontal">
-
-
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:text="Monday">
+            android:text="Next"
+            android:gravity="center_horizontal"
+            android:layout_weight="0.3"
+            android:textSize="18sp"
+            android:textStyle="bold">
 
         </TextView>
+    </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/weekly_planner_list_add"
-            tools:itemCount="2"
+<ListView
+    android:id="@+id/weekly_planner_listVoew"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:listitem="@layout/weekly_planner_row">
 
-            android:orientation="horizontal">
-
-
-
-        </androidx.recyclerview.widget.RecyclerView>
-    </GridLayout>
-
-
+</ListView>
 
 
 

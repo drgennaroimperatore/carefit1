@@ -21,7 +21,9 @@
     android:columnCount="1"
     android:useDefaultMargins="true">
 
-    <Button android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/weekly_planner_dailyactivity_addCardio_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button_dist"
         android:gravity="center_vertical|center_horizontal"
@@ -32,7 +34,9 @@
         android:text="+ Cardio">
 
     </Button>
-    <Button android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/weekly_planner_dailyactivity_addBalance_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button_flex"
         android:gravity="center_vertical|center_horizontal"
@@ -44,7 +48,9 @@
 
     </Button>
 
-    <Button android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/weekly_planner_dailyactivity_addMuscle_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button_str"
         android:gravity="center_vertical|center_horizontal"
@@ -55,7 +61,9 @@
         android:text="+ Muscle">
     </Button>
 
-    <Button android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/weekly_planner_dailyactivity_addOther_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
         android:gravity="center_vertical|center_horizontal"

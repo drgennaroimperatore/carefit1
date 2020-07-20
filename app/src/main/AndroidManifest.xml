@@ -19,6 +19,21 @@
             android:name=".Activities.ExerciseListActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Activities.PlannerActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.DashboardActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.ExerciseInstructionsActivity"
             android:configChanges="orientation"
@@ -52,11 +67,7 @@
             android:name=".Activities.HomeScreenActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
 
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.ProgressScreenActivity"
