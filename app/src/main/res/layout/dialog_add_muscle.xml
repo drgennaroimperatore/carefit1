@@ -68,7 +68,7 @@
 
    <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
+        android:id="@+id/set1"
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="120dp"

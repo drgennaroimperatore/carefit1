@@ -1,18 +1,16 @@
 package com.example.game_.other01_app.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.game_.other01_app.Database.entities.Workout;
-import com.example.game_.other01_app.PopupDialogs.MuscleBalanceDialog;
+import com.example.game_.other01_app.Database.entities.DailyActivity;
+import com.example.game_.other01_app.PopupDialogs.AddActivityDialog;
 import com.example.game_.other01_app.R;
 
 import java.util.ArrayList;
@@ -20,13 +18,13 @@ import java.util.List;
 
 public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.Adapter  {
     Context mContext;
-    List<Workout> mData = new ArrayList<>();
+    List<DailyActivity> mData = new ArrayList<>();
 
 
    public WeeklyPlannerDailyActivityRecyclerViewAdapter(Context context)
    {
        mContext = context;
-       mData.add(new Workout());
+       mData.add(null);
    }
     @NonNull
     @Override
@@ -35,16 +33,15 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.weekly_planner_list_add,null);
-      WeklyPlannerDailyActivityOnClickListener listener = (view, pos) -> {MuscleBalanceDialog dialog = new MuscleBalanceDialog(mContext); dialog.show();};
+      WeklyPlannerDailyActivityOnClickListener listener = (view, pos) -> {
+          AddActivityDialog dialog = new AddActivityDialog(mContext, pos, this); dialog.show();};
 
         return new DailyActivityReciclerViewHolder(v,mContext,listener );
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
        DailyActivityReciclerViewHolder h = (DailyActivityReciclerViewHolder)holder;
-
 
     }
 
@@ -55,14 +52,25 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
         return mData.size();
     }
 
+    public void assignActivity ()
+    {
+     //   mData.add(w);
+    }
 
+    public void deleteActivity()
+    {
+
+    }
 
 }
 
+
+
 class DailyActivityReciclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public Button mAddCardioButton, mAddBalanceButton, mAddMuscleButton, mAddOtherButton;
+    public ImageButton mAddActivityButton;
     public DailyActivityReciclerViewHolder(@NonNull View itemView) {
         super(itemView);
+
 
     }
 
@@ -75,11 +83,11 @@ class DailyActivityReciclerViewHolder extends RecyclerView.ViewHolder implements
 
         mContext =context;
         mListener =listener;
-        mAddCardioButton = itemView.findViewById(R.id.weekly_planner_dailyactivity_addCardio_button);
-        mAddBalanceButton = itemView.findViewById(R.id.weekly_planner_dailyactivity_addBalance_button);
-        mAddMuscleButton = itemView.findViewById(R.id.weekly_planner_dailyactivity_addMuscle_button);
-        mAddMuscleButton.setOnClickListener(this);
-        mAddOtherButton = itemView.findViewById(R.id.weekly_planner_dailyactivity_addOther_button);
+        mAddActivityButton = itemView.findViewById(R.id.weekly_planner_dailyactivity_addActivity_button);
+        mAddActivityButton.setOnClickListener(this);
+
+
+
 
     }
 

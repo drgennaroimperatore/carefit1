@@ -1,10 +1,9 @@
 package com.example.game_.other01_app.DataObjects;
 
-import com.example.game_.other01_app.Database.entities.WeeklyPlan;
-import com.example.game_.other01_app.Database.entities.Workout;
+import com.example.game_.other01_app.Database.entities.DailyActivity;
 
 public class WeeklyPlannerObject {
-    public WeeklyPlannerObject(String date, Workout w)
+    public WeeklyPlannerObject(String date, DailyActivity w)
     {
 
     }

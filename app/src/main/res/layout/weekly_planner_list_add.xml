@@ -21,11 +21,11 @@
     android:columnCount="1"
     android:useDefaultMargins="true">
 
-    <Button
-        android:id="@+id/weekly_planner_dailyactivity_addCardio_button"
+    <ImageButton
+        android:id="@+id/weekly_planner_dailyactivity_addActivity_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_dist"
+       android:src="@drawable/ic_action_plus"
         android:gravity="center_vertical|center_horizontal"
         android:height="32dp"
         android:width="32dp"
@@ -33,46 +33,7 @@
         android:textSize="18sp"
         android:text="+ Cardio">
 
-    </Button>
-    <Button
-        android:id="@+id/weekly_planner_dailyactivity_addBalance_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_flex"
-        android:gravity="center_vertical|center_horizontal"
-        android:height="32dp"
-        android:width="32dp"
-        android:textColor="@color/colorWhite"
-        android:textSize="15sp"
-        android:text="+ Balance">
-
-    </Button>
-
-    <Button
-        android:id="@+id/weekly_planner_dailyactivity_addMuscle_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_str"
-        android:gravity="center_vertical|center_horizontal"
-        android:height="32dp"
-        android:width="32dp"
-        android:textColor="@color/colorBlack"
-        android:textSize="16sp"
-        android:text="+ Muscle">
-    </Button>
-
-    <Button
-        android:id="@+id/weekly_planner_dailyactivity_addOther_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:gravity="center_vertical|center_horizontal"
-        android:height="32dp"
-        android:width="32dp"
-        android:textColor="@color/colorBlack"
-        android:textSize="18sp"
-        android:text="+ Other">
-    </Button>
+    </ImageButton>
 
 
 </GridLayout>

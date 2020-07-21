@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerListAdapter;
 import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
-import com.example.game_.other01_app.Database.entities.Workout;
+import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.R;
 
 public class PlannerActivity extends Activity
@@ -20,7 +20,7 @@ public class PlannerActivity extends Activity
 
         ListView weeklyListView = findViewById(R.id.weekly_planner_listVoew);
         WeeklyPlannerListAdapter adapter = new WeeklyPlannerListAdapter(this,0);
-        adapter.add(new WeeklyPlannerObject("Monday", new Workout()));
+        adapter.add(new WeeklyPlannerObject("Monday", new DailyActivity()));
         weeklyListView.setAdapter(adapter);
     }
 }

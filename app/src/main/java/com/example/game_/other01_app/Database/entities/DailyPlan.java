@@ -7,5 +7,5 @@ public class DailyPlan
     public int id;
     public Date dayOfWeek;
     public int weeklyPlanID;
-    public int workoutID;
+    public int dailyActivityID;
 }

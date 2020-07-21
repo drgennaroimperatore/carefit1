@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textColor="@color/colorWhite"
+       android:textSize="20dp"
+       android:layout_gravity="center_horizontal"
+       android:layout_marginBottom="10dp"
+       android:text="Which Type of Activity Would you like to add?">
+
+   </TextView>
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/colorBlack">
+
+    <Button
+        android:id="@+id/weekly_planner_dailyactivity_addCardio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_dist"
+        android:gravity="center_vertical|center_horizontal"
+        android:height="64dp"
+        android:width="64dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:text="+C">
+
+    </Button>
+    <Button
+        android:id="@+id/weekly_planner_dailyactivity_addBalance_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_flex"
+        android:gravity="center_vertical|center_horizontal"
+        android:height="64dp"
+        android:width="64dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp"
+        android:text="+B">
+
+    </Button>
+
+    <Button
+        android:id="@+id/weekly_planner_dailyactivity_addMuscle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_str"
+        android:gravity="center_vertical|center_horizontal"
+        android:height="64dp"
+        android:width="64dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:text="+M">
+    </Button>
+
+    <Button
+        android:id="@+id/weekly_planner_dailyactivity_addOther_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="64dp"
+        android:height="64dp"
+        android:background="@drawable/custom_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="+O"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"></Button>
+
+
+
+</LinearLayout>
+</LinearLayout>
