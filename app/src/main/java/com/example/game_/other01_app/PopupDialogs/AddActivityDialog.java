@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecyclerViewAdapter;
+import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.R;
 
 public class AddActivityDialog extends Dialog {
@@ -29,17 +30,33 @@ public class AddActivityDialog extends Dialog {
 
         Button mAddCardio, mAddBalance, mAddMuscle, mAddOther;
 
-        mAddBalance = findViewById(R.id.weekly_planner_dailyactivity_addBalance_button);
+       // mAddBalance = findViewById(R.id.weekly_planner_dailyactivity_addBalance_button);
         mAddCardio = findViewById(R.id.weekly_planner_dailyactivity_addCardio_button);
         mAddMuscle = findViewById(R.id.weekly_planner_dailyactivity_addMuscle_button);
         mAddOther = findViewById(R.id.weekly_planner_dailyactivity_addOther_button);
 
-        mAddBalance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MuscleBalanceDialog dialog = new MuscleBalanceDialog(mContext);
-                dialog.show();
-            }
-        });
+       mAddCardio.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.CARDIO, mActivityPosition);
+               dismiss();
+           }
+       });
+
+       mAddMuscle.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.MUSCLE, mActivityPosition);
+               dismiss();
+           }
+       });
+
+       mAddOther.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.OTHER, mActivityPosition);
+               dismiss();
+           }
+       });
     }
 }

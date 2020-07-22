@@ -20,7 +20,11 @@ public class PlannerActivity extends Activity
 
         ListView weeklyListView = findViewById(R.id.weekly_planner_listVoew);
         WeeklyPlannerListAdapter adapter = new WeeklyPlannerListAdapter(this,0);
-        adapter.add(new WeeklyPlannerObject("Monday", new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Mon", new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Tue", new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Wed", new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Thu", new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Fri", new DailyActivity()));
         weeklyListView.setAdapter(adapter);
     }
 }

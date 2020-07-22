@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +30,8 @@ public class WeeklyPlannerListAdapter extends ArrayAdapter<WeeklyPlannerObject> 
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(R.layout.weekly_planner_row,null);
+        TextView dayTV = convertView.findViewById(R.id.weekly_planner_row_day_tv);
+        dayTV.setText(getItem(position).mDay);
         RecyclerView dailyRecyclerView = convertView.findViewById(R.id.weekly_planner_dailyactivity_recyclerView);
         WeeklyPlannerDailyActivityRecyclerViewAdapter adapter = new WeeklyPlannerDailyActivityRecyclerViewAdapter(mContext);
         dailyRecyclerView.setAdapter(adapter);

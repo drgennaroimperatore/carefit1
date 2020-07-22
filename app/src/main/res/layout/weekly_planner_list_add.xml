@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/weekly_planner_list_add_activity_count_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -21,19 +22,19 @@
     android:columnCount="1"
     android:useDefaultMargins="true">
 
-    <ImageButton
+    <Button
         android:id="@+id/weekly_planner_dailyactivity_addActivity_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:src="@drawable/ic_action_plus"
+       android:background="@drawable/ic_action_plus"
         android:gravity="center_vertical|center_horizontal"
         android:height="32dp"
         android:width="32dp"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
-        android:text="+ Cardio">
+        android:text="">
 
-    </ImageButton>
+    </Button>
 
 
 </GridLayout>
