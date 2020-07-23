@@ -62,11 +62,11 @@ public class ProfileScreenActivity extends AppCompatActivity {
         tutorial = mSharedPreferences.getBoolean("needsTutorial", true);
         
         setTitle("Change Preferences");
-        BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottomNavView_bar);
+       // BottomNavigationView bottomView = (BottomNavigationView) findViewById(R.id.bottomNavView_bar);
 
-        Menu menu = bottomView.getMenu();
+       /* Menu menu = bottomView.getMenu();
         MenuItem menuItem = menu.getItem(3);
-        menuItem.setChecked(true);
+        menuItem.setChecked(true);*/
 
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
@@ -92,10 +92,10 @@ public class ProfileScreenActivity extends AppCompatActivity {
                 .add(R.id.preferencePage_fragHolder, exercisesFragment).commit();
 
         if(tutorial) {
-            showTutorial();
+           // showTutorial();
         }
 
-        bottomView.setOnNavigationItemSelectedListener(
+        /*bottomView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -118,7 +118,7 @@ public class ProfileScreenActivity extends AppCompatActivity {
 
                     }
                 });
-    }
+    */}
 
 
     @Override
@@ -165,7 +165,8 @@ public class ProfileScreenActivity extends AppCompatActivity {
 
 
 
-    private void saveDecisions(){
+    private void saveDecisions()
+    {
         Intent replyIntent = new Intent();
         if(changeNamesFragment.getUserName().trim().isEmpty()){
             Toast.makeText(

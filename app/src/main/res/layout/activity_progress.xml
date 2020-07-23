@@ -36,7 +36,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+       <!-- <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/relLayoutBottom"
@@ -53,6 +53,7 @@
                 app:itemHorizontalTranslationEnabled="false"/>
 
         </RelativeLayout>
+        -->
 
     </RelativeLayout>
 

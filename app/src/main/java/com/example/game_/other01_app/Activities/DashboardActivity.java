@@ -15,13 +15,22 @@ public class DashboardActivity extends Activity
     ImageView m_imageViewGoToPlanner,
             m_imageViewGoToQuickEx,
             m_imageViewGoToSettings,
-            m_imageviewGoToSettings;
+            m_imageviewGoToProfile;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
         m_imageViewGoToPlanner = findViewById(R.id.dashboard_go_to_planner);
+        m_imageviewGoToProfile = findViewById(R.id.dashboard_go_to_profile);
+
+        m_imageviewGoToProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent4 = new Intent(DashboardActivity.this, ProfileScreenActivity.class);
+                startActivityForResult(intent4,1);
+            }
+        });
 
        m_imageViewGoToPlanner.setOnClickListener(new View.OnClickListener() {
            @Override

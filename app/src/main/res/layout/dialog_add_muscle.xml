@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/colorDarkOrange"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
+        android:textStyle="bold"
 
         android:text="Intensity\n/\nType" />
 
@@ -35,6 +36,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textColor="@color/colorWhite"
+        android:textStyle="bold"
         android:layout_columnSpan="1"
         android:layout_gravity="center_horizontal"
     android:text="Low " >
@@ -44,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
+        android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:text="Medium " >
 
@@ -53,6 +56,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
         android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
         android:text="High " >
 
     </TextView>
@@ -61,6 +65,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
         android:layout_gravity="center_vertical"
+        android:textStyle="bold"
         android:text="Muscle " >
 
     </TextView>
@@ -68,12 +73,12 @@
 
    <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/set1"
+        android:id="@+id/dialog_add_muscle_muscle_set1"
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="120dp"
         card_view:cardCornerRadius="20dp"
-        card_view:cardBackgroundColor="@color/colorDarkOrange"
+        card_view:cardBackgroundColor="#0000ff"
         card_view:cardElevation="10dp">
 
         <LinearLayout
@@ -100,12 +105,12 @@
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
+        android:id="@+id/dialog_add_muscle_muscle_set2"
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="120dp"
         card_view:cardCornerRadius="20dp"
-        card_view:cardBackgroundColor="@color/colorDarkOrange"
+        card_view:cardBackgroundColor="#0000ff"
         card_view:cardElevation="10dp">
 
         <LinearLayout
@@ -129,12 +134,12 @@
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
+        android:id="@+id/dialog_add_muscle_muscle_set3"
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="120dp"
         card_view:cardCornerRadius="20dp"
-        card_view:cardBackgroundColor="@color/colorDarkOrange"
+        card_view:cardBackgroundColor="#0000ff"
         card_view:cardElevation="10dp">
 
         <LinearLayout
@@ -163,6 +168,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
         android:layout_gravity="center_vertical"
+        android:textStyle="bold"
         android:text="Balance" >
 
     </TextView>
@@ -170,12 +176,12 @@
 
     <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
+        android:id="@+id/dialog_add_muscle_balance_set1"
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="120dp"
         card_view:cardCornerRadius="20dp"
-        card_view:cardBackgroundColor="@color/colorDarkOrange"
+        card_view:cardBackgroundColor="#ff0"
         card_view:cardElevation="10dp">
 
         <LinearLayout
@@ -188,7 +194,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Set 1"
-                android:background="@color/colorWhite"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp">
+
+            </TextView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dialog_add_muscle_balance_set2"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardBackgroundColor="#ff0"
+        card_view:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set 1"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
                 android:textSize="20dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="20dp">
@@ -198,12 +234,12 @@
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
+        android:id="@+id/dialog_add_muscle_balance_set3"
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="120dp"
         card_view:cardCornerRadius="20dp"
-        card_view:cardBackgroundColor="@color/colorDarkOrange"
+        card_view:cardBackgroundColor="#ff0"
         card_view:cardElevation="10dp">
 
         <LinearLayout
@@ -216,35 +252,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Set 1"
-                android:background="@color/colorWhite"
-                android:textSize="20dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="20dp">
-
-            </TextView>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        card_view:cardCornerRadius="20dp"
-        card_view:cardBackgroundColor="@color/colorDarkOrange"
-        card_view:cardElevation="10dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Set 1"
-
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="20dp">
@@ -254,15 +263,29 @@
     </androidx.cardview.widget.CardView>
 
 </GridLayout>
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:background="@color/colorBlack"
-        android:textColor="@color/colorWhite"
-        android:layout_margin="20dp"
-        android:text="close">
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginTop="25dp">
+    <ImageView
+        android:id="@+id/dialog_add_muscle_close_imgview"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_not">
+    </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorWhite"
+            android:text="Close">
 
-    </Button>
+        </TextView>
+
+    </LinearLayout>
 
 </LinearLayout>

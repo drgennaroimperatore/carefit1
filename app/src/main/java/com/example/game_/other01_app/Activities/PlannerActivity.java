@@ -17,7 +17,6 @@ public class PlannerActivity extends Activity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weekly_planner);
-
         ListView weeklyListView = findViewById(R.id.weekly_planner_listVoew);
         WeeklyPlannerListAdapter adapter = new WeeklyPlannerListAdapter(this,0);
         adapter.add(new WeeklyPlannerObject("Mon", new DailyActivity()));

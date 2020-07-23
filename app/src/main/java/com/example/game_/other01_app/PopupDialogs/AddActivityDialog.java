@@ -2,6 +2,7 @@ package com.example.game_.other01_app.PopupDialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.media.MediaDataSource;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,19 +36,35 @@ public class AddActivityDialog extends Dialog {
         mAddMuscle = findViewById(R.id.weekly_planner_dailyactivity_addMuscle_button);
         mAddOther = findViewById(R.id.weekly_planner_dailyactivity_addOther_button);
 
+        Bundle dialogArgs = new Bundle();
+        dialogArgs.putBoolean("isAssigned", false);
+        dialogArgs.putInt("pos", mActivityPosition);
+
        mAddCardio.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.CARDIO, mActivityPosition);
-               dismiss();
+             /*  mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.CARDIO, mActivityPosition);
+               dismiss();*/
+
+
+
+
+             /*ExcerciseDescriptionDialog Edd = new ExcerciseDescriptionDialog(mContext,dialogArgs);
+             Edd.show();*/
+
+
            }
        });
 
        mAddMuscle.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.MUSCLE, mActivityPosition);
-               dismiss();
+             /*  mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.MUSCLE, mActivityPosition);
+               dismiss();*/
+
+               dialogArgs.putString("type",ExerciseTypes.MUSCLE.toString());
+             MuscleBalanceDialog muscleBalanceDialog = new MuscleBalanceDialog(mContext,dialogArgs,mWeeklyPlannerDARVAdapter);
+             muscleBalanceDialog.show();
            }
        });
 
