@@ -5,8 +5,14 @@ public class DailyActivity
     public int id;
     public String name;
     public String instructions;
-    public boolean assigned;
+    public DailyActivityStatus status;
     public ExerciseTypes type;
 
+    public DailyActivity()
+    {
+        status = DailyActivityStatus.NOT_ASSIGNED;
+    }
 
 }
+
+

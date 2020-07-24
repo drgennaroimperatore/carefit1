@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecyclerViewAdapter;
+import com.example.game_.other01_app.Database.entities.DailyActivityStatus;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.Fragments.ExerciseInstructionBoxFragment;
 import com.example.game_.other01_app.R;
@@ -39,11 +40,11 @@ private  WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
 
         if(mArgs!=null)
         {
-            boolean isAssigned = mArgs.getBoolean("isAssigned",false);
+            DailyActivityStatus status = DailyActivityStatus.valueOf( mArgs.getString("status"));
             ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
             int pos= mArgs.getInt("pos");
 
-            if(!isAssigned)
+            if(status == DailyActivityStatus.NOT_ASSIGNED)
             {
                 confirmationSection.setVisibility(View.VISIBLE);
                 ImageView confirmInsertionImgView = findViewById(R.id.dialog_activity_description_add_to_plan_imgview);
@@ -63,9 +64,28 @@ private  WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
                     }
                 });
             }
-            else
+            else if(status == DailyActivityStatus.ASSIGNED)
             {
                 completionSection.setVisibility(View.VISIBLE);
+
+                ImageView completedActivityImgview, partiallyCompletedActivtyImgView, dontWantToCompleteImgView;
+                completedActivityImgview = findViewById(R.id.dialog_activity_description_completed_ex_imgview);
+                completedActivityImgview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mAdapter.markActivityAsComplete(pos);
+                        dismiss();
+
+                    }
+                });
+                partiallyCompletedActivtyImgView = findViewById(R.id.dialog_activity_description_partially_completed_imgview);
+                partiallyCompletedActivtyImgView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mAdapter.markActivityAsPartialComplete(pos);
+                    }
+                });
+
             }
         }
 

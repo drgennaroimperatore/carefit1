@@ -1,6 +1,8 @@
 package com.example.game_.other01_app.Adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.game_.other01_app.Database.entities.DailyActivity;
+import com.example.game_.other01_app.Database.entities.DailyActivityStatus;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.PopupDialogs.AddActivityDialog;
+import com.example.game_.other01_app.PopupDialogs.ExcerciseDescriptionDialog;
 import com.example.game_.other01_app.R;
 
 import java.util.ArrayList;
@@ -50,7 +54,7 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
         Button addActivityButton = ((DailyActivityReciclerViewHolder) holder).mAddActivityButton;
         TextView activityCounterTV = ((DailyActivityReciclerViewHolder) holder).mTextViewActivityCounter;
         activityCounterTV.setText("Activity "+String.valueOf(position+1));
-      if(activity.assigned) {
+      if(activity.status == DailyActivityStatus.ASSIGNED) {
 
           switch (activity.type)
           {
@@ -70,14 +74,20 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
                   addActivityButton.setBackgroundResource(R.drawable.custom_button);
                   addActivityButton.setText("Other");
                   break;
-
-
           }
 
+      }
+      else if(activity.status == DailyActivityStatus.COMPLETED)
+      {
+          Drawable completedIcon = mContext.getDrawable(R.drawable.ic_complete);
+          addActivityButton.setBackgroundColor(R.color.colorBlack);
+          addActivityButton.setCompoundDrawablesWithIntrinsicBounds(null,completedIcon,null,null);
 
       }
-
-
+      else if (activity.status == DailyActivityStatus.PARTIALLY_COMPLETED)
+      {
+          addActivityButton.setBackgroundResource(R.drawable.ic_partial);
+      }
 
     }
 
@@ -90,12 +100,26 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
 
     public void assignActivity (ExerciseTypes t, int pos)
     {
-     mData.get(pos).assigned = true;
+
+     mData.get(pos).status = DailyActivityStatus.ASSIGNED;
      mData.get(pos).type = t;
      if(mData.size()<3)
         mData.add(new DailyActivity());
      notifyDataSetChanged();
 
+    }
+
+    public void markActivityAsComplete (int pos)
+    {
+        mData.get(pos).status = DailyActivityStatus.COMPLETED;
+        notifyDataSetChanged();
+
+    }
+
+    public void markActivityAsPartialComplete(int pos)
+    {
+        mData.get(pos).status = DailyActivityStatus.PARTIALLY_COMPLETED;
+        notifyDataSetChanged();
     }
 
     public void deleteActivity()
@@ -140,8 +164,19 @@ class DailyActivityReciclerViewHolder extends RecyclerView.ViewHolder implements
     @Override
     public void onClick(View view) {
        // mAdapter.assignActivity(ExerciseTypes.CARDIO, getAdapterPosition());
-        AddActivityDialog dialog = new AddActivityDialog(mContext,getAdapterPosition(),mAdapter);
-        dialog.show();
+        if(mAdapter.mData.get(getAdapterPosition()).status == DailyActivityStatus.NOT_ASSIGNED) {
+            AddActivityDialog dialog = new AddActivityDialog(mContext, getAdapterPosition(), mAdapter);
+            dialog.show();
+        }
+        else if(mAdapter.mData.get(getAdapterPosition()).status == DailyActivityStatus.ASSIGNED)
+        {
+            Bundle args = new Bundle();
+            args.putInt("pos", getAdapterPosition());
+            args.putString("type", mAdapter.mData.get(getAdapterPosition()).type.toString());
+            args.putString("status",mAdapter.mData.get(getAdapterPosition()).status.toString());
+            ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext,args,mAdapter);
+            edd.show();
+        }
 
     }
 }

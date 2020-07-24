@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBlack"
+    android:background="@color/colorDarkOrange"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
    <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:textColor="@color/colorWhite"
-       android:textSize="20dp"
+       android:textColor="@color/colorBlack"
+       android:textSize="25dp"
        android:layout_gravity="center_horizontal"
+       android:gravity="center_horizontal"
        android:layout_marginBottom="10dp"
-       android:text="Which Type of Activity Would you like to add?">
+       android:text="Which Type of Activity would you like to add?">
 
    </TextView>
-
-
-
-
 
 <LinearLayout
     android:orientation="horizontal"
@@ -30,6 +27,10 @@
         android:layout_height="wrap_content"
         android:rowCount="1"
         android:columnCount="3">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/weekly_planner_dailyactivity_addCardio_button"
@@ -44,6 +45,22 @@
         android:text="+C">
 
     </Button>
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Cardio"
+       android:layout_gravity="center_horizontal"
+       android:textColor="@color/colorWhite">
+
+   </TextView>
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
 
         <Button
         android:id="@+id/weekly_planner_dailyactivity_addMuscle_button"
@@ -57,6 +74,21 @@
         android:textSize="16sp"
         android:text="+M">
     </Button>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muscle\nBalance"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center_horizontal">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
     <Button
         android:id="@+id/weekly_planner_dailyactivity_addOther_button"
@@ -69,6 +101,16 @@
         android:text="+O"
         android:textColor="@color/colorBlack"
         android:textSize="18sp"></Button>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center_horizontal"
+                android:text="Other">
+
+            </TextView>
+        </LinearLayout>
 
 
     </GridLayout>

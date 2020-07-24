@@ -10,6 +10,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecyclerViewAdapter;
+import com.example.game_.other01_app.Database.entities.DailyActivityStatus;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.R;
 
@@ -37,7 +38,7 @@ public class AddActivityDialog extends Dialog {
         mAddOther = findViewById(R.id.weekly_planner_dailyactivity_addOther_button);
 
         Bundle dialogArgs = new Bundle();
-        dialogArgs.putBoolean("isAssigned", false);
+        dialogArgs.putString("status", DailyActivityStatus.NOT_ASSIGNED.toString());
         dialogArgs.putInt("pos", mActivityPosition);
 
        mAddCardio.setOnClickListener(new View.OnClickListener() {
