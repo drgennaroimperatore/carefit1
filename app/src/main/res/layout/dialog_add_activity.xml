@@ -36,13 +36,14 @@
         android:id="@+id/weekly_planner_dailyactivity_addCardio_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:background="@drawable/custom_button_dist"
         android:gravity="center_vertical|center_horizontal"
         android:height="64dp"
         android:width="64dp"
         android:textColor="@color/colorWhite"
-        android:textSize="18sp"
-        android:text="+C">
+        android:textSize="10sp"
+        >
 
     </Button>
    <TextView
@@ -72,7 +73,7 @@
         android:width="64dp"
         android:textColor="@color/colorBlack"
         android:textSize="16sp"
-        android:text="+M">
+        android:text="">
     </Button>
             <TextView
                 android:layout_width="wrap_content"

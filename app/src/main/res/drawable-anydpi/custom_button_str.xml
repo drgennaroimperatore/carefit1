@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:state_pressed="false">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+
     <shape android:shape="oval">
+
          <gradient android:startColor="#ff0"
              android:angle="180"
         android:endColor="#0000ff"
         android:centerColor="@color/colorWhite"/>
         <stroke android:width="15px" android:color="#f7ef00"></stroke>
-    </shape>
-</item>
-<item android:state_pressed="true">
-    <shape android:shape="oval">
 
-        <solid android:color="#c20586"/>
     </shape>
 </item>
-</selector>
+    <item android:height="32dp" android:bottom="20dp" android:drawable="@drawable/ic_strength"></item>
+    <item android:height="32dp" android:top="25dp" android:gravity="bottom" android:drawable="@drawable/ic_balance"></item>
+
+
+
+</layer-list>

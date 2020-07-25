@@ -36,9 +36,9 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
         CardView muscleSet3 = findViewById(R.id.dialog_add_muscle_muscle_set3);
         muscleSet3.setOnClickListener(this);
 
-        CardView balanceSet1 = findViewById(R.id.dialog_add_muscle_balance_set1);
+/*        CardView balanceSet1 = findViewById(R.id.dialog_add_muscle_balance_set1);
         CardView balanceSet2 = findViewById(R.id.dialog_add_muscle_balance_set2);
-        CardView balanceSet3 = findViewById(R.id.dialog_add_muscle_balance_set3);
+        CardView balanceSet3 = findViewById(R.id.dialog_add_muscle_balance_set3);*/
 
 
 
