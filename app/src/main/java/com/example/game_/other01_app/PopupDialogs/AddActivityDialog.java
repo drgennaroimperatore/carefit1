@@ -32,6 +32,8 @@ public class AddActivityDialog extends Dialog {
 
         Button mAddCardio, mAddBalance, mAddMuscle, mAddOther;
 
+        final AddActivityDialog addActivityDialog = this;
+
        // mAddBalance = findViewById(R.id.weekly_planner_dailyactivity_addBalance_button);
         mAddCardio = findViewById(R.id.weekly_planner_dailyactivity_addCardio_button);
         mAddMuscle = findViewById(R.id.weekly_planner_dailyactivity_addMuscle_button);
@@ -52,8 +54,6 @@ public class AddActivityDialog extends Dialog {
 
              /*ExcerciseDescriptionDialog Edd = new ExcerciseDescriptionDialog(mContext,dialogArgs);
              Edd.show();*/
-
-
            }
        });
 
@@ -64,7 +64,7 @@ public class AddActivityDialog extends Dialog {
                dismiss();*/
 
                dialogArgs.putString("type",ExerciseTypes.MUSCLE.toString());
-             MuscleBalanceDialog muscleBalanceDialog = new MuscleBalanceDialog(mContext,dialogArgs,mWeeklyPlannerDARVAdapter);
+             MuscleBalanceDialog muscleBalanceDialog = new MuscleBalanceDialog(mContext, dialogArgs,addActivityDialog,mWeeklyPlannerDARVAdapter);
              muscleBalanceDialog.show();
            }
        });
