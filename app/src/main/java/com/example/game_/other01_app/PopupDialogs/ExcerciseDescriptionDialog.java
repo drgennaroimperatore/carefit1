@@ -19,12 +19,14 @@ public class ExcerciseDescriptionDialog extends Dialog {
 private Context mContext;
 private Bundle mArgs;
 private  WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
+AddActivityDialog mAddActivityDialog;
 
-    public ExcerciseDescriptionDialog(@NonNull Context context, Bundle args, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter) {
+    public ExcerciseDescriptionDialog(@NonNull Context context, AddActivityDialog addActivityDialog, Bundle args, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter) {
         super(context);
         mContext =context;
         mArgs =args;
         mAdapter = adapter;
+        mAddActivityDialog = addActivityDialog;
 
     }
 
@@ -52,6 +54,7 @@ private  WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
                     @Override
                     public void onClick(View view) {
                         mAdapter.assignActivity(activityType,pos);
+                        mAddActivityDialog.dismiss();
                         dismiss();
                     }
                 });

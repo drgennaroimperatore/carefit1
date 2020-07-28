@@ -60,19 +60,19 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
           {
               case CARDIO:
                   addActivityButton.setBackgroundResource(R.drawable.custom_button_dist);
-                  addActivityButton.setText("Cardio");
+                  addActivityButton.setText("");
                   break;
               case DISTANCE:
                   addActivityButton.setBackgroundResource(R.drawable.custom_button_dist);
-                  addActivityButton.setText("Distance");
+                  addActivityButton.setText("");
                   break;
               case MUSCLE:
                   addActivityButton.setBackgroundResource(R.drawable.custom_button_str);
-                  addActivityButton.setText("Muscle");
+                  addActivityButton.setText("");
                   break;
               case OTHER:
                   addActivityButton.setBackgroundResource(R.drawable.custom_button);
-                  addActivityButton.setText("Other");
+                  addActivityButton.setText("");
                   break;
           }
 
@@ -174,7 +174,7 @@ class DailyActivityReciclerViewHolder extends RecyclerView.ViewHolder implements
             args.putInt("pos", getAdapterPosition());
             args.putString("type", mAdapter.mData.get(getAdapterPosition()).type.toString());
             args.putString("status",mAdapter.mData.get(getAdapterPosition()).status.toString());
-            ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext,args,mAdapter);
+            ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext,null,args,mAdapter);
             edd.show();
         }
 

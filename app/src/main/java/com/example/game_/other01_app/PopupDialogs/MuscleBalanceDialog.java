@@ -16,12 +16,14 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
     Bundle mArgs;
     WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
     Context mContext;
-    public MuscleBalanceDialog(@NonNull Context context, Bundle args, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter) {
+    AddActivityDialog mAddActivityDialog;
+    public MuscleBalanceDialog(@NonNull Context context, Bundle args, AddActivityDialog addActivityDialog, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter) {
 
         super(context);
         mArgs = args;
         mAdapter = adapter;
         mContext = context;
+        mAddActivityDialog = addActivityDialog;
 
     }
 
@@ -48,7 +50,7 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         // to do implement different action based on cardview selected. For the moment just display the dialog
-        ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext, mArgs ,mAdapter);
+        ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext, mAddActivityDialog, mArgs ,mAdapter);
         edd.show();
         edd.setOnDismissListener(new OnDismissListener() {
             @Override
