@@ -23,11 +23,22 @@
         android:text="Favourites">
     </TextView>
 
+    <TextView
+        android:id="@+id/dialog_add_other_noFav_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:text="You have no Favourite Activities yet. ">
+    </TextView>
+
+
+
     <ListView
         android:id="@+id/add_activity_dialog_listView"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
-
+        android:layout_height="150dp"
+        android:visibility="invisible">
     </ListView>
 
     <TextView

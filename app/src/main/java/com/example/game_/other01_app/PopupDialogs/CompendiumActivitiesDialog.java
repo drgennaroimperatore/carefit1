@@ -2,9 +2,12 @@ package com.example.game_.other01_app.PopupDialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialog;
@@ -17,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.game_.other01_app.Adapters.CompendiumActivitiesAutoCompleteAdapter;
+import com.example.game_.other01_app.Adapters.FavouiriteCompendiumAdapter;
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.R;
@@ -29,6 +33,7 @@ import java.util.List;
 public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner {
     LifecycleRegistry mLifecycleRegistry;
     ArrayList<CompendiumActivities> compendiumActivitiesList = new ArrayList<>();
+    FavouiriteCompendiumAdapter favouiriteCompendiumAdapter;
     private Context mContext;
     public CompendiumActivitiesDialog(@NonNull Context context) {
         super(context, R.style.Theme_Design_Light);
@@ -44,9 +49,34 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
         mLifecycleRegistry = new LifecycleRegistry(this);
         mLifecycleRegistry.setCurrentState(Lifecycle.State.CREATED);
         mLifecycleRegistry.handleLifecycleEvent(LifecycleRegistry.Event.ON_CREATE);
+        favouiriteCompendiumAdapter = new FavouiriteCompendiumAdapter(mContext);
+        final TextView noFavTextView = findViewById(R.id.dialog_add_other_noFav_textview);
+
+
+        ListView favouritesListview = findViewById(R.id.add_activity_dialog_listView);
+        favouritesListview.setAdapter(favouiriteCompendiumAdapter);
+        favouiriteCompendiumAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                if (favouiriteCompendiumAdapter.getCount()>0)
+                {
+                    noFavTextView.setVisibility(View.GONE);
+                    favouritesListview.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
 
        final CompendiumActivitiesAutoComplete autoComplete = findViewById(R.id.dialog_add_other_search_autocomplete);
+
+       autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               CompendiumActivities compendiumActivities =(CompendiumActivities) adapterView.getItemAtPosition(i);
+               String name = compendiumActivities.name;
+               favouiriteCompendiumAdapter.addCompendium(compendiumActivities);
+           }
+       });
 
 
        /*autoComplete.setVisibility(View.VISIBLE);
