@@ -72,8 +72,12 @@ public class AddActivityDialog extends Dialog {
        mAddOther.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.OTHER, mActivityPosition);
-               dismiss();
+
+               CompendiumActivitiesDialog compendiumActivitiesDialog = new CompendiumActivitiesDialog(mContext);
+               compendiumActivitiesDialog.show();
+
+               /* mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.OTHER, mActivityPosition);
+               dismiss();*/
            }
        });
     }

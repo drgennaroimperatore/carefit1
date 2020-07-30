@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Custom Activity"
+        android:textSize="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"/>
 
@@ -18,7 +19,71 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
         android:text="Favourites">
+    </TextView>
+
+    <ListView
+        android:id="@+id/add_activity_dialog_listView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+    </ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:text="Select An Activity"
+        android:layout_marginBottom="10dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:textSize="28dp"
+        android:layout_margin="5dp">
 
     </TextView>
+
+
+    <com.example.game_.other01_app.Utility.CompendiumActivitiesAutoComplete
+        android:id="@+id/dialog_add_other_search_autocomplete"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:textColor="@color/colorWhite"
+        android:hint="Tap to search..."
+        android:background="@color/colorBlack">
+
+    </com.example.game_.other01_app.Utility.CompendiumActivitiesAutoComplete>
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorBlack"
+            android:src="@drawable/ic_complete">
+        </ImageView>
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorBlack"
+            android:src="@drawable/ic_not">
+        </ImageView>
+
+    </LinearLayout>
+
+
+
 </LinearLayout>

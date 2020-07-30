@@ -4,12 +4,15 @@ package com.example.game_.other01_app.Database;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.game_.other01_app.Database.converters.Converter;
 import com.example.game_.other01_app.Database.daos.CategoriesDao;
+import com.example.game_.other01_app.Database.daos.CompendiumsDao;
 import com.example.game_.other01_app.Database.daos.ExerciseDao;
 import com.example.game_.other01_app.Database.daos.ReminderDao;
 import com.example.game_.other01_app.Database.daos.TimeSetDao;
 import com.example.game_.other01_app.Database.daos.UserDao;
 import com.example.game_.other01_app.Database.entities.Category;
+import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.Exercise;
 import com.example.game_.other01_app.Database.entities.Reminder;
 import com.example.game_.other01_app.Database.entities.TimeSet;
@@ -19,12 +22,15 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 //A holder class that uses annotation to define the list of entities and
 //the database version. This class content defines the list of DAOs
-@Database(entities = {Exercise.class, TimeSet.class, User.class,
-        Category.class, Reminder.class}, version = 3, exportSchema = false)
+@Database( entities = {Exercise.class, TimeSet.class, User.class,
+        Category.class, Reminder.class,
+        CompendiumActivities.class},  version = 4, exportSchema = false)
+@TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
@@ -34,13 +40,14 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CategoriesDao categoriesDao();
     public abstract ReminderDao reminderDao();
     public abstract TimeSetDao timeSetDao();
+    public abstract CompendiumsDao compendiumsDao();
 
     public synchronized static AppDatabase getDatabase(Context context){
         if(INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "app_database")
+                            AppDatabase.class, "app_database").fallbackToDestructiveMigration().allowMainThreadQueries()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -58,6 +65,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     new PopulateExerciseTableAsync(INSTANCE).execute();
                     new PopulateTimeSetTableAsync(INSTANCE).execute();
                     new PopulateUserWithDefaultsAsync(INSTANCE).execute();
+                    new PopulateCompendiumActivitiesAsync(INSTANCE).execute();
                 }
             };
 
@@ -125,6 +133,22 @@ public abstract class AppDatabase extends RoomDatabase {
            0, "low",
                     "low", "low",
            0));
+            return null;
+        }
+    }
+
+    private static class PopulateCompendiumActivitiesAsync extends AsyncTask <Void, Void, Void>
+    {
+        private final CompendiumsDao mCompendiumsDao;
+
+        private PopulateCompendiumActivitiesAsync(AppDatabase db) {
+            this.mCompendiumsDao = db.compendiumsDao();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            mCompendiumsDao.insertAll(CompendiumActivities.populateTable());
             return null;
         }
     }
