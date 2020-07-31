@@ -18,36 +18,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Previous"
-        android:layout_weight="0.3"
-        android:textSize="18sp"
-        android:textStyle="bold">
-
-    </TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Current Week"
-            android:layout_weight="0.3"
-            android:textSize="18sp"
-            android:textStyle="bold">
-
-        </TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:gravity="center_horizontal"
-            android:layout_weight="0.3"
-            android:textSize="18sp"
-            android:textStyle="bold">
-
-        </TextView>
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
 <ListView
     android:id="@+id/weekly_planner_listVoew"

@@ -13,10 +13,12 @@ import com.example.game_.other01_app.Database.daos.TimeSetDao;
 import com.example.game_.other01_app.Database.daos.UserDao;
 import com.example.game_.other01_app.Database.entities.Category;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
+import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.Exercise;
 import com.example.game_.other01_app.Database.entities.Reminder;
 import com.example.game_.other01_app.Database.entities.TimeSet;
 import com.example.game_.other01_app.Database.entities.User;
+import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -28,8 +30,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 //A holder class that uses annotation to define the list of entities and
 //the database version. This class content defines the list of DAOs
 @Database( entities = {Exercise.class, TimeSet.class, User.class,
-        Category.class, Reminder.class,
-        CompendiumActivities.class},  version = 4, exportSchema = false)
+        Category.class, Reminder.class, WeeklyPlan.class, DailyPlan.class,
+        CompendiumActivities.class},  version = 5, exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -47,7 +49,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "app_database").fallbackToDestructiveMigration().allowMainThreadQueries()
+                            AppDatabase.class, "app_database").fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }

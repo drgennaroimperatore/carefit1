@@ -6,52 +6,80 @@ import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerListAdapter;
+import com.example.game_.other01_app.Adapters.WeeklyPlannerPagerAdapter;
 import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlannerActivity extends AppCompatActivity
 {
-   private CompendiumActivitiesViewModel compendiumActivitiesViewModel;
 
-   public static List<CompendiumActivities> mCompendiumActivities = new ArrayList<>();
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.weekly_planner);
-        ListView weeklyListView = findViewById(R.id.weekly_planner_listVoew);
-        WeeklyPlannerListAdapter adapter = new WeeklyPlannerListAdapter(this,0);
-        adapter.add(new WeeklyPlannerObject("Mon", new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Tue", new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Wed", new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Thu", new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Fri", new DailyActivity()));
-        weeklyListView.setAdapter(adapter);
+        setContentView(R.layout.activity_weekly_planner);
 
-//        compendiumActivitiesViewModel =  ViewModelProviders.of(this).get(CompendiumActivitiesViewModel.class);
-       /* compendiumActivitiesViewModel.getAllCompendiums().observe(this, new Observer<List<CompendiumActivities>>() {
+        TabLayout tabLayout = findViewById(R.id.weekly_planner_tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Prev Week"));
+        tabLayout.addTab(tabLayout.newTab().setText("Current Week"));
+        tabLayout.addTab(tabLayout.newTab().setText("Next Week"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+        final ViewPager viewPager = findViewById(R.id.weekly_planner_view_pager);
+        WeeklyPlannerPagerAdapter pagerAdapter = new WeeklyPlannerPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setCurrentItem(1);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onChanged(List<CompendiumActivities> activities) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                tabLayout.getTabAt(position).select();
+            }
 
-                //mCompendiumActivities = new ArrayList<>();
-                //mCompendiumActivities.addAll(activities);
+            @Override
+            public void onPageSelected(int position) {
 
             }
 
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
         });
-        compendiumActivitiesViewModel.getAllCompendiums().getValue();*/
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
     }
 }
