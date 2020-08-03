@@ -64,11 +64,7 @@ public class CompendiumActivities
         compendiumActivities.add(new CompendiumActivities(initialid++,"Elder Care, disabled adults, active periods",4.0f, CompendiumActivitiesTypes.HOME_ACTIVITIES ));
 
 
-
-
         return compendiumActivities;
-
-
 
     }
 }

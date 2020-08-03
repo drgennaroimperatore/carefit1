@@ -14,6 +14,14 @@ public abstract class DateTimeAssist {
         return ddmmyyytFormat.format(System.currentTimeMillis());
     }
 
+    public static String convertDateToPreferredFormat(Date date)
+    {
+        SimpleDateFormat ddmmyyytFormat = new SimpleDateFormat("dd/MM/yy");
+        return ddmmyyytFormat.format(date.getTime());
+
+    }
+
+
     public static String getCurrentWeekday() {
         SimpleDateFormat weekdayFormat = new SimpleDateFormat("EEEE");
         return weekdayFormat.format(Calendar.getInstance().getTime());
@@ -96,4 +104,33 @@ public abstract class DateTimeAssist {
         int targetYear = targetCalendar.get(Calendar.YEAR);
         return ((week-targetWeek)==1) && year == targetYear;
     }
+
+    public static Date getWeekDayDate(Date date,int day)
+    {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.setFirstDayOfWeek(day);
+        c.set(Calendar.DAY_OF_WEEK, day);
+        return c.getTime();
+    }
+
+    public static Date[] getWeekDates(Date startDate) {
+
+        Date[] dates = new Date[6];
+        Calendar c = Calendar.getInstance();
+
+        //c.setFirstDayOfWeek( c.get(Calendar.DAY_OF_WEEK));
+        c.setTime(startDate);
+        c.setFirstDayOfWeek(Calendar.MONDAY);
+        c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+        for (int i = 0; i < 6; i++) {
+            dates[i] = c.getTime();
+            c.add(Calendar.DATE, 1);
+        }
+
+        return dates;
+    }
+
+
 }

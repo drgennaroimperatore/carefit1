@@ -46,14 +46,16 @@
                 android:id="@+id/dashboard_go_to_progress"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@drawable/ic_progress">
+                android:src="@drawable/ic_progress"
+                android:visibility="gone">
             </ImageView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Progress"
                 android:layout_gravity="center_horizontal"
-                android:textSize="18sp">
+                android:textSize="18sp"
+                android:visibility="gone">
             </TextView>
 
         </LinearLayout>
@@ -61,7 +63,8 @@
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
             <ImageView
                 android:id="@+id/dashboard_go_to_quick"
                 android:layout_width="120dp"

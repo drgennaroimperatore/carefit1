@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
 import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
 import com.example.game_.other01_app.R;
 
@@ -32,6 +33,8 @@ public class WeeklyPlannerListAdapter extends ArrayAdapter<WeeklyPlannerObject> 
         convertView = inflater.inflate(R.layout.weekly_planner_row,null);
         TextView dayTV = convertView.findViewById(R.id.weekly_planner_row_day_tv);
         dayTV.setText(getItem(position).mDay);
+        TextView dateTV = convertView.findViewById(R.id.weekly_planner_row_date_tv);
+        dateTV.setText(DateTimeAssist.convertDateToPreferredFormat(getItem(position).mDate));
         RecyclerView dailyRecyclerView = convertView.findViewById(R.id.weekly_planner_dailyactivity_recyclerView);
         WeeklyPlannerDailyActivityRecyclerViewAdapter adapter = new WeeklyPlannerDailyActivityRecyclerViewAdapter(mContext);
         dailyRecyclerView.setAdapter(adapter);

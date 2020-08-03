@@ -2,11 +2,13 @@ package com.example.game_.other01_app.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,25 +17,49 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerListAdapter;
 import com.example.game_.other01_app.Adapters.WeeklyPlannerPagerAdapter;
+import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
 import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
+import com.example.game_.other01_app.Database.AppDatabase;
+import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
+import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Utility.WeeklyPlanCreator;
+import com.example.game_.other01_app.Utility.WeeklyPlanReader;
 import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import static com.example.game_.other01_app.AssistanceClasses.DateTimeAssist.getWeekDayDate;
 
 public class PlannerActivity extends AppCompatActivity
 {
 
-
+    List<WeeklyPlan> mWeeklyPlans = new ArrayList<>();
+    WeeklyPlan mCurrentWeeklyPlan =null;
+    WeeklyPlan mPastWeeklyPlan =null;
+    WeeklyPlan mFutureWeeklyPlan =null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_planner);
+
+        mWeeklyPlanDao = AppDatabase.getDatabase(this).weeklyPlanDao();
+
+
+        try {
+          mCurrentWeeklyPlan = getOrCreateCurrentWeeklyPlan(new Date());
+        }
+        catch (Exception e) {
+        }
+
 
         TabLayout tabLayout = findViewById(R.id.weekly_planner_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Prev Week"));
@@ -43,7 +69,12 @@ public class PlannerActivity extends AppCompatActivity
 
 
         final ViewPager viewPager = findViewById(R.id.weekly_planner_view_pager);
-        WeeklyPlannerPagerAdapter pagerAdapter = new WeeklyPlannerPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        WeeklyPlannerPagerAdapter pagerAdapter =
+                new WeeklyPlannerPagerAdapter(getSupportFragmentManager(),
+                        FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,
+                        mPastWeeklyPlan,
+                        mCurrentWeeklyPlan,
+                        mFutureWeeklyPlan);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setCurrentItem(1);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -80,6 +111,27 @@ public class PlannerActivity extends AppCompatActivity
 
             }
         });
+
+    }
+
+
+
+    WeeklyPlanDao mWeeklyPlanDao;
+
+    private WeeklyPlan getOrCreateCurrentWeeklyPlan(Date startDate) throws InterruptedException, ExecutionException {
+        List<WeeklyPlan> weeklyPlans = new WeeklyPlanReader(mWeeklyPlanDao).execute().get();
+        if(weeklyPlans!=null)
+          for (WeeklyPlan w: weeklyPlans){
+              if(DateTimeAssist.isDateInCurrentWeek(w.startDate))
+                  return w;
+          }
+        Date[] dates = DateTimeAssist.getWeekDates(startDate);
+        WeeklyPlan wp = new WeeklyPlan();
+        wp.startDate = startDate;
+        wp.endDate= dates[dates.length-1];
+        new WeeklyPlanCreator(mWeeklyPlanDao).execute(wp);
+
+      return wp;
 
     }
 }

@@ -11,6 +11,7 @@ import com.example.game_.other01_app.Database.daos.ExerciseDao;
 import com.example.game_.other01_app.Database.daos.ReminderDao;
 import com.example.game_.other01_app.Database.daos.TimeSetDao;
 import com.example.game_.other01_app.Database.daos.UserDao;
+import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.Category;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
@@ -43,6 +44,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ReminderDao reminderDao();
     public abstract TimeSetDao timeSetDao();
     public abstract CompendiumsDao compendiumsDao();
+    public abstract WeeklyPlanDao weeklyPlanDao();
 
     public synchronized static AppDatabase getDatabase(Context context){
         if(INSTANCE == null) {

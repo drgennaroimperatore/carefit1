@@ -12,13 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerListAdapter;
+import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
 import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
+import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,13 +40,18 @@ public class CurrentWeekFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private CompendiumActivitiesViewModel compendiumActivitiesViewModel;
-    public static List<CompendiumActivities> mCompendiumActivities = new ArrayList<>();
+    private WeeklyPlan mWeeklyPlan;
 
 
 
     public CurrentWeekFragment() {
         // Required empty public constructor
+    }
+
+
+    public CurrentWeekFragment (WeeklyPlan wp)
+    {
+        mWeeklyPlan = wp;
     }
 
     /**
@@ -86,11 +94,13 @@ public class CurrentWeekFragment extends Fragment {
 
         ListView weeklyListView = view.findViewById(R.id.weekly_planner_listVoew);
         WeeklyPlannerListAdapter adapter = new WeeklyPlannerListAdapter(getContext(),0);
-        adapter.add(new WeeklyPlannerObject("Mon", new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Tue", new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Wed", new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Thu", new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Fri", new DailyActivity()));
+        Date[] planDates = DateTimeAssist.getWeekDates(mWeeklyPlan.startDate);
+
+        adapter.add(new WeeklyPlannerObject("Mon", planDates[0], new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Tue", planDates[1], new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Wed",planDates[2] ,new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Thu" ,planDates[3], new DailyActivity()));
+        adapter.add(new WeeklyPlannerObject("Fri",planDates[4] ,new DailyActivity()));
         weeklyListView.setAdapter(adapter);
 
 //        compendiumActivitiesViewModel =  ViewModelProviders.of(this).get(CompendiumActivitiesViewModel.class);
