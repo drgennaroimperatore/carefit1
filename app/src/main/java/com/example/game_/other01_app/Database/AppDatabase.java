@@ -32,7 +32,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 //the database version. This class content defines the list of DAOs
 @Database( entities = {Exercise.class, TimeSet.class, User.class,
         Category.class, Reminder.class, WeeklyPlan.class, DailyPlan.class,
-        CompendiumActivities.class},  version = 5, exportSchema = false)
+        CompendiumActivities.class},  version = 6, exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 

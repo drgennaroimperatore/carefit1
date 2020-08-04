@@ -28,10 +28,12 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
     List<DailyActivity> mData = new ArrayList<>();
 
 
-   public WeeklyPlannerDailyActivityRecyclerViewAdapter(Context context)
+   public WeeklyPlannerDailyActivityRecyclerViewAdapter(Context context, List<DailyActivity> data)
    {
        mContext = context;
-       mData.add(new DailyActivity());
+       mData =data;
+       if(mData.size()==0)
+        mData.add(new DailyActivity()); // placeholder for assigning activities
    }
     @NonNull
     @Override
@@ -184,6 +186,5 @@ class DailyActivityReciclerViewHolder extends RecyclerView.ViewHolder implements
 interface WeklyPlannerDailyActivityOnClickListener
 {
     void onClick(View view, int position);
-
 
 }

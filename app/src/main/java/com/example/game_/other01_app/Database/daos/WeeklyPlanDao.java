@@ -7,6 +7,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.game_.other01_app.Database.entities.DailyActivity;
+import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 
 import java.util.Date;
@@ -34,6 +36,29 @@ public interface WeeklyPlanDao {
 
     @Query("SELECT * FROM weeklyplan")
     List<WeeklyPlan> getWeeklyPlans();
+
+    @Query("SELECT * FROM DailyPlan WHERE DailyPlan.weeklyPlanID =:weeklyPlanID")
+    List<DailyPlan> getDailyPlansByWeeklyPlanID(int weeklyPlanID);
+
+    @Insert
+    long addDailyPlan(DailyPlan dailyPlan);
+
+    @Delete
+    void deleteDailyPlan(DailyPlan dailyPlan);
+
+    @Query("SELECT * FROM DailyActivity WHERE DailyActivity.dailyPlanId=:dailyPlanID")
+    List<DailyActivity> getDailyActivitiesByDailyPlanID(int dailyPlanID);
+
+    @Insert
+    long addDailyActivity(DailyActivity dailyActivity);
+
+    @Delete
+    void deleteDailyActivity(DailyActivity dailyActivity);
+
+    @Update
+    void updateDailyActivity(DailyActivity dailyActivity);
+
+
 
 
 }

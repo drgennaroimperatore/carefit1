@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(foreignKeys = {
         @ForeignKey(entity = DailyPlan.class,
         parentColumns = "id",
-        childColumns = "dailyPlanId")})
+        childColumns = "dailyPlanId", onDelete = ForeignKey.CASCADE)})
 public class DailyActivity
 {
     @PrimaryKey (autoGenerate = true)

@@ -23,8 +23,11 @@ import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
+import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Utility.DailyPlanCreator;
+import com.example.game_.other01_app.Utility.DailyPlanReader;
 import com.example.game_.other01_app.Utility.WeeklyPlanCreator;
 import com.example.game_.other01_app.Utility.WeeklyPlanReader;
 import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
@@ -33,6 +36,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Dictionary;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -46,6 +50,7 @@ public class PlannerActivity extends AppCompatActivity
     WeeklyPlan mPastWeeklyPlan =null;
     WeeklyPlan mFutureWeeklyPlan =null;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,7 @@ public class PlannerActivity extends AppCompatActivity
 
         try {
           mCurrentWeeklyPlan = getOrCreateCurrentWeeklyPlan(new Date());
+
         }
         catch (Exception e) {
         }
@@ -134,4 +140,7 @@ public class PlannerActivity extends AppCompatActivity
       return wp;
 
     }
+
+
+
 }

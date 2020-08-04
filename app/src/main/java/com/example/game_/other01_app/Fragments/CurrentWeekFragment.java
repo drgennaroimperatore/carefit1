@@ -14,15 +14,21 @@ import android.widget.ListView;
 import com.example.game_.other01_app.Adapters.WeeklyPlannerListAdapter;
 import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
 import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
+import com.example.game_.other01_app.Database.AppDatabase;
+import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
+import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Utility.DailyPlanCreator;
+import com.example.game_.other01_app.Utility.DailyPlanReader;
 import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +47,7 @@ public class CurrentWeekFragment extends Fragment {
     private String mParam2;
 
     private WeeklyPlan mWeeklyPlan;
+    private WeeklyPlanDao mWeeklyPlanDao;
 
 
 
@@ -51,6 +58,7 @@ public class CurrentWeekFragment extends Fragment {
 
     public CurrentWeekFragment (WeeklyPlan wp)
     {
+
         mWeeklyPlan = wp;
     }
 
@@ -92,15 +100,24 @@ public class CurrentWeekFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mWeeklyPlanDao = AppDatabase.getDatabase(getContext()).weeklyPlanDao();
         ListView weeklyListView = view.findViewById(R.id.weekly_planner_listVoew);
         WeeklyPlannerListAdapter adapter = new WeeklyPlannerListAdapter(getContext(),0);
-        Date[] planDates = DateTimeAssist.getWeekDates(mWeeklyPlan.startDate);
+        ArrayList<DailyPlan> dailyPlans = new ArrayList<>();
+        try {
 
-        adapter.add(new WeeklyPlannerObject("Mon", planDates[0], new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Tue", planDates[1], new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Wed",planDates[2] ,new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Thu" ,planDates[3], new DailyActivity()));
-        adapter.add(new WeeklyPlannerObject("Fri",planDates[4] ,new DailyActivity()));
+            dailyPlans = getOrCreateDailyPlansForWeeklyPlan(mWeeklyPlan);
+
+        }catch (Exception e)
+        {
+
+        }
+
+        adapter.add(new WeeklyPlannerObject("Mon",dailyPlans.get(0)));
+        adapter.add(new WeeklyPlannerObject("Tue", dailyPlans.get(1)));
+        adapter.add(new WeeklyPlannerObject("Wed",dailyPlans.get(2)));
+        adapter.add(new WeeklyPlannerObject("Thu" ,dailyPlans.get(3)));
+        adapter.add(new WeeklyPlannerObject("Fri",dailyPlans.get(4)));
         weeklyListView.setAdapter(adapter);
 
 //        compendiumActivitiesViewModel =  ViewModelProviders.of(this).get(CompendiumActivitiesViewModel.class);
@@ -115,6 +132,28 @@ public class CurrentWeekFragment extends Fragment {
 
         });
         compendiumActivitiesViewModel.getAllCompendiums().getValue();*/
-
     }
+
+    private ArrayList<DailyPlan> getOrCreateDailyPlansForWeeklyPlan(WeeklyPlan weeklyPlan) throws ExecutionException, InterruptedException {
+        ArrayList<DailyPlan> plansForWeek = new ArrayList<>();
+
+        Date[] dates = DateTimeAssist.getWeekDates(weeklyPlan.startDate);
+
+        plansForWeek =  (ArrayList<DailyPlan>) new DailyPlanReader(mWeeklyPlanDao, weeklyPlan.id).execute().get();
+        if (plansForWeek==null || plansForWeek.size() ==0)
+        {
+            for(Date d: dates)
+            {
+                DailyPlan dailyPlan = new DailyPlan();
+                dailyPlan.dayOfWeek = d;
+                dailyPlan.weeklyPlanID = weeklyPlan.id;
+
+             dailyPlan.id =  new DailyPlanCreator(mWeeklyPlanDao,dailyPlan).execute().get().intValue();
+                plansForWeek.add(dailyPlan);
+            }
+        }
+
+        return plansForWeek;
+    }
+
 }

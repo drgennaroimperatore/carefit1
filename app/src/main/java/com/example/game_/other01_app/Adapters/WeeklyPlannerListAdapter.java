@@ -32,13 +32,12 @@ public class WeeklyPlannerListAdapter extends ArrayAdapter<WeeklyPlannerObject> 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(R.layout.weekly_planner_row,null);
         TextView dayTV = convertView.findViewById(R.id.weekly_planner_row_day_tv);
-        dayTV.setText(getItem(position).mDay);
+        dayTV.setText(getItem(position).getmDay());
         TextView dateTV = convertView.findViewById(R.id.weekly_planner_row_date_tv);
-        dateTV.setText(DateTimeAssist.convertDateToPreferredFormat(getItem(position).mDate));
+        dateTV.setText(DateTimeAssist.convertDateToPreferredFormat(getItem(position).getmDailyPlan().dayOfWeek));
         RecyclerView dailyRecyclerView = convertView.findViewById(R.id.weekly_planner_dailyactivity_recyclerView);
         WeeklyPlannerDailyActivityRecyclerViewAdapter adapter = new WeeklyPlannerDailyActivityRecyclerViewAdapter(mContext);
         dailyRecyclerView.setAdapter(adapter);
-
 
         return convertView;
 
