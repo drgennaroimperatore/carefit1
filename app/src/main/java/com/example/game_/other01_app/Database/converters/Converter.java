@@ -4,6 +4,7 @@ import androidx.room.TypeConverter;
 
 import com.example.game_.other01_app.Database.entities.CompendiumActivitiesTypes;
 import com.example.game_.other01_app.Database.entities.DailyActivityStatus;
+import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 
 import java.util.Date;
 
@@ -31,6 +32,18 @@ public class Converter
     public DailyActivityStatus toDailyActivityStatus(String type)
     {
         return DailyActivityStatus.valueOf(type);
+    }
+
+    @TypeConverter
+    public String fromExerciseType (ExerciseTypes type)
+    {
+        return type.toString();
+    }
+
+    @TypeConverter
+    public ExerciseTypes toExerciseType(String type)
+    {
+        return ExerciseTypes.valueOf(type);
     }
 
     @TypeConverter

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
+import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.R;
 
 public class DashboardActivity extends Activity
@@ -20,6 +21,7 @@ public class DashboardActivity extends Activity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
 
         m_imageViewGoToPlanner = findViewById(R.id.dashboard_go_to_planner);
         m_imageviewGoToProfile = findViewById(R.id.dashboard_go_to_profile);

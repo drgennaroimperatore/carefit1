@@ -14,6 +14,7 @@ import com.example.game_.other01_app.Database.daos.UserDao;
 import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.Category;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
+import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.Exercise;
 import com.example.game_.other01_app.Database.entities.Reminder;
@@ -31,8 +32,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 //A holder class that uses annotation to define the list of entities and
 //the database version. This class content defines the list of DAOs
 @Database( entities = {Exercise.class, TimeSet.class, User.class,
-        Category.class, Reminder.class, WeeklyPlan.class, DailyPlan.class,
-        CompendiumActivities.class},  version = 6, exportSchema = false)
+        Category.class, Reminder.class, WeeklyPlan.class, DailyPlan.class, DailyActivity.class,
+        CompendiumActivities.class},  version = 7, exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -60,6 +61,7 @@ public abstract class AppDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
+
     private static final RoomDatabase.Callback sRoomDatabaseCallback =
             new RoomDatabase.Callback(){
                 @Override
@@ -70,6 +72,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     new PopulateTimeSetTableAsync(INSTANCE).execute();
                     new PopulateUserWithDefaultsAsync(INSTANCE).execute();
                     new PopulateCompendiumActivitiesAsync(INSTANCE).execute();
+
                 }
             };
 
@@ -77,9 +80,11 @@ public abstract class AppDatabase extends RoomDatabase {
 
         private final CategoriesDao mCategoriesDao;
 
+
         PopulateDbAsync(AppDatabase db) {
             mCategoriesDao = db.categoriesDao();
         }
+
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -87,6 +92,8 @@ public abstract class AppDatabase extends RoomDatabase {
             mCategoriesDao.insertAll(Category.populateData());
             return null;
         }
+
+
     }
 
     private static class PopulateExerciseTableAsync extends AsyncTask<Void, Void, Void> {
@@ -96,6 +103,8 @@ public abstract class AppDatabase extends RoomDatabase {
         PopulateExerciseTableAsync(AppDatabase db) {
             mExerciseDao = db.exerciseDao();
         }
+
+
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -119,6 +128,8 @@ public abstract class AppDatabase extends RoomDatabase {
             mTimeSetDao.insertAll(TimeSet.populateData(Exercise.populateData()));
             return null;
         }
+
+
     }
 
     private static class PopulateUserWithDefaultsAsync extends AsyncTask<Void, Void, Void> {
@@ -138,7 +149,11 @@ public abstract class AppDatabase extends RoomDatabase {
                     "low", "low",
            0));
             return null;
+
+
         }
+
+
     }
 
     private static class PopulateCompendiumActivitiesAsync extends AsyncTask <Void, Void, Void>
@@ -155,5 +170,6 @@ public abstract class AppDatabase extends RoomDatabase {
             mCompendiumsDao.insertAll(CompendiumActivities.populateTable());
             return null;
         }
+
     }
 }

@@ -18,9 +18,12 @@ public class DailyActivity
     public ExerciseTypes type;
     public int dailyPlanId;
 
-    public DailyActivity()
+    public DailyActivity(int dailyPlanId)
     {
+
         status = DailyActivityStatus.NOT_ASSIGNED;
+        type = ExerciseTypes.UNASSIGNED;
+        this.dailyPlanId = dailyPlanId;
     }
 
 }

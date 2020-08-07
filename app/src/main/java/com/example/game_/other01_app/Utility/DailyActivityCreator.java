@@ -5,17 +5,17 @@ import android.os.AsyncTask;
 import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
 
-public class DailyActivityCreator extends AsyncTask<Void, Void, Long> {
+public class DailyActivityCreator extends AsyncTask<DailyActivity, Void, Long> {
     private WeeklyPlanDao mDao;
-    private DailyActivity mDailyActivity;
 
-    public DailyActivityCreator (WeeklyPlanDao dao, DailyActivity dailyActivity)
+
+    public DailyActivityCreator (WeeklyPlanDao dao)
     {
-        mDao = dao; mDailyActivity = dailyActivity;
+        mDao = dao;
     }
 
     @Override
-    protected Long doInBackground(Void... voids) {
-        return mDao.addDailyActivity(mDailyActivity);
+    protected Long doInBackground(DailyActivity... activities) {
+        return mDao.addDailyActivity(activities[0]);
     }
 }

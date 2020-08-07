@@ -7,33 +7,66 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.game_.other01_app.Database.AppDatabase;
+import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.Database.entities.DailyActivityStatus;
+import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.PopupDialogs.AddActivityDialog;
 import com.example.game_.other01_app.PopupDialogs.ExcerciseDescriptionDialog;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Utility.DailyActivityCreator;
+import com.example.game_.other01_app.Utility.DailyActivityReader;
+import com.example.game_.other01_app.Utility.DailyActivityUpdater;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.Adapter  {
+public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.Adapter {
     Context mContext;
-    List<DailyActivity> mData = new ArrayList<>();
 
 
-   public WeeklyPlannerDailyActivityRecyclerViewAdapter(Context context, List<DailyActivity> data)
+   ArrayList<DailyActivity> mData = null;
+   DailyPlan mDailyPlan =null;
+    WeeklyPlanDao mDao;
+
+
+    public WeeklyPlannerDailyActivityRecyclerViewAdapter(Context context, DailyPlan plan)
    {
+
        mContext = context;
-       mData =data;
-       if(mData.size()==0)
-        mData.add(new DailyActivity()); // placeholder for assigning activities
+       mDailyPlan = plan;
+    mDao = AppDatabase.getDatabase(mContext).weeklyPlanDao();
+
+
+           mData = new ArrayList<>();
+
+       try {
+           mData = (ArrayList<DailyActivity>) new DailyActivityReader(mDao, plan.id).execute().get();
+           if(mData==null)
+           {
+               mData = new ArrayList<>();
+               addNewActivity();
+           }
+           else {
+               if(mData.size()==0)
+                   addNewActivity();
+           }
+
+       } catch (ExecutionException e) {
+           e.printStackTrace();
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
+
+
+       //  mData.add(new DailyActivity(mDailyPlan.id)); // placeholder for assigning activities
    }
     @NonNull
     @Override
@@ -100,13 +133,38 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
         return mData.size();
     }
 
+    private void addNewActivity()
+    {
+            DailyActivity firstActivity = new DailyActivity(mDailyPlan.id);
+            try {
+                firstActivity.id = new DailyActivityCreator(mDao).execute(firstActivity).get().intValue();
+                mData.add(firstActivity);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+
+
+        }
+
+
+    }
+
+    private void updateActivity(DailyActivity updatee)
+    {
+        new DailyActivityUpdater(mDao).execute(updatee);
+    }
+
+
     public void assignActivity (ExerciseTypes t, int pos)
     {
 
      mData.get(pos).status = DailyActivityStatus.ASSIGNED;
      mData.get(pos).type = t;
-     if(mData.size()<3)
-        mData.add(new DailyActivity());
+     updateActivity(mData.get(pos));
+
+     if(mData.size()<3 && pos<=mData.size()-1)
+        addNewActivity();
      notifyDataSetChanged();
 
     }
@@ -115,6 +173,7 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
     {
         mData.get(pos).status = DailyActivityStatus.COMPLETED;
         notifyDataSetChanged();
+        updateActivity(mData.get(pos));
 
     }
 
@@ -133,7 +192,7 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
 
 
 
-class DailyActivityReciclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+ class DailyActivityReciclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public Button mAddActivityButton;
     public TextView mTextViewActivityCounter;
     public DailyActivityReciclerViewHolder(@NonNull View itemView) {
