@@ -86,10 +86,21 @@ AddActivityDialog mAddActivityDialog;
                     @Override
                     public void onClick(View view) {
                         mAdapter.markActivityAsPartialComplete(pos);
+                        dismiss();
+                    }
+                });
+
+                dontWantToCompleteImgView = findViewById(R.id.dialog_activity_description_dont_want_to_doimgview);
+                dontWantToCompleteImgView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mAdapter.unassignActivity(pos);
+                        dismiss();
                     }
                 });
 
             }
+
         }
 
     }

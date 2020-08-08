@@ -22,6 +22,7 @@ import com.example.game_.other01_app.PopupDialogs.AddActivityDialog;
 import com.example.game_.other01_app.PopupDialogs.ExcerciseDescriptionDialog;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.DailyActivityCreator;
+import com.example.game_.other01_app.Utility.DailyActivityDeleter;
 import com.example.game_.other01_app.Utility.DailyActivityReader;
 import com.example.game_.other01_app.Utility.DailyActivityUpdater;
 
@@ -89,6 +90,12 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
         Button addActivityButton = ((DailyActivityReciclerViewHolder) holder).mAddActivityButton;
         TextView activityCounterTV = ((DailyActivityReciclerViewHolder) holder).mTextViewActivityCounter;
         activityCounterTV.setText("Activity "+String.valueOf(position+1));
+
+        if(activity.status== DailyActivityStatus.NOT_ASSIGNED)
+        {
+            addActivityButton.setBackgroundResource(R.drawable.ic_action_plus);
+        }
+
       if(activity.status == DailyActivityStatus.ASSIGNED) {
 
           switch (activity.type)
@@ -150,6 +157,12 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
 
     }
 
+    private void removeActivity(DailyActivity removee)
+    {
+        new DailyActivityDeleter(mDao).execute(removee);
+
+    }
+
     private void updateActivity(DailyActivity updatee)
     {
         new DailyActivityUpdater(mDao).execute(updatee);
@@ -181,10 +194,23 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
     {
         mData.get(pos).status = DailyActivityStatus.PARTIALLY_COMPLETED;
         notifyDataSetChanged();
+        updateActivity(mData.get(pos));
     }
 
-    public void deleteActivity()
+    public void unassignActivity(int pos)
     {
+        DailyActivity da = mData.get(pos);
+        da.type = ExerciseTypes.UNASSIGNED;
+        da.status = DailyActivityStatus.NOT_ASSIGNED;
+        updateActivity(da);
+        notifyDataSetChanged();
+    }
+
+    public void deleteActivity(int pos)
+    {
+        mData.remove(pos);
+        removeActivity(mData.get(pos));
+        notifyDataSetChanged();
 
     }
 

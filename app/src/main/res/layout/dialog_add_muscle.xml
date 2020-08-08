@@ -12,7 +12,7 @@
         android:text="Choose a Flashcard to add to your plan"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/colorWhite"
-        android:textSize="20sp">
+        android:textSize="18sp">
 
     </TextView>
 <GridLayout
@@ -24,48 +24,6 @@
     android:layout_margin="2dp">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlack"
-        android:gravity="center_horizontal"
-        android:text="Choose\n\nIntensity"
-        android:textColor="@color/colorWhite"
-
-        android:textStyle="bold" />
-
-
-    <RadioButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="#00ff00"
-        android:textStyle="bold"
-        android:layout_columnSpan="1"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/colorBlack"
-    android:text="Low" >
-
-    </RadioButton>
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ff0"
-        android:textStyle="bold"
-        android:background="@color/colorBlack"
-        android:layout_gravity="center_horizontal"
-        android:text="Medium" >
-
-    </RadioButton>
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ff00"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:background="@color/colorBlack"
-        android:text="High" >
-
-    </RadioButton>
     <TextView
         android:layout_width="60dp"
         android:layout_height="wrap_content"
@@ -170,8 +128,75 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlack"
+        android:gravity="center_horizontal"
+        android:text="Choose\n\nIntensity"
+        android:textColor="@color/colorWhite"
+
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#00ff00"
+        android:textStyle="bold"
+        android:layout_columnSpan="1"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorBlack"
+        android:text="Low"
+        android:textSize="20dp">
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff0"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:background="@color/colorBlack"
+        android:gravity="left"
+        android:text="Moderate" >
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff00"
+        android:layout_gravity="right"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:background="@color/colorBlack"
+        android:text="Vigorous" >
+
+    </TextView>
+
+
 
 </GridLayout>
+
+    <SeekBar
+        android:layout_width="280dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="100dp"
+        android:background="@color/colorBlack"
+        android:thumbTint="@color/colorWhite"
+        android:foregroundTint="@color/colorWhite"
+        android:progressTint="@color/colorWhite"
+        android:progress="50">
+
+    </SeekBar>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="40dp">
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -180,21 +205,45 @@
         android:orientation="vertical"
         android:layout_marginTop="25dp">
     <ImageView
-        android:id="@+id/dialog_add_muscle_close_imgview"
+        android:id="@+id/dialog_add_muscle_confirm_imgview"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_not">
+        android:src="@drawable/ic_complete">
     </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/colorWhite"
-            android:text="Close">
+            android:text="Confirm">
+        </TextView>
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlack"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginTop="25dp">
+        <ImageView
+            android:id="@+id/dialog_add_muscle_close_imgview"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_not">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorWhite"
+            android:text="Close">
         </TextView>
 
     </LinearLayout>
 
+
+</LinearLayout>
 </LinearLayout>
