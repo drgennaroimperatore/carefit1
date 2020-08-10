@@ -2,13 +2,20 @@ package com.example.game_.other01_app.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.example.game_.other01_app.DataObjects.PastWeekRow;
 import com.example.game_.other01_app.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +69,15 @@ public class PreviousWeekFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_previous_week, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ListView pastWeeksListView = view.findViewById(R.id.previous_week_list_view);
+        ArrayList<PastWeekRow> list = new ArrayList<>();
+        list.add(new PastWeekRow());
+        ArrayAdapter<PastWeekRow> tempAdapter = new ArrayAdapter<>(getContext(),R.layout.past_week_row,list);
+        pastWeeksListView.setAdapter(tempAdapter);
     }
 }
