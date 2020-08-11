@@ -2,6 +2,7 @@ package com.example.game_.other01_app.DataObjects;
 
 public class PastWeekRow
 {
+    private String mStartDate, mEndDate;
     private int mPlannedCardios, mPlannedMuscleBalances, mPlannedCompendiums;
     private int mCompletedCardios, mCompletedMuscleBalances, mCompletedCompendiums;
 
@@ -51,5 +52,21 @@ public class PastWeekRow
 
     public int getmPlannedMuscleBalances() {
         return mPlannedMuscleBalances;
+    }
+
+    public String getmStartDate() {
+        return mStartDate;
+    }
+
+    public void setmStartDate(String mStartDate) {
+        this.mStartDate = mStartDate;
+    }
+
+    public void setmEndDate(String mEndDate) {
+        this.mEndDate = mEndDate;
+    }
+
+    public String getmEndDate() {
+        return mEndDate;
     }
 }

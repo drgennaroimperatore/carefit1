@@ -64,6 +64,7 @@ public class PlannerActivity extends AppCompatActivity
 
         }
         catch (Exception e) {
+            Log.e("weekly plan creation", e.getMessage());
         }
 
 
@@ -135,7 +136,7 @@ public class PlannerActivity extends AppCompatActivity
         WeeklyPlan wp = new WeeklyPlan();
         wp.startDate = startDate;
         wp.endDate= dates[dates.length-1];
-        new WeeklyPlanCreator(mWeeklyPlanDao).execute(wp);
+        new WeeklyPlanCreator(this,mWeeklyPlanDao).execute(wp);
 
       return wp;
 

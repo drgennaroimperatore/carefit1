@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +111,7 @@ public class CurrentWeekFragment extends Fragment {
 
         }catch (Exception e)
         {
+            Log.e("Plan Creation", e.getMessage());
 
         }
 
@@ -148,7 +150,7 @@ public class CurrentWeekFragment extends Fragment {
                 dailyPlan.dayOfWeek = d;
                 dailyPlan.weeklyPlanID = weeklyPlan.id;
 
-             dailyPlan.id =  new DailyPlanCreator(mWeeklyPlanDao,dailyPlan).execute().get().intValue();
+             dailyPlan.id =  new DailyPlanCreator( getContext(), mWeeklyPlanDao,dailyPlan).execute().get().intValue();
                 plansForWeek.add(dailyPlan);
             }
         }

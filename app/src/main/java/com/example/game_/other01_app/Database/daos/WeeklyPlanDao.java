@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
+import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 
 import java.util.Date;
@@ -58,6 +59,13 @@ public interface WeeklyPlanDao {
     @Update
     void updateDailyActivity(DailyActivity dailyActivity);
 
+    @Query("SELECT COUNT(*) FROM DailyPlan, DailyActivity WHERE DailyPlan.id = DailyActivity.dailyPlanId " +
+            "AND DailyPlan.weeklyPlanID =:wpid and DailyActivity.type =:activityType and DailyActivity.status=\"ASSIGNED\"")
+            int getPlannedActivityCountByTypeAndWeeklyPlanID (int wpid, ExerciseTypes activityType);
+
+    @Query("SELECT COUNT(*) FROM DailyPlan, DailyActivity WHERE DailyPlan.id = DailyActivity.dailyPlanId " +
+            "AND DailyPlan.weeklyPlanID =:wpid and DailyActivity.type =:activityType and DailyActivity.status=\"COMPLETED\"")
+    int getCompletedActivityCountByTypeAndWeeklyPlanID (int wpid, ExerciseTypes activityType);
 
 
 
