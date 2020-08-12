@@ -43,6 +43,9 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_add_muscle);
 
+        ImageView confirmButton = findViewById(R.id.dialog_add_muscle_confirm_imgview);
+        confirmButton.setOnClickListener(this);
+
         ImageView closeButton = findViewById(R.id.dialog_add_muscle_close_imgview);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override

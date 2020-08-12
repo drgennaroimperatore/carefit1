@@ -8,7 +8,7 @@
     android:background="@color/colorDarkOrange">
 
 
-    <VideoView
+    <WebView
         android:id="@+id/dialog_activity_description_video"
         android:layout_width="150dp"
         android:layout_height="150dp"

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -42,6 +43,10 @@ AddActivityDialog mAddActivityDialog;
 
         if(mArgs!=null)
         {
+            WebView youTubeWeb = findViewById(R.id.dialog_activity_description_video);
+            String playVideo= "<html><body>Youtube video .. <br> <iframe class=\"youtube-player\" type=\"text/html\" width=\"640\" height=\"385\" src=\"https://www.youtube.com/watch?v=wEse4ewaSsI\" frameborder=\"0\"></body></html>";
+
+            youTubeWeb.loadData(playVideo, "text/html", "utf-8");
             DailyActivityStatus status = DailyActivityStatus.valueOf( mArgs.getString("status"));
             ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
             int pos= mArgs.getInt("pos");
