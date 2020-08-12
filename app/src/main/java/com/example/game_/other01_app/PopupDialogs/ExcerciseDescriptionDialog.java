@@ -22,7 +22,7 @@ private  WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
 AddActivityDialog mAddActivityDialog;
 
     public ExcerciseDescriptionDialog(@NonNull Context context, AddActivityDialog addActivityDialog, Bundle args, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter) {
-        super(context);
+        super(context,R.style.Theme_Design_Light);
         mContext =context;
         mArgs =args;
         mAdapter = adapter;

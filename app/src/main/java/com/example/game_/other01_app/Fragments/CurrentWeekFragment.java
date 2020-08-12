@@ -49,6 +49,7 @@ public class CurrentWeekFragment extends Fragment {
 
     private WeeklyPlan mWeeklyPlan;
     private WeeklyPlanDao mWeeklyPlanDao;
+    private ArrayList<DailyPlan> mDailyPlans;
 
 
 
@@ -57,10 +58,12 @@ public class CurrentWeekFragment extends Fragment {
     }
 
 
-    public CurrentWeekFragment (WeeklyPlan wp)
+    public CurrentWeekFragment (WeeklyPlan wp, ArrayList<DailyPlan> plans)
     {
 
+
         mWeeklyPlan = wp;
+        mDailyPlans = plans;
     }
 
     /**
@@ -107,7 +110,7 @@ public class CurrentWeekFragment extends Fragment {
         ArrayList<DailyPlan> dailyPlans = new ArrayList<>();
         try {
 
-            dailyPlans = getOrCreateDailyPlansForWeeklyPlan(mWeeklyPlan);
+            dailyPlans = mDailyPlans;
 
         }catch (Exception e)
         {

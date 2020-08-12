@@ -18,6 +18,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.game_.other01_app.Adapters.WeeklyPlannerListAdapter;
 import com.example.game_.other01_app.Adapters.WeeklyPlannerPagerAdapter;
 import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
+import com.example.game_.other01_app.DataObjects.WeeklyPlanCreatorResult;
 import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
@@ -42,13 +43,13 @@ import java.util.concurrent.ExecutionException;
 
 import static com.example.game_.other01_app.AssistanceClasses.DateTimeAssist.getWeekDayDate;
 
-public class PlannerActivity extends AppCompatActivity
-{
+public class PlannerActivity extends AppCompatActivity {
 
     List<WeeklyPlan> mWeeklyPlans = new ArrayList<>();
-    WeeklyPlan mCurrentWeeklyPlan =null;
-    WeeklyPlan mPastWeeklyPlan =null;
-    WeeklyPlan mFutureWeeklyPlan =null;
+    WeeklyPlan mCurrentWeeklyPlan = null;
+    WeeklyPlan mPastWeeklyPlan = null;
+    WeeklyPlan mFutureWeeklyPlan = null;
+    ArrayList<DailyPlan> mDailyPlans =null;
 
 
     @Override
@@ -60,10 +61,11 @@ public class PlannerActivity extends AppCompatActivity
 
 
         try {
-          mCurrentWeeklyPlan = getOrCreateCurrentWeeklyPlan(new Date());
+            WeeklyPlanCreatorResult wpcr = getOrCreateCurrentWeeklyPlan(new Date());
+            mCurrentWeeklyPlan = wpcr.getmWeeklyPlan();
+            mDailyPlans = (ArrayList<DailyPlan>) wpcr.getmDailyPlans();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.e("weekly plan creation", e.getMessage());
         }
 
@@ -81,7 +83,8 @@ public class PlannerActivity extends AppCompatActivity
                         FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,
                         mPastWeeklyPlan,
                         mCurrentWeeklyPlan,
-                        mFutureWeeklyPlan);
+                        mFutureWeeklyPlan,
+                        mDailyPlans);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setCurrentItem(1);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -120,28 +123,55 @@ public class PlannerActivity extends AppCompatActivity
         });
 
     }
-
-
-
     WeeklyPlanDao mWeeklyPlanDao;
 
-    private WeeklyPlan getOrCreateCurrentWeeklyPlan(Date startDate) throws InterruptedException, ExecutionException {
+    private WeeklyPlanCreatorResult getOrCreateCurrentWeeklyPlan(Date startDate) throws InterruptedException, ExecutionException {
         List<WeeklyPlan> weeklyPlans = new WeeklyPlanReader(mWeeklyPlanDao).execute().get();
-        if(weeklyPlans!=null)
-          for (WeeklyPlan w: weeklyPlans){
-              if(DateTimeAssist.isDateInCurrentWeek(w.startDate))
-                  return w;
-          }
+        if (weeklyPlans != null)
+            for (WeeklyPlan w : weeklyPlans) {
+                if (DateTimeAssist.isDateInCurrentWeek(w.startDate)) {
+                    List<DailyPlan> plans = new DailyPlanReader(mWeeklyPlanDao,w.id).execute().get();
+                    return new WeeklyPlanCreatorResult(w, plans);
+                }
+            }
         Date[] dates = DateTimeAssist.getWeekDates(startDate);
         WeeklyPlan wp = new WeeklyPlan();
         wp.startDate = startDate;
-        wp.endDate= dates[dates.length-1];
-        new WeeklyPlanCreator(this,mWeeklyPlanDao).execute(wp);
+        wp.endDate = dates[dates.length - 1];
+        new WeeklyPlanCreator(this, mWeeklyPlanDao).execute(wp).get();
 
-      return wp;
+        List<DailyPlan> plansForWeek = new ArrayList<>();
+        for (Date d : dates) {
+            DailyPlan dailyPlan = new DailyPlan();
+            dailyPlan.dayOfWeek = d;
+            dailyPlan.weeklyPlanID = wp.id;
+
+            dailyPlan.id = new DailyPlanCreator(this, mWeeklyPlanDao, dailyPlan).execute().get().intValue();
+            plansForWeek.add(dailyPlan);
+        }
+        WeeklyPlanCreatorResult wpcr = new WeeklyPlanCreatorResult(wp, plansForWeek);
+
+        return wpcr;
 
     }
 
+    /*private ArrayList<DailyPlan> getOrCreateDailyPlansForWeeklyPlan(WeeklyPlan weeklyPlan) throws ExecutionException, InterruptedException {
+        ArrayList<DailyPlan> plansForWeek = new ArrayList<>();
 
+        Date[] dates = DateTimeAssist.getWeekDates(weeklyPlan.startDate);
 
+        plansForWeek = (ArrayList<DailyPlan>) new DailyPlanReader(mWeeklyPlanDao, weeklyPlan.id).execute().get();
+        if (plansForWeek == null || plansForWeek.size() == 0) {
+            for (Date d : dates) {
+                DailyPlan dailyPlan = new DailyPlan();
+                dailyPlan.dayOfWeek = d;
+                dailyPlan.weeklyPlanID = weeklyPlan.id;
+
+                dailyPlan.id = new DailyPlanCreator(this, mWeeklyPlanDao, dailyPlan).execute().get().intValue();
+                plansForWeek.add(dailyPlan);
+            }
+        }
+
+return plansForWeek;
+    }*/
 }
