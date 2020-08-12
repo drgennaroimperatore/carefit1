@@ -6,6 +6,8 @@ import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,8 +23,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.game_.other01_app.Adapters.CompendiumActivitiesAutoCompleteAdapter;
 import com.example.game_.other01_app.Adapters.FavouiriteCompendiumAdapter;
+import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecyclerViewAdapter;
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
+import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.CompendiumActivitiesAutoComplete;
 import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
@@ -35,9 +39,13 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
     ArrayList<CompendiumActivities> compendiumActivitiesList = new ArrayList<>();
     FavouiriteCompendiumAdapter favouiriteCompendiumAdapter;
     private Context mContext;
-    public CompendiumActivitiesDialog(@NonNull Context context) {
+    private WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
+    private int mPos;
+    public CompendiumActivitiesDialog(@NonNull Context context, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter, int pos) {
         super(context, R.style.Theme_Design_Light);
         mContext = context;
+        mAdapter =adapter;
+        mPos = pos;
     }
 
 
@@ -51,6 +59,17 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
         mLifecycleRegistry.handleLifecycleEvent(LifecycleRegistry.Event.ON_CREATE);
         favouiriteCompendiumAdapter = new FavouiriteCompendiumAdapter(mContext);
         final TextView noFavTextView = findViewById(R.id.dialog_add_other_noFav_textview);
+
+        ImageView addCompendiumButton = findViewById(R.id.dialog_add_other_add_compendium);
+        addCompendiumButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mAdapter.assignActivity(ExerciseTypes.OTHER,mPos);
+                dismiss();
+
+            }
+        });
 
 
         ListView favouritesListview = findViewById(R.id.add_activity_dialog_listView);
