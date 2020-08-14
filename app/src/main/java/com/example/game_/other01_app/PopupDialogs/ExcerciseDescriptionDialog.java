@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -43,10 +45,24 @@ AddActivityDialog mAddActivityDialog;
 
         if(mArgs!=null)
         {
+            String myVideoYoutubeId = "cpr7qhexikY";
             WebView youTubeWeb = findViewById(R.id.dialog_activity_description_video);
-            String playVideo= "<html><body>Youtube video .. <br> <iframe class=\"youtube-player\" type=\"text/html\" width=\"640\" height=\"385\" src=\"https://www.youtube.com/watch?v=wEse4ewaSsI\" frameborder=\"0\"></body></html>";
 
-            youTubeWeb.loadData(playVideo, "text/html", "utf-8");
+
+            youTubeWeb.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    return false;
+                }
+            });
+
+
+            WebSettings webSettings = youTubeWeb.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setLoadWithOverviewMode(true);
+            webSettings.setUseWideViewPort(true);
+
+            youTubeWeb.loadUrl("https://www.youtube.com/embed/" + myVideoYoutubeId);
             DailyActivityStatus status = DailyActivityStatus.valueOf( mArgs.getString("status"));
             ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
             int pos= mArgs.getInt("pos");
