@@ -2,13 +2,25 @@ package com.example.game_.other01_app.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.example.game_.other01_app.Adapters.WeeklyPlannerListAdapter;
+import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
+import com.example.game_.other01_app.Database.AppDatabase;
+import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
+import com.example.game_.other01_app.Database.entities.DailyPlan;
+import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 import com.example.game_.other01_app.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,10 +38,19 @@ public class NextWeekFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private WeeklyPlan mWeeklyPlan;
+    private WeeklyPlanDao mWeeklyPlanDao;
+    private ArrayList<DailyPlan> mDailyPlans;
+
     public NextWeekFragment() {
         // Required empty public constructor
     }
 
+    public NextWeekFragment(WeeklyPlan wp, ArrayList<DailyPlan> plans) {
+
+        mWeeklyPlan = wp;
+        mDailyPlans = plans;
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -62,5 +83,33 @@ public class NextWeekFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_next_week, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mWeeklyPlanDao = AppDatabase.getDatabase(getContext()).weeklyPlanDao();
+        ListView weeklyListView = view.findViewById(R.id.weekly_planner_listVoew);
+        WeeklyPlannerListAdapter adapter = new WeeklyPlannerListAdapter(getContext(),0);
+        ArrayList<DailyPlan> dailyPlans = new ArrayList<>();
+        try {
+
+            dailyPlans = mDailyPlans;
+
+        }catch (Exception e)
+        {
+            Log.e("Plan Creation", e.getMessage());
+
+        }
+
+        adapter.add(new WeeklyPlannerObject("Mon",dailyPlans.get(0)));
+        adapter.add(new WeeklyPlannerObject("Tue", dailyPlans.get(1)));
+        adapter.add(new WeeklyPlannerObject("Wed",dailyPlans.get(2)));
+        adapter.add(new WeeklyPlannerObject("Thu" ,dailyPlans.get(3)));
+        adapter.add(new WeeklyPlannerObject("Fri",dailyPlans.get(4)));
+        weeklyListView.setAdapter(adapter);
+
+
     }
 }

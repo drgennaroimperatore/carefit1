@@ -94,6 +94,29 @@ public abstract class DateTimeAssist {
         return week == targetWeek && year == targetYear;
     }
 
+    public static boolean isDateInNextWeek(Date date)
+    {
+        Calendar currentCalendar = Calendar.getInstance();
+        currentCalendar.add(Calendar.DAY_OF_MONTH,7);
+        int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
+        int year = currentCalendar.get(Calendar.YEAR);
+        Calendar targetCalendar = Calendar.getInstance();
+        targetCalendar.setTime(date);
+        int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
+        int targetYear = targetCalendar.get(Calendar.YEAR);
+        return week == targetWeek && year == targetYear;
+    }
+
+    public static Date getDateForNextWeek(Date date)
+    {
+        Calendar currentCalendar = Calendar.getInstance();
+        currentCalendar.setTime(date);
+        currentCalendar.add(Calendar.DAY_OF_MONTH,7);
+        return currentCalendar.getTime();
+    }
+
+
+
     public static boolean isDateInPastWeek(Date date) {
         Calendar currentCalendar = Calendar.getInstance();
         int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);

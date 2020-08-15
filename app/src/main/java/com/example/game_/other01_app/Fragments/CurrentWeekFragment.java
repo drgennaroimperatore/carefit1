@@ -139,26 +139,6 @@ public class CurrentWeekFragment extends Fragment {
         compendiumActivitiesViewModel.getAllCompendiums().getValue();*/
     }
 
-    private ArrayList<DailyPlan> getOrCreateDailyPlansForWeeklyPlan(WeeklyPlan weeklyPlan) throws ExecutionException, InterruptedException {
-        ArrayList<DailyPlan> plansForWeek = new ArrayList<>();
 
-        Date[] dates = DateTimeAssist.getWeekDates(weeklyPlan.startDate);
-
-        plansForWeek =  (ArrayList<DailyPlan>) new DailyPlanReader(mWeeklyPlanDao, weeklyPlan.id).execute().get();
-        if (plansForWeek==null || plansForWeek.size() ==0)
-        {
-            for(Date d: dates)
-            {
-                DailyPlan dailyPlan = new DailyPlan();
-                dailyPlan.dayOfWeek = d;
-                dailyPlan.weeklyPlanID = weeklyPlan.id;
-
-             dailyPlan.id =  new DailyPlanCreator( getContext(), mWeeklyPlanDao,dailyPlan).execute().get().intValue();
-                plansForWeek.add(dailyPlan);
-            }
-        }
-
-        return plansForWeek;
-    }
 
 }

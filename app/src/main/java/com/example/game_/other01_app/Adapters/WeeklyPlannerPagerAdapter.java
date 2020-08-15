@@ -16,20 +16,23 @@ import java.util.ArrayList;
 public class WeeklyPlannerPagerAdapter extends FragmentPagerAdapter {
     private final int mNOfTabs =3;
     private WeeklyPlan mPastWeeklyPlan, mPresentWeeklyPlan, mFutureWeeklyPlan;
-    private ArrayList<DailyPlan> mDailyPlans;
+    private ArrayList<DailyPlan> mCurrentDailyPlans, mFutureDailyPlans;
     public WeeklyPlannerPagerAdapter(@NonNull FragmentManager fm, int behavior,
-                                     WeeklyPlan past, WeeklyPlan present, WeeklyPlan future, ArrayList<DailyPlan> dailyPlans) {
+                                     WeeklyPlan past, WeeklyPlan present, WeeklyPlan future,
+                                     ArrayList<DailyPlan> dailyPlans, ArrayList<DailyPlan> futureDailyPlans) {
         super(fm, behavior);
         mPresentWeeklyPlan = present;
         mPastWeeklyPlan = past;
         mFutureWeeklyPlan = future;
-        mDailyPlans = dailyPlans;
+        mCurrentDailyPlans = dailyPlans;
+        mFutureDailyPlans = futureDailyPlans;
+
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        CurrentWeekFragment cwf = new CurrentWeekFragment(mPresentWeeklyPlan, mDailyPlans);
+        CurrentWeekFragment cwf = new CurrentWeekFragment(mPresentWeeklyPlan, mCurrentDailyPlans);
         switch (position)
         {
             case 0:
@@ -37,7 +40,7 @@ public class WeeklyPlannerPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return cwf;
             case 2:
-                return new NextWeekFragment();
+                return new NextWeekFragment(mFutureWeeklyPlan,mFutureDailyPlans);
 
 
         }

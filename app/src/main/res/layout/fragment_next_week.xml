@@ -6,12 +6,8 @@
     tools:context=".Fragments.NextWeekFragment"
     android:background="@color/colorBlack">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/colorWhite"
-        android:textSize="45dp"
-        android:text="Work in progress " />
+    <include layout="@layout/weekly_planner">
+
+    </include>
 
 </FrameLayout>
