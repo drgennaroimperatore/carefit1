@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.game_.other01_app.Adapters.EducationalListRecyclerViewAdapter;
+import com.example.game_.other01_app.Database.AppDatabase;
+import com.example.game_.other01_app.Database.entities.EducationalList;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Utility.EducationalListReader;
 import com.example.game_.other01_app.dummy.DummyContent;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A fragment representing a list of Items.
@@ -25,6 +33,7 @@ public class EducationalListFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private List<EducationalList> mEducationalList;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -50,6 +59,9 @@ public class EducationalListFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
+
+
     }
 
     @Override
@@ -57,6 +69,13 @@ public class EducationalListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_educational_list_list, container, false);
 
+        try {
+            mEducationalList = new EducationalListReader(AppDatabase.getDatabase(getContext()).educationalDao()).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -66,7 +85,7 @@ public class EducationalListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new EducationalListRecyclerViewAdapter());
+            recyclerView.setAdapter(new EducationalListRecyclerViewAdapter(mEducationalList));
         }
         return view;
     }
