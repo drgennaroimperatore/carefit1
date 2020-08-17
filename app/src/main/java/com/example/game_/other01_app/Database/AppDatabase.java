@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import com.example.game_.other01_app.Database.converters.Converter;
 import com.example.game_.other01_app.Database.daos.CategoriesDao;
 import com.example.game_.other01_app.Database.daos.CompendiumsDao;
+import com.example.game_.other01_app.Database.daos.EducationalDao;
 import com.example.game_.other01_app.Database.daos.ExerciseDao;
 import com.example.game_.other01_app.Database.daos.ReminderDao;
 import com.example.game_.other01_app.Database.daos.TimeSetDao;
@@ -16,6 +17,9 @@ import com.example.game_.other01_app.Database.entities.Category;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
+import com.example.game_.other01_app.Database.entities.EducationalList;
+import com.example.game_.other01_app.Database.entities.EducationalListContent;
+import com.example.game_.other01_app.Database.entities.EducationalListContentResource;
 import com.example.game_.other01_app.Database.entities.Exercise;
 import com.example.game_.other01_app.Database.entities.Reminder;
 import com.example.game_.other01_app.Database.entities.TimeSet;
@@ -31,9 +35,15 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 //A holder class that uses annotation to define the list of entities and
 //the database version. This class content defines the list of DAOs
-@Database( entities = {Exercise.class, TimeSet.class, User.class,
-        Category.class, Reminder.class, WeeklyPlan.class, DailyPlan.class, DailyActivity.class,
-        CompendiumActivities.class},  version = 7, exportSchema = false)
+@Database( entities = {Exercise.class,
+        TimeSet.class, User.class,
+        Category.class, Reminder.class,
+        WeeklyPlan.class, DailyPlan.class,
+        DailyActivity.class,
+        CompendiumActivities.class,
+        EducationalList.class,
+        EducationalListContent.class,
+        EducationalListContentResource.class},  version = 8, exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -46,6 +56,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract TimeSetDao timeSetDao();
     public abstract CompendiumsDao compendiumsDao();
     public abstract WeeklyPlanDao weeklyPlanDao();
+    public abstract EducationalDao educationalDao();
 
     public synchronized static AppDatabase getDatabase(Context context){
         if(INSTANCE == null) {
@@ -72,6 +83,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     new PopulateTimeSetTableAsync(INSTANCE).execute();
                     new PopulateUserWithDefaultsAsync(INSTANCE).execute();
                     new PopulateCompendiumActivitiesAsync(INSTANCE).execute();
+                    new PopulateEducationalListAndContent(INSTANCE).execute();
 
                 }
             };
@@ -150,9 +162,7 @@ public abstract class AppDatabase extends RoomDatabase {
            0));
             return null;
 
-
         }
-
 
     }
 
@@ -171,5 +181,20 @@ public abstract class AppDatabase extends RoomDatabase {
             return null;
         }
 
+    }
+
+    private static class PopulateEducationalListAndContent extends AsyncTask<Void, Void, Void>
+    {
+        private final EducationalDao mEducationalDao;
+
+        private PopulateEducationalListAndContent(AppDatabase db) {
+            this.mEducationalDao = db.educationalDao();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mEducationalDao.insertEducationalListElements(EducationalList.populateEducationalList());
+            return null;
+        }
     }
 }

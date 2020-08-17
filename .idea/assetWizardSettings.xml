@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\spike\AppData\Local\Temp\baseline_check_circle_outline_24.xml" />
+                                                <entry key="imagePath" value="C:\Users\spike\AppData\Local\Temp\baseline_menu_book_24.xml" />
                                                 <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
@@ -36,7 +36,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/check_circle_outline/baseline_check_circle_outline_24.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/menu_book/baseline_menu_book_24.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -83,9 +83,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="imageAsset" value="C:\Users\spike\Documents\logos for app\noun_cardio_2444972.png" />
-                                      <entry key="outputName" value="ic_cardio" />
+                                      <entry key="outputName" value="ic_education" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="000000" />
                                     </map>
