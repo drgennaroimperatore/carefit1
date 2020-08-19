@@ -31,6 +31,12 @@ public class EducationalList
                         new EducationalList(7, 7,"The Mind and Body"),
                         new EducationalList(8, 8,"End Quiz")};
     }
+
+    @Override
+    public String toString() {
+        return  stageTitle;
+
+    }
 }
 
 

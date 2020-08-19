@@ -25,6 +25,10 @@ import com.example.game_.other01_app.Database.entities.Reminder;
 import com.example.game_.other01_app.Database.entities.TimeSet;
 import com.example.game_.other01_app.Database.entities.User;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
+import com.example.game_.other01_app.EventSystem.DashboardDatabaseWatcher;
+import com.example.game_.other01_app.EventSystem.DatabaseEvents;
+import com.example.game_.other01_app.EventSystem.Watched;
+import com.example.game_.other01_app.EventSystem.Watcher;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -49,6 +53,10 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
 
+    protected AppDatabase() {
+        mDatabaseWatcher = null;
+    }
+
     public abstract ExerciseDao exerciseDao();
     public abstract UserDao userDao();
     public abstract CategoriesDao categoriesDao();
@@ -71,6 +79,15 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+    protected Watcher mDatabaseWatcher = null;
+    public void addDatabaseWatcher(Watcher watcher)
+    {
+        mDatabaseWatcher = watcher;
+    }
+    public Watcher getDatabaseWatcher()
+    {
+        return mDatabaseWatcher;
+    }
 
 
     private static final RoomDatabase.Callback sRoomDatabaseCallback =
@@ -83,7 +100,11 @@ public abstract class AppDatabase extends RoomDatabase {
                     new PopulateTimeSetTableAsync(INSTANCE).execute();
                     new PopulateUserWithDefaultsAsync(INSTANCE).execute();
                     new PopulateCompendiumActivitiesAsync(INSTANCE).execute();
-                    new PopulateEducationalListAndContent(INSTANCE).execute();
+                  PopulateEducationalListAndContent eduPopulator =
+                          new PopulateEducationalListAndContent(INSTANCE);
+                  eduPopulator.attachWatcher(INSTANCE.getDatabaseWatcher());
+                  eduPopulator.execute();
+
 
                 }
             };
@@ -186,15 +207,37 @@ public abstract class AppDatabase extends RoomDatabase {
     private static class PopulateEducationalListAndContent extends AsyncTask<Void, Void, Void>
     {
         private final EducationalDao mEducationalDao;
+        private final Watched mWatched;
+
+
+        @Override
+        protected void onPreExecute() {
+
+            mWatched.notifyWatchers(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
+
+        }
 
         private PopulateEducationalListAndContent(AppDatabase db) {
             this.mEducationalDao = db.educationalDao();
+            mWatched = new Watched();
+
+        }
+
+        public void attachWatcher(Watcher watcher)
+        {
+            mWatched.addWatcher(watcher);
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
             mEducationalDao.insertEducationalListElements(EducationalList.populateEducationalList());
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            mWatched.notifyWatchers(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_ENDED);
         }
     }
 }

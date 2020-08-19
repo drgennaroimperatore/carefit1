@@ -1,25 +1,23 @@
 package com.example.game_.other01_app.Fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import com.example.game_.other01_app.Adapters.EducationalListRecyclerViewAdapter;
+import com.example.game_.other01_app.Activities.EducationalActivity;
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.entities.EducationalList;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.EducationalListReader;
-import com.example.game_.other01_app.dummy.DummyContent;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -34,23 +32,31 @@ public class EducationalListFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private List<EducationalList> mEducationalList;
+    private EducationalActivity mActivity;
+
+    public EducationalListFragment() {}
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public EducationalListFragment() {
+    public EducationalListFragment(EducationalActivity mActivity) {
+        this.mActivity = mActivity;
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static EducationalListFragment newInstance(int columnCount) {
-        EducationalListFragment fragment = new EducationalListFragment();
+    public static EducationalListFragment newInstance(int columnCount, EducationalActivity activity) {
+        EducationalListFragment fragment = new EducationalListFragment(activity);
+
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
+        fragment.mActivity = activity;
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,16 +66,14 @@ public class EducationalListFragment extends Fragment {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
 
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_educational_list_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_educational_list_list,null);
 
-        try {
+       try {
             mEducationalList = new EducationalListReader(AppDatabase.getDatabase(getContext()).educationalDao()).execute().get();
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -77,16 +81,25 @@ public class EducationalListFragment extends Fragment {
             e.printStackTrace();
         }
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new EducationalListRecyclerViewAdapter(mEducationalList));
-        }
+
+
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+       ListView listView = view.findViewById(R.id.educational_list_listView);
+        ArrayAdapter<EducationalList> educationalListArrayAdapter = new ArrayAdapter<EducationalList>
+                (getContext(), R.layout.fragment_educational_list,mEducationalList);
+       listView.setAdapter(educationalListArrayAdapter);
+       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            EducationalActivity activity = (EducationalActivity) getActivity();
+            activity.goToContentFragment();
+           }
+       });
+
     }
 }

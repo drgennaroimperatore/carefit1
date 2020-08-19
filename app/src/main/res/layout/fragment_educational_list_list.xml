@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
+    android:id="@+id/educational_list_listView"
     android:name="com.example.game_.other01_app.EducationalListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    app:layoutManager="LinearLayoutManager"
+
     tools:context=".Fragments.EducationalListFragment"
     tools:listitem="@layout/fragment_educational_list" />
+
+</LinearLayout>
