@@ -97,7 +97,8 @@ public class EducationalListFragment extends Fragment {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             EducationalActivity activity = (EducationalActivity) getActivity();
-            activity.goToContentFragment();
+           int stage= educationalListArrayAdapter.getItem(i).stageNumber;
+            activity.goToContentFragment(stage);
            }
        });
 

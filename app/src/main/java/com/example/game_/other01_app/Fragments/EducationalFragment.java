@@ -48,7 +48,8 @@ public class EducationalFragment extends Fragment {
         WebView webView= root.findViewById(R.id.fragment_educational_webView);
 
 
-        webView.loadUrl("file:///android_asset/stage1.html");
+        int stage = getArguments().getInt("stage");
+        webView.loadUrl("file:///android_asset/stage" + String.valueOf(stage)+".html");
         webView.setInitialScale(100);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);

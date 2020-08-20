@@ -26,10 +26,14 @@ public class EducationalActivity extends FragmentActivity {
 
     }
 
-    public void goToContentFragment()
+    public void goToContentFragment(int i)
     {
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.educational, new EducationalFragment(), "EducationalFragment");
+        EducationalFragment educationalFragment = new EducationalFragment();
+        Bundle args = new Bundle();
+        args.putInt("stage",i);
+        educationalFragment.setArguments(args);
+        ft.replace(R.id.educational, educationalFragment, "EducationalFragment");
         ft.commitNow();
 
     }

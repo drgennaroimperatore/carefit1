@@ -1,10 +1,12 @@
 package com.example.game_.other01_app.Activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -77,15 +79,18 @@ public class PlannerActivity extends AppCompatActivity {
                         mCurrentDailyPlans,
                         mNextWeekDailyPlans);
         viewPager.setAdapter(pagerAdapter);
+        tabLayout.getTabAt(1).select();
         viewPager.setCurrentItem(1);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                tabLayout.getTabAt(position).select();
+               //
             }
 
             @Override
             public void onPageSelected(int position) {
+                tabLayout.getTabAt(position).select();
+
 
             }
 
@@ -99,6 +104,7 @@ public class PlannerActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+               // tabLayout.selectTab(tab);
 
             }
 
