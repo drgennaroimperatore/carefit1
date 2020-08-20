@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.game_.other01_app.Adapters.PastWeekRowAdapter;
 import com.example.game_.other01_app.DataObjects.PastWeekRow;
@@ -89,6 +90,14 @@ public class PreviousWeekFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ListView pastWeeksListView = view.findViewById(R.id.previous_week_list_view);
+
+        TextView noProgressHeaderTV = view.findViewById(R.id.fragment_prev_week_no_progress_message_textview);
+        if(mPastWeeks.size()==0)
+            noProgressHeaderTV.setVisibility(View.VISIBLE);
+        else
+            if(mPastWeeks.size()>0)
+                noProgressHeaderTV.setVisibility(View.GONE);
+
         PastWeekRowAdapter pastWeekRowAdapter = new PastWeekRowAdapter(getContext(),0, (ArrayList<PastWeekRow>) mPastWeeks);
         pastWeeksListView.setAdapter(pastWeekRowAdapter);
     }

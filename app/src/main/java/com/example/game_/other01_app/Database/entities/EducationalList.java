@@ -34,7 +34,7 @@ public class EducationalList
 
     @Override
     public String toString() {
-        return  stageTitle;
+        return "Stage "+ String.valueOf(stageNumber)+": "+ stageTitle;
 
     }
 }
