@@ -17,6 +17,7 @@ import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class WeeklyPlannerListAdapter extends ArrayAdapter<WeeklyPlannerObject> {
 
@@ -38,6 +39,15 @@ public class WeeklyPlannerListAdapter extends ArrayAdapter<WeeklyPlannerObject> 
         dayTV.setText(getItem(position).getmDay());
         TextView dateTV = convertView.findViewById(R.id.weekly_planner_row_date_tv);
         dateTV.setText(DateTimeAssist.convertDateToPreferredFormat(getItem(position).getmDailyPlan().dayOfWeek));
+        TextView statusTV = convertView.findViewById(R.id.weekly_planner_row_status_tv);
+        Date activityDate = getItem(position).getmDailyPlan().dayOfWeek;
+        if(DateTimeAssist.isBefore(activityDate))
+            statusTV.setText("PAST");
+        if(DateTimeAssist.isDateToday(activityDate))
+            statusTV.setText("TODAY");
+        if(DateTimeAssist.isAfter(activityDate))
+            statusTV.setText("FUTURE");
+
         RecyclerView dailyRecyclerView = convertView.findViewById(R.id.weekly_planner_dailyactivity_recyclerView);
         WeeklyPlannerDailyActivityRecyclerViewAdapter adapter =
                 new WeeklyPlannerDailyActivityRecyclerViewAdapter(mContext,getItem(position).getmDailyPlan());

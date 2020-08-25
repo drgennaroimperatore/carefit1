@@ -95,8 +95,10 @@ public class PreviousWeekFragment extends Fragment {
         if(mPastWeeks.size()==0)
             noProgressHeaderTV.setVisibility(View.VISIBLE);
         else
-            if(mPastWeeks.size()>0)
+            if(mPastWeeks.size()>0) {
                 noProgressHeaderTV.setVisibility(View.GONE);
+                pastWeeksListView.setVisibility(View.VISIBLE);
+            }
 
         PastWeekRowAdapter pastWeekRowAdapter = new PastWeekRowAdapter(getContext(),0, (ArrayList<PastWeekRow>) mPastWeeks);
         pastWeeksListView.setAdapter(pastWeekRowAdapter);

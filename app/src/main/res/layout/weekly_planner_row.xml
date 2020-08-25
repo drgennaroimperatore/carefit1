@@ -41,6 +41,18 @@
             android:text="Monday">
 
         </TextView>
+
+            <TextView
+                android:id="@+id/weekly_planner_row_status_tv"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="ACTIVE">
+
+            </TextView>
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

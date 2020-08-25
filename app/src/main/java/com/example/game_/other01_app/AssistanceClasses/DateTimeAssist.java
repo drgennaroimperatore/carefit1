@@ -1,5 +1,6 @@
 package com.example.game_.other01_app.AssistanceClasses;
 
+import com.example.game_.other01_app.Activities.DashboardActivity;
 import com.example.game_.other01_app.Database.entities.Reminder;
 
 import java.text.ParseException;
@@ -105,6 +106,57 @@ public abstract class DateTimeAssist {
         int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
         int targetYear = targetCalendar.get(Calendar.YEAR);
         return week == targetWeek && year == targetYear;
+    }
+
+    public static boolean isDateToday(Date date)
+    {
+        Calendar currentCalendar = Calendar.getInstance();
+        int day = currentCalendar.get(Calendar.DAY_OF_MONTH);
+        int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
+        int month = currentCalendar.get(Calendar.MONTH);
+        int year = currentCalendar.get(Calendar.YEAR);
+        Calendar targetCalendar = Calendar.getInstance();
+        targetCalendar.setTime(date);
+        int targetDay = targetCalendar.get(Calendar.DAY_OF_MONTH);
+        int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
+        int targetMonth = currentCalendar.get(Calendar.MONTH);
+        int targetYear = targetCalendar.get(Calendar.YEAR);
+        return  day== targetDay && targetMonth == month && week == targetWeek && year == targetYear;
+
+    }
+
+    public static boolean isBefore(Date date)
+    {
+        Calendar currentCalendar = Calendar.getInstance();
+        int day = currentCalendar.get(Calendar.DAY_OF_MONTH);
+        int month = currentCalendar.get(Calendar.MONTH);
+        int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
+        int year = currentCalendar.get(Calendar.YEAR);
+        Calendar targetCalendar = Calendar.getInstance();
+        targetCalendar.setTime(date);
+        int targetDay = targetCalendar.get(Calendar.DAY_OF_MONTH);
+        int targetMonth = targetCalendar.get(Calendar.MONTH);
+        int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
+        int targetYear = targetCalendar.get(Calendar.YEAR);
+        return day > targetDay && month >= targetMonth  && year >= targetYear;
+    }
+
+    public static boolean isAfter(Date date)
+    {
+        Calendar currentCalendar = Calendar.getInstance();
+        int day = currentCalendar.get(Calendar.DAY_OF_MONTH);
+        int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
+        int month = currentCalendar.get(Calendar.MONTH);
+        int year = currentCalendar.get(Calendar.YEAR);
+        Calendar targetCalendar = Calendar.getInstance();
+        targetCalendar.setTime(date);
+        int targetDay = targetCalendar.get(Calendar.DAY_OF_MONTH);
+        int targetMonth = targetCalendar.get(Calendar.MONTH);
+        int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
+        int targetYear = targetCalendar.get(Calendar.YEAR);
+        if(month < targetMonth)
+            return true;
+        return day < targetDay  && year <= targetYear;
     }
 
     public static Date getDateForNextWeek(Date date)
