@@ -213,7 +213,7 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         protected void onPreExecute() {
 
-            mWatched.notifyWatchers(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
+         //   mWatched.notifyWatchers(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
 
         }
 
@@ -237,7 +237,7 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            mWatched.notifyWatchers(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_ENDED);
+      //      mWatched.notifyWatchers(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_ENDED);
         }
     }
 }
