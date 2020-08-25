@@ -88,7 +88,7 @@ AddActivityDialog mAddActivityDialog;
                     }
                 });
             }
-            else if(status == DailyActivityStatus.ASSIGNED)
+            else if(status == DailyActivityStatus.ASSIGNED && mArgs.getBoolean("isToday"))
             {
                 completionSection.setVisibility(View.VISIBLE);
 
@@ -125,6 +125,5 @@ AddActivityDialog mAddActivityDialog;
         }
 
     }
-
 
 }

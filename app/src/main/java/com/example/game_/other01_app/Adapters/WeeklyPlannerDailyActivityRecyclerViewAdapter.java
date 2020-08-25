@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
@@ -260,8 +261,16 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
             Bundle args = new Bundle();
             args.putInt("pos", getAdapterPosition());
             args.putString("type", mAdapter.mData.get(getAdapterPosition()).type.toString());
-            args.putString("status",mAdapter.mData.get(getAdapterPosition()).status.toString());
-            ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext,null,args,mAdapter);
+            args.putString("status", mAdapter.mData.get(getAdapterPosition()).status.toString());
+
+
+            if(DateTimeAssist.isDateToday( mAdapter.mDailyPlan.dayOfWeek)) {
+               args.putBoolean("isToday",true);
+            }
+            else
+                args.putBoolean("isToday",false);
+
+            ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext, null, args, mAdapter);
             edd.show();
         }
 

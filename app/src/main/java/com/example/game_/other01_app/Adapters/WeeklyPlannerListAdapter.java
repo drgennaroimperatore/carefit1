@@ -1,6 +1,7 @@
 package com.example.game_.other01_app.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,10 @@ public class WeeklyPlannerListAdapter extends ArrayAdapter<WeeklyPlannerObject> 
         dateTV.setText(DateTimeAssist.convertDateToPreferredFormat(getItem(position).getmDailyPlan().dayOfWeek));
         TextView statusTV = convertView.findViewById(R.id.weekly_planner_row_status_tv);
         Date activityDate = getItem(position).getmDailyPlan().dayOfWeek;
-        if(DateTimeAssist.isBefore(activityDate))
+        if(DateTimeAssist.isBefore(activityDate)) {
             statusTV.setText("PAST");
+            statusTV.setTextColor(Color.RED);
+        }
         if(DateTimeAssist.isDateToday(activityDate))
             statusTV.setText("TODAY");
         if(DateTimeAssist.isAfter(activityDate))
