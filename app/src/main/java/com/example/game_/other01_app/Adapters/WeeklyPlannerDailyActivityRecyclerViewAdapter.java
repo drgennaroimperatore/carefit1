@@ -21,6 +21,7 @@ import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.PopupDialogs.AddActivityDialog;
 import com.example.game_.other01_app.PopupDialogs.ExcerciseDescriptionDialog;
+import com.example.game_.other01_app.PopupDialogs.ReassignActivityDialog;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.DailyActivityCreator;
 import com.example.game_.other01_app.Utility.DailyActivityDeleter;
@@ -267,8 +268,15 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
             if(DateTimeAssist.isDateToday( mAdapter.mDailyPlan.dayOfWeek)) {
                args.putBoolean("isToday",true);
             }
-            else
-                args.putBoolean("isToday",false);
+            else {
+                args.putBoolean("isToday", false);
+                if(DateTimeAssist.isBefore(mAdapter.mDailyPlan.dayOfWeek))
+                {
+                    ReassignActivityDialog reassignActivityDialog = new ReassignActivityDialog(mContext);
+                    reassignActivityDialog.show();
+
+                }
+            }
 
             ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext, null, args, mAdapter);
             edd.show();

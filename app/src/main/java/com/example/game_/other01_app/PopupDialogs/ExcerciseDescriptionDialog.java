@@ -88,39 +88,41 @@ AddActivityDialog mAddActivityDialog;
                     }
                 });
             }
-            else if(status == DailyActivityStatus.ASSIGNED && mArgs.getBoolean("isToday"))
+            else if(status == DailyActivityStatus.ASSIGNED )
             {
-                completionSection.setVisibility(View.VISIBLE);
+                if(mArgs.getBoolean("isToday")) {
+                    completionSection.setVisibility(View.VISIBLE);
 
-                ImageView completedActivityImgview, partiallyCompletedActivtyImgView, dontWantToCompleteImgView;
-                completedActivityImgview = findViewById(R.id.dialog_activity_description_completed_ex_imgview);
-                completedActivityImgview.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mAdapter.markActivityAsComplete(pos);
-                        dismiss();
+                    ImageView completedActivityImgview, partiallyCompletedActivtyImgView;
+                    completedActivityImgview = findViewById(R.id.dialog_activity_description_completed_ex_imgview);
+                    completedActivityImgview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mAdapter.markActivityAsComplete(pos);
+                            dismiss();
 
-                    }
-                });
-                partiallyCompletedActivtyImgView = findViewById(R.id.dialog_activity_description_partially_completed_imgview);
-                partiallyCompletedActivtyImgView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mAdapter.markActivityAsPartialComplete(pos);
-                        dismiss();
-                    }
-                });
+                        }
+                    });
+                    partiallyCompletedActivtyImgView = findViewById(R.id.dialog_activity_description_partially_completed_imgview);
+                    partiallyCompletedActivtyImgView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mAdapter.markActivityAsPartialComplete(pos);
+                            dismiss();
+                        }
+                    });
 
-                dontWantToCompleteImgView = findViewById(R.id.dialog_activity_description_dont_want_to_doimgview);
-                dontWantToCompleteImgView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mAdapter.unassignActivity(pos);
-                        dismiss();
-                    }
-                });
 
-            }
+                    ImageView dontWantToCompleteImgView = findViewById(R.id.dialog_activity_description_dont_want_to_doimgview);
+                    dontWantToCompleteImgView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mAdapter.unassignActivity(pos);
+                            dismiss();
+                        }
+                    });
+                } // if is today
+            } // if is assigned
 
         }
 

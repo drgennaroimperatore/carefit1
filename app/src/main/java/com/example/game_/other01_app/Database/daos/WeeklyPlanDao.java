@@ -10,10 +10,13 @@ import androidx.room.Update;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
+import com.example.game_.other01_app.Database.entities.UnassignedDailyActivities;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 
 import java.util.Date;
 import java.util.List;
+
+import io.reactivex.internal.operators.flowable.FlowableWithLatestFromMany;
 
 @Dao
 public interface WeeklyPlanDao {
@@ -41,6 +44,7 @@ public interface WeeklyPlanDao {
     @Query("SELECT * FROM DailyPlan WHERE DailyPlan.weeklyPlanID =:weeklyPlanID")
     List<DailyPlan> getDailyPlansByWeeklyPlanID(int weeklyPlanID);
 
+
     @Insert
     long addDailyPlan(DailyPlan dailyPlan);
 
@@ -50,6 +54,9 @@ public interface WeeklyPlanDao {
     @Query("SELECT * FROM DailyActivity WHERE DailyActivity.dailyPlanId=:dailyPlanID")
     List<DailyActivity> getDailyActivitiesByDailyPlanID(int dailyPlanID);
 
+    @Query("SELECT DailyActivity.dailyPlanId, DailyPlan.dayOfWeek, DailyActivity.status " +
+            "FROM DailyActivity,DailyPlan WHERE DailyActivity.dailyPlanId = DailyPlan.id AND DailyActivity.status = \"NOT_ASSIGNED\"")
+    List<UnassignedDailyActivities> getAllUnassignedActivities();
     @Insert
     long addDailyActivity(DailyActivity dailyActivity);
 
