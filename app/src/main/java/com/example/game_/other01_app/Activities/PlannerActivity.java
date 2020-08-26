@@ -171,9 +171,9 @@ public class PlannerActivity extends AppCompatActivity {
         WeeklyPlan wp = new WeeklyPlan();
         wp.startDate = startDate;
         wp.endDate = dates[dates.length - 1];
-        new WeeklyPlanCreator(this, mWeeklyPlanDao).execute(wp).get();
+     WeeklyPlanCreatorResult wpcr=   new WeeklyPlanCreator(this, mWeeklyPlanDao).execute(wp).get();
 
-        List<DailyPlan> plansForWeek = new ArrayList<>();
+    /*    List<DailyPlan> plansForWeek = new ArrayList<>();
         for (Date d : dates) {
             DailyPlan dailyPlan = new DailyPlan();
             dailyPlan.dayOfWeek = d;
@@ -182,7 +182,7 @@ public class PlannerActivity extends AppCompatActivity {
             dailyPlan.id = new DailyPlanCreator(this, mWeeklyPlanDao, dailyPlan).execute().get().intValue();
             plansForWeek.add(dailyPlan);
         }
-        WeeklyPlanCreatorResult wpcr = new WeeklyPlanCreatorResult(wp, plansForWeek);
+        WeeklyPlanCreatorResult wpcr = new WeeklyPlanCreatorResult(wp, plansForWeek);*/
 
         return wpcr;
 
