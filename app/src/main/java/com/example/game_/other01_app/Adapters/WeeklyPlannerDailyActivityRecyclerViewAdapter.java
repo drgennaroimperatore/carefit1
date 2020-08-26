@@ -280,9 +280,12 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
                 args.putBoolean("isToday", false);
                 if(DateTimeAssist.isBefore(mAdapter.mDailyPlan.dayOfWeek))
                 {
-                    ReassignActivityDialog reassignActivityDialog = new ReassignActivityDialog(mContext);
-                    reassignActivityDialog.show();
+                   args.putBoolean("isPast",true);
 
+                }
+                if(DateTimeAssist.isAfter(mAdapter.mDailyPlan.dayOfWeek))
+                {
+                    args.putBoolean("isFuture",true);
                 }
             }
 

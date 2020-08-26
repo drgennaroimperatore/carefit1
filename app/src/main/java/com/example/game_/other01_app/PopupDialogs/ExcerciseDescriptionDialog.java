@@ -7,6 +7,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -122,6 +123,34 @@ AddActivityDialog mAddActivityDialog;
                         }
                     });
                 } // if is today
+
+                if(mArgs.getBoolean("isPast"))
+                {
+                    LinearLayout rescheduleSection = findViewById(R.id.dialog_activity_description_reschedule_section);
+                    rescheduleSection.setVisibility(View.VISIBLE);
+
+                }// is past
+                if(mArgs.getBoolean("isFuture"))
+                {
+                    LinearLayout reminderSection = findViewById(R.id.dialog_activity_description_add_notification_section);
+                    reminderSection.setVisibility(View.VISIBLE);
+
+                    ImageView bellImageView = findViewById(R.id.dialog_activity_description_add_notification_section_bell_imgview);
+                    bellImageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                    ImageView dismissimgView = findViewById(R.id.dialog_activity_description_add_notification_section_dismiss_imgView);
+                    dismissimgView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dismiss();
+                        }
+                    });
+
+                }//is future
             } // if is assigned
 
         }
