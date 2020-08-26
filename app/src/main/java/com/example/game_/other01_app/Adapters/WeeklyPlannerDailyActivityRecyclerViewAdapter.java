@@ -21,6 +21,7 @@ import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.PopupDialogs.AddActivityDialog;
 import com.example.game_.other01_app.PopupDialogs.ExcerciseDescriptionDialog;
+import com.example.game_.other01_app.PopupDialogs.GeneralErrorDialog;
 import com.example.game_.other01_app.PopupDialogs.ReassignActivityDialog;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.DailyActivityCreator;
@@ -29,6 +30,7 @@ import com.example.game_.other01_app.Utility.DailyActivityReader;
 import com.example.game_.other01_app.Utility.DailyActivityUpdater;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.Adapter {
@@ -134,8 +136,6 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
       }
 
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -254,8 +254,16 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
     public void onClick(View view) {
        // mAdapter.assignActivity(ExerciseTypes.CARDIO, getAdapterPosition());
         if(mAdapter.mData.get(getAdapterPosition()).status == DailyActivityStatus.NOT_ASSIGNED) {
-            AddActivityDialog dialog = new AddActivityDialog(mContext, getAdapterPosition(), mAdapter);
-            dialog.show();
+            if (DateTimeAssist.isBefore( mAdapter.mDailyPlan.dayOfWeek)) {
+                GeneralErrorDialog errorDialog =
+                        new GeneralErrorDialog(mContext,"Please choose a different date to plan an Activity");
+                errorDialog.show();
+
+            }else
+            {
+                AddActivityDialog dialog = new AddActivityDialog(mContext, getAdapterPosition(), mAdapter);
+                dialog.show();
+            }
         }
         else if(mAdapter.mData.get(getAdapterPosition()).status == DailyActivityStatus.ASSIGNED)
         {
