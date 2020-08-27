@@ -175,7 +175,7 @@ AddActivityDialog mAddActivityDialog;
                     calendarButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            ReassignActivityDialog reassignActivityDialog = new ReassignActivityDialog(mContext);
+                            ReassignActivityDialog reassignActivityDialog = new ReassignActivityDialog(mContext,mAdapter.getActivity(pos));
                             reassignActivityDialog.show();
                         }
 

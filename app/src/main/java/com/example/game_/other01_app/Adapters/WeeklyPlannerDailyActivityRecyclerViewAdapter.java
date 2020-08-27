@@ -159,6 +159,11 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
 
     }
 
+    public DailyActivity getActivity(int pos)
+    {
+        return  mData.get(pos);
+    }
+
     private void removeActivity(DailyActivity removee)
     {
         new DailyActivityDeleter(mDao).execute(removee);

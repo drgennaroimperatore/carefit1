@@ -2,6 +2,8 @@ package com.example.game_.other01_app.Database.entities;
 
 import androidx.room.Entity;
 
+import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
+
 import java.util.Date;
 
 @Entity
@@ -12,6 +14,6 @@ public class UnassignedDailyActivities {
 
     @Override
     public String toString() {
-        return dayOfWeek.toString();
+        return DateTimeAssist.convertDateToPreferredFormat(dayOfWeek);
     }
 }
