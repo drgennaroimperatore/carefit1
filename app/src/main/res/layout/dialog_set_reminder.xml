@@ -5,9 +5,108 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:textColor="@color/colorBlack"
+        android:text="Set a Reminder"
+        android:textSize="35dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
     </TextView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+
+        android:weightSum="1"
+        android:layout_gravity="center_horizontal">
+
+        <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+
+        android:layout_weight="0.8">
+    </TimePicker>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="0.1"
+            android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="25dp"
+            android:text="Remind me ">
+        </TextView>
+
+        <Spinner
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="25dp"
+                android:text="Days Before ">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:background="@color/colorBlack">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_complete"
+            android:layout_gravity="center_horizontal">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center_horizontal"
+            android:text="Set Reminder">
+
+        </TextView>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_not"
+                android:layout_gravity="center_horizontal">
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center_horizontal"
+                android:text="Cancel">
+
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

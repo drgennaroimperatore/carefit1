@@ -126,19 +126,38 @@ AddActivityDialog mAddActivityDialog;
 
                 if(mArgs.getBoolean("isPast"))
                 {
-                    LinearLayout rescheduleSection = findViewById(R.id.dialog_activity_description_reschedule_section);
+                /*    LinearLayout rescheduleSection = findViewById(R.id.dialog_activity_description_reschedule_section);
                     rescheduleSection.setVisibility(View.VISIBLE);
+                    ImageView calendarButton = findViewById(R.id.dialog_activity_description_reschedule_section_open_rescheduler_imgView);
+                    calendarButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ReassignActivityDialog reassignActivityDialog = new ReassignActivityDialog(mContext);
+                            reassignActivityDialog.show();
+                        }
+
+                    });
+                    ImageView dismissRescheduler = findViewById(R.id.dialog_activity_description_reschedule_section_dismiss_imgView);
+                    dismissRescheduler.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dismiss();
+                        }
+                    }); */
+
 
                 }// is past
                 if(mArgs.getBoolean("isFuture"))
                 {
-                    LinearLayout reminderSection = findViewById(R.id.dialog_activity_description_add_notification_section);
+                /*    LinearLayout reminderSection = findViewById(R.id.dialog_activity_description_add_notification_section);
                     reminderSection.setVisibility(View.VISIBLE);
 
                     ImageView bellImageView = findViewById(R.id.dialog_activity_description_add_notification_section_bell_imgview);
                     bellImageView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            SetReminderDialog setReminderDialog = new SetReminderDialog(mContext);
+                            setReminderDialog.show();
 
                         }
                     });
@@ -148,7 +167,27 @@ AddActivityDialog mAddActivityDialog;
                         public void onClick(View view) {
                             dismiss();
                         }
+                    });*/
+
+                    LinearLayout rescheduleSection = findViewById(R.id.dialog_activity_description_reschedule_section);
+                    rescheduleSection.setVisibility(View.VISIBLE);
+                    ImageView calendarButton = findViewById(R.id.dialog_activity_description_reschedule_section_open_rescheduler_imgView);
+                    calendarButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ReassignActivityDialog reassignActivityDialog = new ReassignActivityDialog(mContext);
+                            reassignActivityDialog.show();
+                        }
+
                     });
+                    ImageView dismissRescheduler = findViewById(R.id.dialog_activity_description_reschedule_section_dismiss_imgView);
+                    dismissRescheduler.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dismiss();
+                        }
+                    });
+
 
                 }//is future
             } // if is assigned

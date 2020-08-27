@@ -55,7 +55,8 @@ public interface WeeklyPlanDao {
     List<DailyActivity> getDailyActivitiesByDailyPlanID(int dailyPlanID);
 
     @Query("SELECT DailyActivity.dailyPlanId, DailyPlan.dayOfWeek, DailyActivity.status " +
-            "FROM DailyActivity,DailyPlan WHERE DailyActivity.dailyPlanId = DailyPlan.id AND DailyActivity.status = \"NOT_ASSIGNED\"")
+            "FROM DailyActivity,DailyPlan WHERE DailyActivity.dailyPlanId = DailyPlan.id " +
+            "AND DailyActivity.status = \"NOT_ASSIGNED\"/* AND DailyPlan.dayOfWeek >=DATE('now') */")
     List<UnassignedDailyActivities> getAllUnassignedActivities();
     @Insert
     long addDailyActivity(DailyActivity dailyActivity);
@@ -73,7 +74,6 @@ public interface WeeklyPlanDao {
     @Query("SELECT COUNT(*) FROM DailyPlan, DailyActivity WHERE DailyPlan.id = DailyActivity.dailyPlanId " +
             "AND DailyPlan.weeklyPlanID =:wpid and DailyActivity.type =:activityType and DailyActivity.status=\"COMPLETED\"")
     int getCompletedActivityCountByTypeAndWeeklyPlanID (int wpid, ExerciseTypes activityType);
-
 
 
 }
