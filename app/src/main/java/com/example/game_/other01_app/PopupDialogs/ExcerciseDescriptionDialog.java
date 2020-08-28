@@ -177,6 +177,7 @@ AddActivityDialog mAddActivityDialog;
                         public void onClick(View view) {
                             ReassignActivityDialog reassignActivityDialog = new ReassignActivityDialog(mContext,mAdapter,mAdapter.getActivity(pos));
                             reassignActivityDialog.show();
+                            dismiss();
                         }
 
                     });

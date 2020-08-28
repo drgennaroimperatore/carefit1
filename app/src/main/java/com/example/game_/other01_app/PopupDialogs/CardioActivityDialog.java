@@ -2,6 +2,7 @@ package com.example.game_.other01_app.PopupDialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
+import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecyclerViewAdapter;
 import com.example.game_.other01_app.R;
 
 public class CardioActivityDialog extends Dialog {
@@ -29,6 +31,10 @@ public class CardioActivityDialog extends Dialog {
     private CardView mSelectedCardView;
     private CardView cardioEx1, cardioEx2, cardioEx3;
     TextView mLowIntensityHeader, mModerateIntensityHeader, mVigorousIntensityHeader;
+    WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
+    AddActivityDialog mAddActivityDialog;
+    private Context mContext;
+    private Bundle mArgs;
 
     public Handler getHandler() {
         return handler;
@@ -36,8 +42,13 @@ public class CardioActivityDialog extends Dialog {
 
     private Handler handler;
 
-    public CardioActivityDialog(@NonNull Context context) {
+    public CardioActivityDialog(@NonNull Context context, Bundle args, AddActivityDialog addActivityDialog,
+                                WeeklyPlannerDailyActivityRecyclerViewAdapter weeklyPlannerDailyActivityRecyclerViewAdapter) {
         super(context,R.style.Theme_Design_Light);
+        mAdapter = weeklyPlannerDailyActivityRecyclerViewAdapter;
+        mAddActivityDialog = addActivityDialog;
+        mContext = context;
+        mArgs = args;
     }
 
     @Override
@@ -53,6 +64,22 @@ public class CardioActivityDialog extends Dialog {
         cardioEx2 = findViewById(R.id.dialog_add_cardio_muscle_set2);
         cardioEx3 = findViewById(R.id.dialog_add_cardio_cardio_set3);
         mSelectedCardView = cardioEx1;
+        mConfirmButton.setVisibility(View.VISIBLE);
+
+        mConfirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // to do implement different action based on cardview selected. For the moment just display the dialog
+                ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext, mAddActivityDialog, mArgs, mAdapter);
+                edd.show();
+                edd.setOnDismissListener(new OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        dismiss();
+                    }
+                });
+
+            }  });
 
 
         cardioEx1.setOnClickListener(new View.OnClickListener() {
@@ -83,15 +110,40 @@ public class CardioActivityDialog extends Dialog {
             }
         });
 
-        mConfirmButton.setVisibility(View.INVISIBLE);
+        //mConfirmButton.setVisibility(View.INVISIBLE);
 
         mLowIntensityHeader = findViewById(R.id.dialog_cardio_low_header);
         mModerateIntensityHeader = findViewById(R.id.dialog_cardio_moderate_header);
         mVigorousIntensityHeader = findViewById(R.id.dialog_cardio_vigorous_header);
 
+        mLowIntensityHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             mSelectedIntensity=0;
+             adjustIntensityHeaders();
+            }
+        });
+
+        mModerateIntensityHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedIntensity=1;
+                adjustIntensityHeaders();
+
+            }
+        });
+        mVigorousIntensityHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedIntensity=2;
+                adjustIntensityHeaders();
+
+            }
+        });
+
         adjustIntensityHeaders();
 
-        SeekBar intensitySeekBar = findViewById(R.id.dialog_cardio_intensity_seekbar);
+        /*SeekBar intensitySeekBar = findViewById(R.id.dialog_cardio_intensity_seekbar);
         intensitySeekBar.setProgress(5);
         intensitySeekBar.setMax(100);
 
@@ -126,7 +178,7 @@ public class CardioActivityDialog extends Dialog {
 
             }
         });
-
+*/
         handler = new Handler();
 
         mStartBtn.setOnClickListener(new View.OnClickListener() {

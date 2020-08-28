@@ -49,7 +49,9 @@ public class AddActivityDialog extends Dialog {
              /*  mWeeklyPlannerDARVAdapter.assignActivity(ExerciseTypes.CARDIO, mActivityPosition);
                dismiss();*/
 
-             CardioActivityDialog cardioActivityDialog = new CardioActivityDialog(getContext());
+               dialogArgs.putString("type",ExerciseTypes.CARDIO.toString());
+
+             CardioActivityDialog cardioActivityDialog = new CardioActivityDialog(getContext(),dialogArgs,addActivityDialog,mWeeklyPlannerDARVAdapter);
              cardioActivityDialog.show();
 
 
