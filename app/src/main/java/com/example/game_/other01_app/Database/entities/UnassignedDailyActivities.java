@@ -8,12 +8,13 @@ import java.util.Date;
 
 @Entity
 public class UnassignedDailyActivities {
+    public int id;
     public int dailyPlanId;
     public Date dayOfWeek;
     public DailyActivityStatus status;
 
     @Override
     public String toString() {
-        return DateTimeAssist.convertDateToPreferredFormat(dayOfWeek);
+        return DateTimeAssist.convertDateToPreferredFormat(dayOfWeek) +" "+ (id);
     }
 }

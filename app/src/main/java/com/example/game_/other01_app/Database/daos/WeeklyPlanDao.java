@@ -54,7 +54,13 @@ public interface WeeklyPlanDao {
     @Query("SELECT * FROM DailyActivity WHERE DailyActivity.dailyPlanId=:dailyPlanID")
     List<DailyActivity> getDailyActivitiesByDailyPlanID(int dailyPlanID);
 
-    @Query("SELECT DailyActivity.dailyPlanId, DailyPlan.dayOfWeek, DailyActivity.status " +
+    @Query("SELECT * FROM dailyactivity WHERE DailyActivity.id=:id LIMIT 1")
+    DailyActivity getDailyActivityByID(int id);
+
+    @Query("SELECT * FROM DailyActivity WHERE DailyActivity.dailyPlanId=:dailyPlanID")
+    LiveData<List<DailyActivity>> getDailyActivitiesByDailyPlanIDLiveData(int dailyPlanID);
+
+    @Query("SELECT DailyActivity.id, DailyActivity.dailyPlanId, DailyPlan.dayOfWeek, DailyActivity.status " +
             "FROM DailyActivity,DailyPlan WHERE DailyActivity.dailyPlanId = DailyPlan.id " +
             "AND DailyActivity.status = \"NOT_ASSIGNED\"/* AND DailyPlan.dayOfWeek >=DATE('now') */")
     List<UnassignedDailyActivities> getAllUnassignedActivities();

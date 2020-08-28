@@ -18,6 +18,7 @@ import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
+import com.example.game_.other01_app.EventSystem.FutureRescheduleWatcher;
 import com.example.game_.other01_app.R;
 
 import java.util.ArrayList;
@@ -109,6 +110,8 @@ public class NextWeekFragment extends Fragment {
         adapter.add(new WeeklyPlannerObject("Thu" ,dailyPlans.get(3)));
         adapter.add(new WeeklyPlannerObject("Fri",dailyPlans.get(4)));
         weeklyListView.setAdapter(adapter);
+
+        FutureRescheduleWatcher.getInstance().initialise(adapter);
 
 
     }

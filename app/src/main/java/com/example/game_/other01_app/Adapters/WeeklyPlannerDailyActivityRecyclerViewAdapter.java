@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
@@ -31,9 +32,10 @@ import com.example.game_.other01_app.Utility.DailyActivityUpdater;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.Adapter {
+public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.Adapter  {
     Context mContext;
 
 
@@ -50,14 +52,22 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
     mDao = AppDatabase.getDatabase(mContext).weeklyPlanDao();
 
 
-           mData = new ArrayList<>();
+readData();
+
+
+       //  mData.add(new DailyActivity(mDailyPlan.id)); // placeholder for assigning activities
+   }
+
+   public void readData()
+   {
+       mData = new ArrayList<>();
 
        try {
-           mData = (ArrayList<DailyActivity>) new DailyActivityReader(mDao, plan.id).execute().get();
+           mData = (ArrayList<DailyActivity>) new DailyActivityReader(mDao, mDailyPlan.id).execute().get();
            if(mData==null)
            {
                mData = new ArrayList<>();
-               addNewActivity();
+               //          addNewActivity();
            }
            else {
                if(mData.size()==0)
@@ -70,8 +80,6 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
            e.printStackTrace();
        }
 
-
-       //  mData.add(new DailyActivity(mDailyPlan.id)); // placeholder for assigning activities
    }
     @NonNull
     @Override
@@ -83,10 +91,14 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
       WeklyPlannerDailyActivityOnClickListener listener = (view, pos) -> {
           AddActivityDialog dialog = new AddActivityDialog(mContext, pos, this); dialog.show();};
 
+
         return new DailyActivityReciclerViewHolder(v,mContext,listener,this );
     }
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+        adjustAdapter();
+      //  readData();
 
        DailyActivityReciclerViewHolder h = (DailyActivityReciclerViewHolder)holder;
        DailyActivity activity = mData.get(position);
@@ -188,6 +200,46 @@ public class WeeklyPlannerDailyActivityRecyclerViewAdapter extends RecyclerView.
      notifyDataSetChanged();
 
     }
+
+    public void adjustAdapter()
+    {
+        if(mData.size()>0)
+        {
+            int mIndex=0;
+            for (DailyActivity activity: mData)
+            {
+                if(mIndex< mData.size()-1)
+                {
+                    if (mData.get(mIndex+1).status == DailyActivityStatus.ASSIGNED && mData.get(mIndex).status== DailyActivityStatus.NOT_ASSIGNED)
+                    {
+                        DailyActivity temp = mData.get(mIndex);
+                        mData.set(mIndex, mData.get(mIndex+1));
+                        mData.set(mIndex+1,temp);
+                        mIndex++;
+                    }
+                }
+             mIndex++;
+            }
+
+// adjust number of activities present
+            //we need this method after rescheduling where old activities get removed
+            if(mData.size()<3 )
+            {
+                boolean noUnassignedSpots = true;
+
+                for(DailyActivity dailyActivity: mData)
+                {
+                    if(dailyActivity.status == DailyActivityStatus.NOT_ASSIGNED)
+                        noUnassignedSpots=false;
+                }
+                if(noUnassignedSpots)
+                    addNewActivity();
+            }
+
+        }
+
+    }
+
 
     public void markActivityAsComplete (int pos)
     {

@@ -12,9 +12,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecyclerViewAdapter;
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.Database.entities.UnassignedDailyActivities;
+import com.example.game_.other01_app.EventSystem.DatabaseEvents;
+import com.example.game_.other01_app.EventSystem.CurrentReschedulerWatcher;
+import com.example.game_.other01_app.EventSystem.FutureRescheduleWatcher;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.DailyActivityRescheduler;
 import com.example.game_.other01_app.Utility.UnassignedDailyActivitiesReader;
@@ -26,10 +30,14 @@ public class ReassignActivityDialog extends Dialog {
     private Context mContext;
     private DailyActivity mActivityToReassign;
     private int mSelectedPlanID =0;
-    public ReassignActivityDialog(@NonNull Context context, DailyActivity activity) {
+    UnassignedDailyActivities mSelectedUnassignedActivity;
+    private WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
+    public ReassignActivityDialog(@NonNull Context context, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter, DailyActivity activity) {
         super(context, R.style.Theme_AppCompat_Light);
         mContext = context;
         mActivityToReassign = activity;
+        mAdapter =adapter;
+
 
 
     }
@@ -55,6 +63,7 @@ public class ReassignActivityDialog extends Dialog {
                     UnassignedDailyActivities unassignedDailyActivity = activitiesArrayAdapter.getItem(i);
                     mSelectedPlanID = unassignedDailyActivity.dailyPlanId;
                     selectedDateTv.setText(unassignedDailyActivity.toString());
+                    mSelectedUnassignedActivity = unassignedDailyActivity;
                     confirmButton.setVisibility(View.VISIBLE);
                 }
             });
@@ -62,7 +71,15 @@ public class ReassignActivityDialog extends Dialog {
             confirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    new DailyActivityRescheduler(AppDatabase.getDatabase(mContext).weeklyPlanDao(),mActivityToReassign,mSelectedPlanID).execute();
+                  new DailyActivityRescheduler(AppDatabase.getDatabase(mContext).weeklyPlanDao(),mActivityToReassign,mSelectedUnassignedActivity,mSelectedPlanID).execute();
+                    mAdapter.notifyDataSetChanged();
+                   try {
+                       CurrentReschedulerWatcher.getInstance().update(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
+                       FutureRescheduleWatcher.getInstance().update(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
+                   } catch (Exception e)
+                   {
+
+                   }
                     dismiss();
                 }
             });

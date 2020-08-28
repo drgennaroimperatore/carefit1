@@ -13,23 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerListAdapter;
-import com.example.game_.other01_app.AssistanceClasses.DateTimeAssist;
 import com.example.game_.other01_app.DataObjects.WeeklyPlannerObject;
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
-import com.example.game_.other01_app.Database.entities.CompendiumActivities;
-import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
+import com.example.game_.other01_app.EventSystem.CurrentReschedulerWatcher;
 import com.example.game_.other01_app.R;
-import com.example.game_.other01_app.Utility.DailyPlanCreator;
-import com.example.game_.other01_app.Utility.DailyPlanReader;
-import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -124,6 +116,8 @@ public class CurrentWeekFragment extends Fragment {
         adapter.add(new WeeklyPlannerObject("Thu" ,dailyPlans.get(3)));
         adapter.add(new WeeklyPlannerObject("Fri",dailyPlans.get(4)));
         weeklyListView.setAdapter(adapter);
+        CurrentReschedulerWatcher.getInstance().initialise(adapter);
+
 
 //        compendiumActivitiesViewModel =  ViewModelProviders.of(this).get(CompendiumActivitiesViewModel.class);
        /* compendiumActivitiesViewModel.getAllCompendiums().observe(this, new Observer<List<CompendiumActivities>>() {
