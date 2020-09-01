@@ -1,6 +1,9 @@
 package com.example.game_.other01_app.Database.UsageDB;
 
+import android.content.Context;
+
 import androidx.room.Database;
+import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 
@@ -41,6 +44,18 @@ o Muscle and balance activities
 - Modality of sharing information (e.g. twitter, WhatsApp, Facebook etc)
 
 - Interactions within the app (e.g. message boards or other members of the group)*/
-@Database( entities = {},version = 1, exportSchema = false)
+@Database( entities = {ActivitiesStats.class},version = 1, exportSchema = false)
 public abstract class UsageDB extends RoomDatabase {
+
+    private static volatile UsageDB mInstance;
+
+    public static UsageDB getInstance(Context context)
+    {
+        if(mInstance == null)
+        {
+            mInstance = Room.databaseBuilder(context,
+                    UsageDB.class, "usageDB").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        }
+        return mInstance;
+    }
 }

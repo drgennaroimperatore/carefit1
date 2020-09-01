@@ -1,7 +1,9 @@
 package com.example.game_.other01_app.Activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +14,8 @@ import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.EventSystem.DashboardDatabaseWatcher;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.EducationalListReader;
+
+import java.util.UUID;
 
 public class DashboardActivity extends Activity
 {
@@ -32,6 +36,14 @@ public class DashboardActivity extends Activity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        String UUIDstr = UUID.randomUUID().toString();
+        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor spEditor = sharedPreferences.edit();
+        if(!sharedPreferences.contains("UUID")) {
+            spEditor.putString("UUID", UUIDstr);
+            spEditor.commit();
+        }
 
         new EducationalListReader(AppDatabase.getDatabase(this).educationalDao()).execute();// force db creation
 

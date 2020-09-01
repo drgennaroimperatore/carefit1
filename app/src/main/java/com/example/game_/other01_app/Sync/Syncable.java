@@ -1,6 +1,8 @@
 package com.example.game_.other01_app.Sync;
 
-public interface Syncable
+public abstract class Syncable
 {
-    public boolean sync();
+    public abstract String sync();
+    public boolean synced;
+
 }

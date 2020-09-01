@@ -9,11 +9,13 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 public class SyncManager
 {
     private static SyncManager mInstance;
+
 
     private SyncManager()
     {
@@ -27,7 +29,8 @@ public class SyncManager
     }
 
 
-    private String sendPost(String functionName, Map<String, Object> params)
+
+    public String sendPost(String functionName, Map<String, Object> params)
     {
         URL url = null;
         try {
