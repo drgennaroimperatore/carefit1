@@ -23,8 +23,11 @@ public class SyncTask extends AsyncTask<Void, Void, Void> {
 
         UsageDBDao usageDBDao = UsageDB.getInstance(mContext).usageDBDao();
 
+        String uuid = mContext.getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).getString("UUID","");
+        new CarefitUserSyncable("Test Name",uuid).sync();
 
        ActivitiesStats activitiesStats = usageDBDao.getActivitiesStats();
+
        if(activitiesStats==null)
        {
            usageDBDao.InsertActivityStats(ActivitiesStats.generateUpdatedInstance(mContext));
