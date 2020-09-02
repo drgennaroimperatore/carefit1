@@ -78,8 +78,16 @@ public interface WeeklyPlanDao {
             int getPlannedActivityCountByTypeAndWeeklyPlanID (int wpid, ExerciseTypes activityType);
 
     @Query("SELECT COUNT(*) FROM DailyPlan, DailyActivity WHERE DailyPlan.id = DailyActivity.dailyPlanId " +
+            "and DailyActivity.type =:activityType and DailyActivity.status=\"ASSIGNED\"")
+    int getPlannedActivityCountByType (ExerciseTypes activityType);
+
+    @Query("SELECT COUNT(*) FROM DailyPlan, DailyActivity WHERE DailyPlan.id = DailyActivity.dailyPlanId " +
             "AND DailyPlan.weeklyPlanID =:wpid and DailyActivity.type =:activityType and DailyActivity.status=\"COMPLETED\"")
     int getCompletedActivityCountByTypeAndWeeklyPlanID (int wpid, ExerciseTypes activityType);
+
+    @Query("SELECT COUNT(*) FROM DailyPlan, DailyActivity WHERE DailyPlan.id = DailyActivity.dailyPlanId " +
+            "and DailyActivity.type =:activityType and DailyActivity.status=\"COMPLETED\"")
+    int getCompletedActivityCountByType (ExerciseTypes activityType);
 
 
 }

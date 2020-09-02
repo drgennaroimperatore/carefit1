@@ -48,9 +48,11 @@ o Muscle and balance activities
 public abstract class UsageDB extends RoomDatabase {
 
     private static volatile UsageDB mInstance;
+    public abstract UsageDBDao usageDBDao();
 
     public static UsageDB getInstance(Context context)
     {
+
         if(mInstance == null)
         {
             mInstance = Room.databaseBuilder(context,

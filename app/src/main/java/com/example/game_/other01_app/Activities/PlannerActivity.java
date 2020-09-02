@@ -18,6 +18,7 @@ import com.example.game_.other01_app.Database.daos.WeeklyPlanDao;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.WeeklyPlan;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Sync.SyncTask;
 import com.example.game_.other01_app.Utility.DailyPlanCreator;
 import com.example.game_.other01_app.Utility.DailyPlanReader;
 import com.example.game_.other01_app.Utility.WeeklyPlanCreator;
@@ -45,6 +46,8 @@ public class PlannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weekly_planner);
 
         mWeeklyPlanDao = AppDatabase.getDatabase(this).weeklyPlanDao();
+
+        new SyncTask(this).execute();
 
 
         try {

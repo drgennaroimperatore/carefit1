@@ -1,6 +1,9 @@
 package com.example.game_.other01_app.Sync;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.example.game_.other01_app.Database.UsageDB.UsageDB;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -17,16 +20,14 @@ public class SyncManager
     private static SyncManager mInstance;
 
 
-    private SyncManager()
+    public SyncManager()
     {
 
     }
 
-    public static SyncManager getInstance() {
-        if(mInstance==null)
-            mInstance= new SyncManager();
-        return mInstance;
-    }
+
+
+
 
 
 
@@ -35,7 +36,7 @@ public class SyncManager
         URL url = null;
         try {
             // url = new URL("http://10.0.2.2:61330/Home/"+functionName);
-            url = new URL("http://herdmanager.d3f.world/Home/"+functionName);
+            url = new URL("https://devweb2019.cis.strath.ac.uk/~gkb11185/"+functionName);
         } catch (Exception e)
         {
 
