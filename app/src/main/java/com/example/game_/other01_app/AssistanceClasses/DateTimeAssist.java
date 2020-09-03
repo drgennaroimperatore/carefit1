@@ -138,7 +138,20 @@ public abstract class DateTimeAssist {
         int targetMonth = targetCalendar.get(Calendar.MONTH);
         int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
         int targetYear = targetCalendar.get(Calendar.YEAR);
-        return day > targetDay && month >= targetMonth  && year >= targetYear;
+        if(year > targetYear)
+        return true;
+        if(year== targetYear)
+        {
+            if(month > targetMonth)
+                return true;
+            else
+            if(month== targetMonth)
+                return day > targetDay;
+            else
+                return false;
+
+        }
+        return false;
     }
 
     public static boolean isAfter(Date date)
@@ -154,9 +167,21 @@ public abstract class DateTimeAssist {
         int targetMonth = targetCalendar.get(Calendar.MONTH);
         int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
         int targetYear = targetCalendar.get(Calendar.YEAR);
-        if(month < targetMonth)
+
+        if(year < targetYear)
             return true;
-        return day < targetDay  && year <= targetYear;
+        if(year== targetYear)
+        {
+            if(month < targetMonth)
+                return true;
+            else
+                if(month== targetMonth)
+                    return day < targetDay;
+                else
+                    return false;
+
+        }
+        return false;
     }
 
     public static Date getDateForNextWeek(Date date)

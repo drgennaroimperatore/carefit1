@@ -3,6 +3,7 @@ package com.example.game_.other01_app.Database.UsageDB;
 import android.content.Context;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.game_.other01_app.Database.AppDatabase;
@@ -27,6 +28,17 @@ public class ActivitiesStats extends Syncable {
     public int cardioActivitiesCompleted;
     public int muscleBalanceActivitiesCompleted;
     public int compendiumActivitiesCompleted;
+    @Ignore
+    public String uid;
+
+    public ActivitiesStats() {}
+
+    @Ignore
+    public ActivitiesStats(String uid)
+    {
+        super();
+        this.uid = uid;
+    }
 
 
     @Override
@@ -38,13 +50,15 @@ public class ActivitiesStats extends Syncable {
         activitiesStats.put("muscleBalanceActivitiesCompleted",muscleBalanceActivitiesCompleted);
         activitiesStats.put("compendiumActivitiesCompleted",compendiumActivitiesCompleted);
         activitiesStats.put("muscleBalanceActivitiesStarted",muscleBalanceActivitiesStarted);
+        activitiesStats.put("userid", uid);
         return new SyncManager().sendPost("syncActivityStats.php",activitiesStats);
     }
 
     public static ActivitiesStats generateUpdatedInstance(Context context)
 
     {
-        ActivitiesStats returnVal = new ActivitiesStats();
+        ActivitiesStats returnVal =
+                new ActivitiesStats(context.getSharedPreferences("PREFERENCE",Context.MODE_PRIVATE).getString("UUID",""));
        WeeklyPlanDao dao = AppDatabase.getDatabase(context).weeklyPlanDao();
        returnVal.muscleBalanceActivitiesCompleted = dao.getCompletedActivityCountByType(ExerciseTypes.MUSCLE);
        returnVal.compendiumActivitiesCompleted =dao.getCompletedActivityCountByType(ExerciseTypes.MUSCLE);
