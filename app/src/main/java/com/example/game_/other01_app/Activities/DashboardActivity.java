@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -84,6 +85,25 @@ public class DashboardActivity extends Activity
 
             }
         });
+
+        //Adding two test buttons to try out the Qualtrics surveys - these should be automated then removed
+        final Button button1 = (Button) findViewById(R.id.qtest_button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                QualtricsActivity.setup(QualtricsActivity.WELCOME_SURVEY,"test-uuid");
+                Intent k = new Intent(DashboardActivity.this, QualtricsActivity.class);
+                startActivity(k);
+            }
+        });
+        final Button button2 = (Button) findViewById(R.id.qtest_button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                QualtricsActivity.setup(QualtricsActivity.END_SURVEY,"test-uuid");
+                Intent k = new Intent(DashboardActivity.this, QualtricsActivity.class);
+                startActivity(k);
+            }
+        });
+
     }
 
     public void disableEducationalButton()
