@@ -149,7 +149,6 @@ public abstract class DateTimeAssist {
                 return day > targetDay;
             else
                 return false;
-
         }
         return false;
     }

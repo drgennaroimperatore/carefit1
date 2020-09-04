@@ -61,8 +61,8 @@ public class ActivitiesStats extends Syncable {
                 new ActivitiesStats(context.getSharedPreferences("PREFERENCE",Context.MODE_PRIVATE).getString("UUID",""));
        WeeklyPlanDao dao = AppDatabase.getDatabase(context).weeklyPlanDao();
        returnVal.muscleBalanceActivitiesCompleted = dao.getCompletedActivityCountByType(ExerciseTypes.MUSCLE);
-       returnVal.compendiumActivitiesCompleted =dao.getCompletedActivityCountByType(ExerciseTypes.MUSCLE);
-       returnVal.cardioActivitiesCompleted =dao.getCompletedActivityCountByType(ExerciseTypes.OTHER);
+       returnVal.compendiumActivitiesCompleted =dao.getCompletedActivityCountByType(ExerciseTypes.OTHER);
+       returnVal.cardioActivitiesCompleted =dao.getCompletedActivityCountByType(ExerciseTypes.CARDIO);
        returnVal.cardioActivitiesStarted = dao.getPlannedActivityCountByType(ExerciseTypes.CARDIO);
        returnVal.muscleBalanceActivitiesStarted = dao.getPlannedActivityCountByType(ExerciseTypes.MUSCLE);
         returnVal.compendiumActivitiesStarted= dao.getPlannedActivityCountByType(ExerciseTypes.OTHER);

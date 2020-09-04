@@ -25,6 +25,7 @@ import com.example.game_.other01_app.PopupDialogs.ExcerciseDescriptionDialog;
 import com.example.game_.other01_app.PopupDialogs.GeneralErrorDialog;
 import com.example.game_.other01_app.PopupDialogs.ReassignActivityDialog;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Sync.SyncTask;
 import com.example.game_.other01_app.Utility.DailyActivityCreator;
 import com.example.game_.other01_app.Utility.DailyActivityDeleter;
 import com.example.game_.other01_app.Utility.DailyActivityReader;
@@ -178,12 +179,14 @@ readData();
 
     private void removeActivity(DailyActivity removee)
     {
+
         new DailyActivityDeleter(mDao).execute(removee);
 
     }
 
     private void updateActivity(DailyActivity updatee)
     {
+        new SyncTask(mContext).execute();
         new DailyActivityUpdater(mDao).execute(updatee);
     }
 

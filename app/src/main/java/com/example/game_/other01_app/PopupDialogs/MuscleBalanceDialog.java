@@ -54,23 +54,23 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
             }
         });
 
-         muscleSet1 = findViewById(R.id.dialog_add_muscle_muscle_set1);
+        muscleSet1 = findViewById(R.id.dialog_add_muscle_muscle_set1);
         mSelectedCardView = muscleSet1;
         muscleSet1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 deselectAll();
-                mSelectedCardView= (CardView)view;
+                mSelectedCardView = (CardView) view;
                 mSelectedCardView.setCardBackgroundColor(Color.WHITE);
 
             }
         });
-         muscleSet2 = findViewById(R.id.dialog_add_muscle_muscle_set2);
+        muscleSet2 = findViewById(R.id.dialog_add_muscle_muscle_set2);
         muscleSet2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 deselectAll();
-                mSelectedCardView= (CardView)view;
+                mSelectedCardView = (CardView) view;
                 mSelectedCardView.setCardBackgroundColor(Color.WHITE);
             }
         });
@@ -78,8 +78,8 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
         muscleSet3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               deselectAll();
-                mSelectedCardView= (CardView)view;
+                deselectAll();
+                mSelectedCardView = (CardView) view;
                 mSelectedCardView.setCardBackgroundColor(Color.WHITE);
             }
         });
@@ -93,46 +93,35 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
         mModerateIntensityHeader = findViewById(R.id.dialog_muscle_moderate_header);
         mVigorousIntensityHeader = findViewById(R.id.dialog_muscle_vigorous_header);
 
-       adjustIntensityHeaders();
-
-        SeekBar intensitySeekBar = findViewById(R.id.dialog_muscle_intensity_seekbar);
-        intensitySeekBar.setMax(100);
-        intensitySeekBar.setProgress(5);
-        intensitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mLowIntensityHeader.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+            public void onClick(View view) {
+                mSelectedIntensity=0;
+                adjustIntensityHeaders();
+            }
+        });
 
+        mModerateIntensityHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedIntensity=1;
+                adjustIntensityHeaders();
 
             }
-
+        });
+        mVigorousIntensityHeader.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                int progress= seekBar.getProgress();
-                if(progress>=0 && progress<33) {
-                    seekBar.setProgress(5);
-                    mSelectedIntensity=0;
-                }
-                if(progress>=33 && progress<=50) {
-                    seekBar.setProgress(50);
-                    mSelectedIntensity=1;
-                }
-                if(progress>50) {
-                    seekBar.setProgress(100);
-                    mSelectedIntensity=2;
-                }
-              adjustIntensityHeaders();
+            public void onClick(View view) {
+                mSelectedIntensity=2;
+                adjustIntensityHeaders();
 
             }
         });
 
 
-
+        adjustIntensityHeaders();
     }
+
 
     public void deselectAll()
     {

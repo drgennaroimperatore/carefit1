@@ -183,19 +183,6 @@
 
 </GridLayout>
 
-    <SeekBar
-        android:id="@+id/dialog_muscle_intensity_seekbar"
-        android:layout_width="280dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="100dp"
-        android:background="@color/colorBlack"
-        android:thumbTint="@color/colorWhite"
-        android:foregroundTint="@color/colorWhite"
-        android:progressTint="@color/colorWhite"
-        android:progress="50">
-
-    </SeekBar>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
