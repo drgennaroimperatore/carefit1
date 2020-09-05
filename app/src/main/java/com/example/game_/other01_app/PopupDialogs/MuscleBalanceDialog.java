@@ -16,6 +16,9 @@ import androidx.cardview.widget.CardView;
 
 import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecyclerViewAdapter;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Utility.DailyActivityPopulator;
+
+import java.util.HashMap;
 
 public class MuscleBalanceDialog extends Dialog implements View.OnClickListener {
     Bundle mArgs;
@@ -43,6 +46,10 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_add_muscle);
 
+        HashMap<String, String> exContent = DailyActivityPopulator.generateMuscleAndBalanceContent();
+
+
+
         ImageView confirmButton = findViewById(R.id.dialog_add_muscle_confirm_imgview);
         confirmButton.setOnClickListener(this);
 
@@ -62,6 +69,9 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
                 deselectAll();
                 mSelectedCardView = (CardView) view;
                 mSelectedCardView.setCardBackgroundColor(Color.WHITE);
+                String key = "Muscle and Balance 1";
+                mArgs.putString("Name",key);
+                mArgs.putString("Description",exContent.get(key) );
 
             }
         });
@@ -72,6 +82,9 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
                 deselectAll();
                 mSelectedCardView = (CardView) view;
                 mSelectedCardView.setCardBackgroundColor(Color.WHITE);
+                String key = "Muscle and Balance 2";
+                mArgs.putString("Name",key);
+                mArgs.putString("Description",exContent.get(key) );
             }
         });
         muscleSet3 = findViewById(R.id.dialog_add_muscle_muscle_set3);
@@ -81,6 +94,9 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
                 deselectAll();
                 mSelectedCardView = (CardView) view;
                 mSelectedCardView.setCardBackgroundColor(Color.WHITE);
+                String key = "Muscle and Balance 3";
+                mArgs.putString("Name",key);
+                mArgs.putString("Description",exContent.get(key) );
             }
         });
 
@@ -157,6 +173,8 @@ public class MuscleBalanceDialog extends Dialog implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         // to do implement different action based on cardview selected. For the moment just display the dialog
+        if (!mArgs.containsKey("Name"))
+            return;
         ExcerciseDescriptionDialog edd = new ExcerciseDescriptionDialog(mContext, mAddActivityDialog, mArgs ,mAdapter);
         edd.show();
         edd.setOnDismissListener(new OnDismissListener() {

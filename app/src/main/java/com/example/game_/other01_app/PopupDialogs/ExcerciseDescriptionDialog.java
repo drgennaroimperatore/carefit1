@@ -10,6 +10,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -67,6 +68,14 @@ AddActivityDialog mAddActivityDialog;
             DailyActivityStatus status = DailyActivityStatus.valueOf( mArgs.getString("status"));
             ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
             int pos= mArgs.getInt("pos");
+
+            TextView activityNameTV = findViewById(R.id.dialog_activity_desc_name);
+            TextView activityDescTV = findViewById(R.id.dialog_activity_desc_description);
+
+            if(mArgs.containsKey("Name"))
+                activityNameTV.setText(mArgs.getString("Name"));
+            if(mArgs.containsKey("Description"))
+                activityDescTV.setText(mArgs.getString("Description"));
 
             if(status == DailyActivityStatus.NOT_ASSIGNED)
             {

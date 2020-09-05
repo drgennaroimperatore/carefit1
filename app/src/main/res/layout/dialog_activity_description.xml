@@ -16,6 +16,7 @@
         android:layout_margin="20dp"/>
 
     <TextView
+        android:id="@+id/dialog_activity_desc_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exercise Name"
@@ -25,7 +26,11 @@
 
     </TextView>
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp">
     <TextView
+        android:id="@+id/dialog_activity_desc_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="A short desription of the exercise.\nThis piece of text will describe the exercise in detail.\n This is a placeholder"
@@ -35,6 +40,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp">
     </TextView>
+    </ScrollView>
+
 
     <LinearLayout
         android:id="@+id/dialog_activity_description_add_confirmation_section"
