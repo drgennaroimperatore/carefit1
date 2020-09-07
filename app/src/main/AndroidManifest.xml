@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_ALARM"/>
 
 
     <application
@@ -90,6 +91,7 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".Receivers.ReminderReceiver" />
+        <receiver android:name=".Utility.CustomNotificationPublisher"></receiver>
         <receiver android:name=".Receivers.ReminderTimeChangeReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
