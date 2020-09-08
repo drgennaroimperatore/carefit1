@@ -3,6 +3,7 @@ package com.example.game_.other01_app.PopupDialogs;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -19,8 +21,10 @@ import com.example.game_.other01_app.Database.entities.DailyActivityStatus;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
 import com.example.game_.other01_app.Fragments.ExerciseInstructionBoxFragment;
 import com.example.game_.other01_app.R;
+import com.example.game_.other01_app.Utility.QualtricsJSLink;
+import com.example.game_.other01_app.Utility.YouTubeJSLink;
 
-public class ExcerciseDescriptionDialog extends Dialog {
+public class ExcerciseDescriptionDialog extends Dialog implements YouTubeJSLink.YouTubeTimer {
 private Context mContext;
 private Bundle mArgs;
 private  WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
@@ -63,8 +67,9 @@ AddActivityDialog mAddActivityDialog;
             webSettings.setJavaScriptEnabled(true);
             webSettings.setLoadWithOverviewMode(true);
             webSettings.setUseWideViewPort(true);
+            youTubeWeb.addJavascriptInterface(new YouTubeJSLink(youTubeWeb, this), "StrathAndroid");
 
-            youTubeWeb.loadUrl("https://www.youtube.com/embed/" + myVideoYoutubeId);
+            youTubeWeb.loadUrl("file:///android_asset/youtubeshow.html?id=" + myVideoYoutubeId);//add &tstart=... and &tend=... to specify a start and end time
             DailyActivityStatus status = DailyActivityStatus.valueOf( mArgs.getString("status"));
             ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
             int pos= mArgs.getInt("pos");
@@ -186,4 +191,10 @@ AddActivityDialog mAddActivityDialog;
 
     }
 
+    @Override
+    public void timeinfo(float time) {
+        //Called from YouTube HTML about every 500 ms
+        Log.d("DUNLOPDUNLOP", "got the time "+time);
+        Toast.makeText(this.mContext,"t="+time,Toast.LENGTH_SHORT).show();
+    }
 }
