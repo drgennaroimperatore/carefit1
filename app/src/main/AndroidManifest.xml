@@ -4,8 +4,7 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SET_ALARM"/>
-
+    <uses-permission android:name="android.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.EducationalActivity"></activity>
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity android:name=".Activities.EducationalActivity" />
         <activity
             android:name=".Activities.CreateWorkoutActivity"
             android:label="@string/title_activity_create_workout"
@@ -69,7 +71,7 @@
         <activity
             android:name=".Activities.HomeScreenActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.ProgressScreenActivity"
             android:configChanges="orientation"
@@ -91,7 +93,7 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".Receivers.ReminderReceiver" />
-        <receiver android:name=".Utility.CustomNotificationPublisher"></receiver>
+        <receiver android:name=".Utility.CustomNotificationPublisher" />
         <receiver android:name=".Receivers.ReminderTimeChangeReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />

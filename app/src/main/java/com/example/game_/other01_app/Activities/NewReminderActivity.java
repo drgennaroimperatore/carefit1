@@ -96,7 +96,7 @@ public class NewReminderActivity extends AppCompatActivity {
                 showTutorialDialog();
                 return true;
             case R.id.new_reminder_save_btn:
-                if(createReminderFragment.getCheckedDays().equals("")){
+             /*   if(createReminderFragment.getCheckedDays().equals("")){
                     Toast toast = Toast.makeText(getApplicationContext(),
                             R.string.error_select_day,
                             Toast.LENGTH_LONG);
@@ -114,8 +114,8 @@ public class NewReminderActivity extends AppCompatActivity {
                 }
                 return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
+
+
 
     public void showTutorialDialog(){
         final Dialog dialog = new Dialog(NewReminderActivity.this);

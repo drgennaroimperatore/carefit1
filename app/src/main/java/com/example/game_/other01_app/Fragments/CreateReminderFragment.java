@@ -76,32 +76,32 @@ public class CreateReminderFragment extends Fragment {
      * @return a new Reminder created using info from the timepicker and checkboxes
      */
     public Reminder createReminderEntitiy(){
-        String dates = getCheckedDays();
+       // String dates = getCheckedDays();
         int timeHrs = timePicker.getCurrentHour();
         int timeMins = timePicker.getCurrentMinute();
 
-        return new Reminder(
+     /*   return new Reminder(
                 timeHrs,
                 timeMins,
                 dates
         );
-    }
+    }*/
 
     /**
      * @return a List of weekdays that have been checked in String format
      */
-    public String getCheckedDays() {
+  /*  public String getCheckedDays() {
         List<String> selectedDays = new ArrayList<>();
-        List<CheckBox> checkBoxes = getListOfCheckBoxes();
-        for(CheckBox checkBox : checkBoxes){
+       /// List<CheckBox> checkBoxes = getListOfCheckBoxes();
+       /* for(CheckBox checkBox : checkBoxes){
             if(checkBox.isChecked()){
                 selectedDays.add(checkBox.getText().toString());
-            }
-        }
-        return ListAssist.convertListToString(selectedDays);
-    }
+            }*/
+      //  }
+       // return ListAssist.convertListToString(selectedDays);*/
+    //}
 
-    private List<CheckBox> getListOfCheckBoxes() {
+    /*private List<CheckBox> getListOfCheckBoxes() {
         List<CheckBox> checkBoxes = new ArrayList<>();
         CheckBox monday = rootView.findViewById(R.id.mondayCheck);
         checkBoxes.add(monday);
@@ -118,7 +118,7 @@ public class CreateReminderFragment extends Fragment {
         CheckBox sunday = rootView.findViewById(R.id.sundayCheck);
         checkBoxes.add(sunday);
         return checkBoxes;
-    }
+    }*/
 
-
-}
+return null;
+}}
