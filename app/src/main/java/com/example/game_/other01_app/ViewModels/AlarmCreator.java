@@ -38,10 +38,10 @@ public class AlarmCreator {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
-        List<String> days = ListAssist.convertStringToListOf(reminder.getRepeating());
+/*        List<String> days = ListAssist.convertStringToListOf(reminder.getRepeating());
         for(String day : days){
             setWeeklyAlarm(reminder, context, day);
-        }
+        }*/
     }
 
     /**
@@ -55,41 +55,41 @@ public class AlarmCreator {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP);
-        List<String> days = ListAssist.convertStringToListOf(reminder.getRepeating());
+      /*  List<String> days = ListAssist.convertStringToListOf(reminder.getRepeating());
         for(String day : days){
             deleteWeeklyAlarm(reminder, context, day);
-        }
+        }*/
     }
 
     public static void deleteWeeklyAlarm(Reminder reminder, Context context, String day){
         //Disables the receiver for this alarm
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, ReminderReceiver.class);
-        final int _id = StringsAssist.concatInts(reminder.getTimeHrs(),
-                reminder.getTimeMins(), DateTimeAssist.dayToInt(day));
+        /*final int _id = StringsAssist.concatInts(reminder.getTimeHrs(),
+                reminder.getTimeMins(), DateTimeAssist.dayToInt(day));*/
         Log.d(TAG, "deleteWeeklyAlarm() called with: reminder = [" + reminder + "], context = [" + context + "], day = [" + day + "]");
-        Log.d(TAG, "deleteWeeklyAlarm: id" + _id);
-        PendingIntent deleteIntent = PendingIntent.getBroadcast(context, _id, intent, 0);
-        alarmManager.cancel(deleteIntent);
-        deleteIntent.cancel();
+      //  Log.d(TAG, "deleteWeeklyAlarm: id" + _id);
+      //  PendingIntent deleteIntent = PendingIntent.getBroadcast(context, _id, intent, 0);
+      //  alarmManager.cancel(deleteIntent);
+     //   deleteIntent.cancel();
     }
 
-    private static void setWeeklyAlarm(Reminder reminder, Context context, String day) throws ParseException {
+    private static void setWeeklyAlarm(Reminder reminder, Context context) throws ParseException {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, ReminderReceiver.class);
-        final int _id = StringsAssist.concatInts(reminder.getTimeHrs(),
-                reminder.getTimeMins() ,DateTimeAssist.dayToInt(day));
-        Log.d(TAG, "setWeeklyAlarm() called with: reminder = [" + reminder + "], context = [" + context + "], day = [" + day + "]");
-        Log.d(TAG, "setWeeklyAlarm: id = " + _id);
-        intent.putExtra(ALARM_ID, _id);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(context,_id, intent, 0);
+       /* final int _id = StringsAssist.concatInts(reminder.getTimeHrs(),
+                reminder.getTimeMins() ,DateTimeAssist.dayToInt(day));*/
+       // Log.d(TAG, "setWeeklyAlarm() called with: reminder = [" + reminder + "], context = [" + context + "], day = [" + day + "]");
+       // Log.d(TAG, "setWeeklyAlarm: id = " + _id);
+       // intent.putExtra(ALARM_ID, _id);
+      //  PendingIntent alarmIntent = PendingIntent.getBroadcast(context,_id, intent, 0);
         long alarmTime = 0;
-        if(DateTimeAssist.getCalendarTimeFromReminder(reminder, day) <= Calendar.getInstance().getTimeInMillis()){
-            alarmTime = DateTimeAssist.getCalendarTimeFromReminder(reminder, day) + (AlarmManager.INTERVAL_DAY * 7);
+        if(DateTimeAssist.getCalendarTimeFromReminder(reminder) <= Calendar.getInstance().getTimeInMillis()){
+            alarmTime = DateTimeAssist.getCalendarTimeFromReminder(reminder) + (AlarmManager.INTERVAL_DAY * 7);
         } else {
-            alarmTime = DateTimeAssist.getCalendarTimeFromReminder(reminder, day);
+            alarmTime = DateTimeAssist.getCalendarTimeFromReminder(reminder);
         }
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmTime,
+      alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmTime,
                 alarmIntent);
     }
 

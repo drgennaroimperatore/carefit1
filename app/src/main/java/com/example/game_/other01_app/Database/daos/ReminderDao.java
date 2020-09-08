@@ -24,12 +24,8 @@ public interface ReminderDao {
     @Delete
     void delete(Reminder reminder);
 
-    @Query("DELETE FROM OTHER01Reminders")
-    void deleteAll();
-
-    @Query("SELECT * from OTHER01Reminders ORDER BY id ASC")
-    LiveData<List<Reminder>> getAllReminders();
-
-    @Query("SELECT * from OTHER01Reminders ORDER BY id ASC")
+    @Query("SELECT * FROM RemindersV2")
     List<Reminder> getAllRemindersNotLive();
+
+
 }

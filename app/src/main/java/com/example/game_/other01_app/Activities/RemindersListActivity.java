@@ -58,13 +58,13 @@ public class RemindersListActivity extends AppCompatActivity {
         reminderRecyclerView.setAdapter(adapter);
         reminderRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //Add an observer for the LiveData returned by getAllReminders()
-        mReminderViewModel.getAllRemidners().observe(this, new Observer<List<Reminder>>() {
+       /* mReminderViewModel.getAllRemidners().observe(this, new Observer<List<Reminder>>() {
             @Override
             public void onChanged(List<Reminder> reminders) {
                 //Update the cached copy of the reminders in the adapter.
                 adapter.setReminders(reminders);
             }
-        });
+        });*/
 
         if(tutorial) {
             showTutorialDialog();

@@ -107,10 +107,10 @@ public class NewReminderActivity extends AppCompatActivity {
                     if (editing) {
                         reminder.setId(id);
                     }
-                    saveIntent.putExtra(EXTRA_REPLY, reminder);
+                    /*saveIntent.putExtra(EXTRA_REPLY, reminder);
                     setResult(RESULT_OK, saveIntent);
                     enableButtons();
-                    finish();
+                    finish();*/
                 }
                 return true;
         }

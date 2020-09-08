@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Date;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
@@ -12,51 +13,77 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "OTHER01Reminders")
-public class Reminder implements Parcelable {
+@Entity(tableName = "RemindersV2")
+public class Reminder implements Parcelable  {
+
+    public Reminder() {}
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @NonNull
-    private final int timeHrs;
-    @NonNull
-    private final int timeMins;
-    @NonNull
-    private final String repeating;
 
-    public Reminder(int timeHrs, int timeMins, String repeating) {
-        this.timeHrs = timeHrs;
-        this.timeMins = timeMins;
-        this.repeating = repeating;
+    @NonNull
+    private Date day;
+    @NonNull
+    private int hour;
+    @NonNull
+    private int minute;
+    @NonNull
+    private int notificationID;
+
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Ignore
-    public Reminder(Parcel in) {
-        id = in.readInt();
-        timeHrs = in.readInt();
-        timeMins = in.readInt();
-        repeating = Objects.requireNonNull(in.readString());
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setNotificationID(int notificationID) {
+        this.notificationID = notificationID;
+    }
+
+    public void setDay(@NonNull Date day) {
+        this.day = day;
+    }
+
+    @NonNull
+    public Date getDay() {
+        return day;
+    }
+
+    public int getHour() {
+        return hour;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getMinute() {
+        return minute;
     }
 
-    public int getTimeHrs() {
-        return timeHrs;
+    public int getNotificationID() {
+        return notificationID;
     }
 
-    public int getTimeMins() {
-        return timeMins;
+    public Reminder(Date day, int minute, int hours, int nid) {
+        this.day = day;
+        this.minute = minute;
+        this.hour = hours;
+        this.notificationID = nid;
     }
 
-    @NonNull
-    public String getRepeating() {
-        return repeating;
+    @Ignore
+    public Reminder(Parcel in) {
+        id = in.readInt();
+        hour = in.readInt();
+        minute = in.readInt();
+        notificationID = Objects.requireNonNull(in.readInt());
     }
 
     @Override
@@ -68,9 +95,9 @@ public class Reminder implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         //write the objects data to the passed-in parcel
         dest.writeInt(id);
-        dest.writeInt(timeHrs);
-        dest.writeInt(timeMins);
-        dest.writeString(repeating);
+        dest.writeInt(hour);
+        dest.writeInt(minute);
+        dest.writeInt(notificationID);
     }
 
     public static final Creator<Reminder> CREATOR = new Creator<Reminder>() {

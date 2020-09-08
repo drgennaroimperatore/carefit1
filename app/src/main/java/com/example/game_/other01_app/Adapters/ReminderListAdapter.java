@@ -63,17 +63,16 @@ public class ReminderListAdapter extends RecyclerView.Adapter<ReminderListAdapte
     public void onBindViewHolder(@NonNull ReminderViewHolder holder, int position) {
         if(mReminders != null) {
             Reminder current = mReminders.get(position);
-            String reminderTimeString = formatter.format(current.getTimeHrs()) + ":" + formatter.format(current.getTimeMins());
-            holder.reminderDateTextView.setText(current.getRepeating());
-            holder.reminderTimeTextView.setText(reminderTimeString);
+          //  String reminderTimeString = formatter.format(current.getTimeHrs()) + ":" + formatter.format(current.getTimeMins());
+        //    holder.reminderDateTextView.setText(current.getRepeating());
+        //    holder.reminderTimeTextView.setText(reminderTimeString);
             holder.reminderEditBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, NewReminderActivity.class);
                     intent.putExtra("id", current.getId());
-                    intent.putExtra("daysRepeating", current.getRepeating());
-                    intent.putExtra("oldTime", reminderTimeString);
-                    intent.putExtra("editing", true);
+             //       intent.putExtra("daysRepeating", current.getRepeating());
+//                    intent.putExtra("editing", true);
                     ((RemindersListActivity)mContext).startActivityForResult(intent,
                             NewReminderActivity.EDIT_REMINDER_ACTIVITY_REQUEST_CODE);
                 }
