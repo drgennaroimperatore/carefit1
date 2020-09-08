@@ -48,7 +48,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
         CompendiumActivities.class,
         EducationalList.class,
         EducationalListContent.class,
-        EducationalListContentResource.class},  version = 9, exportSchema = false)
+        EducationalListContentResource.class},  version = 10, exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -72,7 +72,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "app_database").addMigrations(MIGRATION_8_9)
+                            AppDatabase.class, "app_database").addMigrations(MIGRATION_8_9,MIGRATION_9_10)
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -93,6 +93,14 @@ public abstract class AppDatabase extends RoomDatabase {
     */
 
                     ("CREATE TABLE RemindersV2 ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, day INTEGER NOT NULL, hour INTEGER NOT NULL, minute INTEGER NOT NULL, notificationID INTEGER NOT NULL)");
+
+        }
+    };
+
+    static final Migration MIGRATION_9_10 = new Migration(9,10) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE RemindersV2 ADD COLUMN strReminderID TEXT");
 
         }
     };

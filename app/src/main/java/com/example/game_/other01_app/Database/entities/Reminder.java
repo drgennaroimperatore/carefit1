@@ -30,6 +30,8 @@ public class Reminder implements Parcelable  {
     @NonNull
     private int notificationID;
 
+    private String strReminderID;
+
     public void setId(int id) {
         this.id = id;
     }
@@ -69,6 +71,15 @@ public class Reminder implements Parcelable  {
 
     public int getNotificationID() {
         return notificationID;
+    }
+
+    @NonNull
+    public String getStrReminderID() {
+        return strReminderID;
+    }
+
+    public void setStrReminderID(@NonNull String strReminderID) {
+        this.strReminderID = strReminderID;
     }
 
     public Reminder(Date day, int minute, int hours, int nid) {
