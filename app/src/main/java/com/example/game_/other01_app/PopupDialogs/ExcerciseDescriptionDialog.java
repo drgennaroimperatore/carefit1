@@ -74,6 +74,10 @@ AddActivityDialog mAddActivityDialog;
             youTubeWeb.loadUrl("file:///android_asset/youtubeshow.html?id=" + myVideoYoutubeId);//add &tstart=... and &tend=... to specify a start and end time
             DailyActivityStatus status = DailyActivityStatus.valueOf( mArgs.getString("status"));
             ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
+
+            if(activityType.equals(ExerciseTypes.OTHER))
+                youTubeWeb.setVisibility(View.GONE);
+
             int pos= mArgs.getInt("pos");
 
             TextView activityNameTV = findViewById(R.id.dialog_activity_desc_name);
