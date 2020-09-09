@@ -19,8 +19,11 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.game_.other01_app.Activities.PlannerActivity;
+import com.example.game_.other01_app.Database.AppDatabase;
+import com.example.game_.other01_app.Database.entities.Reminder;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.CustomNotificationPublisher;
+import com.example.game_.other01_app.Utility.ReminderCreator;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -77,6 +80,8 @@ public class SetReminderDialog extends Dialog {
                 .setContentText("This is a reminder from carefit")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)/*.setWhen(mWhen)*/;
 
+
+
         int notificationId = 11;
 
 
@@ -89,15 +94,28 @@ public class SetReminderDialog extends Dialog {
         Intent notificationIntent = new Intent(getContext(), CustomNotificationPublisher.class);
         notificationIntent.putExtra(CustomNotificationPublisher.NOTIFICATION_ID, notificationId);
         notificationIntent.putExtra(CustomNotificationPublisher.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), notificationId, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
 
         Date dat = new Date();//initializes to now
         Calendar cal_now = Calendar.getInstance();
+        if(mWhen==0)
+            mWhen = cal_now.getTimeInMillis();
+        notificationIntent.putExtra("StrID", String.valueOf(mWhen));
+
+        Reminder  reminder = new Reminder();
+        cal_now.setTimeInMillis(mWhen);
+        reminder.setDay(cal_now.getTime());
+        reminder.setStrReminderID(String.valueOf(mWhen));
+        reminder.setHour(cal_now.get(Calendar.HOUR_OF_DAY));
+        reminder.setMinute(cal_now.get(Calendar.MINUTE));
+
+        //new ReminderCreator(AppDatabase.getDatabase(getContext()).reminderDao()).execute(reminder);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), notificationId, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+
 
             AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-            if(mWhen==0)
-                mWhen = cal_now.getTimeInMillis();
+
 
             alarmManager.set(AlarmManager.RTC, mWhen, pendingIntent);
 

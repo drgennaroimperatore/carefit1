@@ -27,7 +27,7 @@ public interface ReminderDao {
     @Query("SELECT * FROM RemindersV2")
     List<Reminder> getAllRemindersNotLive();
 
-    @Query("SELECT * FROM RemindersV2 WHERE RemindersV2.strReminderID =:nid")
+    @Query("SELECT * FROM RemindersV2 WHERE RemindersV2.strReminderID =:nid LIMIT 1")
     Reminder findReminderByStrID(String nid);
 
 
