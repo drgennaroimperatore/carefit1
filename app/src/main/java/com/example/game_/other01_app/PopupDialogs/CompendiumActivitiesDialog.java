@@ -65,7 +65,7 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
             @Override
             public void onClick(View view) {
 
-                mAdapter.assignActivity(ExerciseTypes.OTHER,mPos);
+                mAdapter.assignActivity("Compendium", "",ExerciseTypes.OTHER,mPos);
                 dismiss();
 
             }

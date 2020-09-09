@@ -29,6 +29,8 @@ private Context mContext;
 private Bundle mArgs;
 private  WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
 AddActivityDialog mAddActivityDialog;
+      String name =  null;
+     String instructions = null;
 
     public ExcerciseDescriptionDialog(@NonNull Context context, AddActivityDialog addActivityDialog, Bundle args, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter) {
         super(context,R.style.Theme_Design_Light);
@@ -77,10 +79,15 @@ AddActivityDialog mAddActivityDialog;
             TextView activityNameTV = findViewById(R.id.dialog_activity_desc_name);
             TextView activityDescTV = findViewById(R.id.dialog_activity_desc_description);
 
-            if(mArgs.containsKey("Name"))
+
+            if(mArgs.containsKey("Name")) {
                 activityNameTV.setText(mArgs.getString("Name"));
-            if(mArgs.containsKey("Description"))
+                name = mArgs.getString("Name");
+            }
+            if(mArgs.containsKey("Description")) {
                 activityDescTV.setText(mArgs.getString("Description"));
+                instructions =mArgs.getString("Description");
+            }
 
             if(status == DailyActivityStatus.NOT_ASSIGNED)
             {
@@ -89,7 +96,7 @@ AddActivityDialog mAddActivityDialog;
                 confirmInsertionImgView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mAdapter.assignActivity(activityType,pos);
+                        mAdapter.assignActivity(name, instructions,activityType,pos);
                         mAddActivityDialog.dismiss();
                         dismiss();
                     }
@@ -107,6 +114,9 @@ AddActivityDialog mAddActivityDialog;
             {
                 if(mArgs.getBoolean("isToday")) {
                     completionSection.setVisibility(View.VISIBLE);
+
+                    activityNameTV.setText(mAdapter.getActivity(pos).name);
+                    activityDescTV.setText(mAdapter.getActivity(pos).instructions);
 
                     ImageView completedActivityImgview, partiallyCompletedActivtyImgView;
                     completedActivityImgview = findViewById(R.id.dialog_activity_description_completed_ex_imgview);
@@ -165,6 +175,7 @@ AddActivityDialog mAddActivityDialog;
                 {
                    LinearLayout reminderSection = findViewById(R.id.dialog_activity_description_add_notification_section);
                     reminderSection.setVisibility(View.VISIBLE);
+
 
                     ImageView bellImageView = findViewById(R.id.dialog_activity_description_add_notification_section_bell_imgview);
                     bellImageView.setOnClickListener(new View.OnClickListener() {
