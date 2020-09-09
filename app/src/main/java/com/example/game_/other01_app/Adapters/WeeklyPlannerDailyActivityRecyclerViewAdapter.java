@@ -337,6 +337,7 @@ readData();
             args.putInt("pos", getAdapterPosition());
             args.putString("type", mAdapter.mData.get(getAdapterPosition()).type.toString());
             args.putString("status", mAdapter.mData.get(getAdapterPosition()).status.toString());
+            args.putString("name", mAdapter.mData.get(getAdapterPosition()).name);
 
 
             if(DateTimeAssist.isDateToday( mAdapter.mDailyPlan.dayOfWeek)) {

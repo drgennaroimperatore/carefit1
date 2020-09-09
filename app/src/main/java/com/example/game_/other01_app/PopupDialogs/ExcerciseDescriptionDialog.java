@@ -79,6 +79,9 @@ AddActivityDialog mAddActivityDialog;
             TextView activityNameTV = findViewById(R.id.dialog_activity_desc_name);
             TextView activityDescTV = findViewById(R.id.dialog_activity_desc_description);
 
+            activityNameTV.setText(mAdapter.getActivity(pos).name);
+            activityDescTV.setText(mAdapter.getActivity(pos).instructions);
+
 
             if(mArgs.containsKey("Name")) {
                 activityNameTV.setText(mArgs.getString("Name"));
@@ -115,8 +118,7 @@ AddActivityDialog mAddActivityDialog;
                 if(mArgs.getBoolean("isToday")) {
                     completionSection.setVisibility(View.VISIBLE);
 
-                    activityNameTV.setText(mAdapter.getActivity(pos).name);
-                    activityDescTV.setText(mAdapter.getActivity(pos).instructions);
+
 
                     ImageView completedActivityImgview, partiallyCompletedActivtyImgView;
                     completedActivityImgview = findViewById(R.id.dialog_activity_description_completed_ex_imgview);
