@@ -108,7 +108,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
                 android:layout_gravity="center_horizontal"
-                android:text="Other">
+                android:gravity="center"
+                android:text="Daily \n Activity">
 
             </TextView>
         </LinearLayout>
