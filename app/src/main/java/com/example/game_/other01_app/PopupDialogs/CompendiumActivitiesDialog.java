@@ -27,6 +27,10 @@ import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecycler
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
+import com.example.game_.other01_app.EventSystem.CurrentReschedulerWatcher;
+import com.example.game_.other01_app.EventSystem.DatabaseEvents;
+import com.example.game_.other01_app.EventSystem.FutureRescheduleWatcher;
+import com.example.game_.other01_app.EventSystem.WatcherNotInitialised;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.CompendiumActivitiesAutoComplete;
 import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
@@ -78,6 +82,14 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
                 mAdapter.notifyDataSetChanged();
                 dismiss();
                 mAddActivityDialog.dismiss();
+                try {
+                    //Hack, force a refresh so that adapter shows activity was assigned
+                    CurrentReschedulerWatcher.getInstance().update(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
+                    FutureRescheduleWatcher.getInstance().update(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
+                } catch (WatcherNotInitialised watcherNotInitialised) {
+                    watcherNotInitialised.printStackTrace();
+                }
+
 
             }
         });
