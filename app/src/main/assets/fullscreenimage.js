@@ -7,7 +7,9 @@
     To use the script simply add the following to the end of the body
         <script src="fullscreenimage.js"></script>
 
-    Script version 1.0 - Mark Dunlop 08/09/20
+    Images that have class noclick will be excluded
+
+    Script version 1.1 - Mark Dunlop 14/09/20
 */
 
 var overlay, overlayimg;
@@ -83,9 +85,11 @@ function init(){
     //Inject the onClick listeners
     let imgs = document.getElementsByTagName("img");
     for (let i = 0; i < imgs.length; i++) {
-        imgs[i].addEventListener("click",function(e){
-            showimg(imgs[i].src);
-        });
+        if (!imgs[i].className.includes("noclick")){
+            imgs[i].addEventListener("click",function(e){
+                showimg(imgs[i].src);
+            });
+        }
     }
 }
 
