@@ -8,6 +8,7 @@
         background-color: #036bfc
     }
 </style>
+<meta name="viewport" content="user-scalable=0">
 
 </head>
 <body>
@@ -45,6 +46,24 @@
 
 <a href="stage2_2.html">Next</a>
 
+<script>
+    function fontUp(){
+        let style = window.getComputedStyle(document.body);
+        let size = parseInt(style.fontSize,10);
+        document.body.style.fontSize = size * 1.2;
+    }
+    function fontDown(){
+        let style = window.getComputedStyle(document.body);
+        let size = parseInt(style.fontSize,10);
+        document.body.style.fontSize = size / 1.2;
+    }
+</script>
+<div style="position: fixed; top:0; right:0; font-size: 5vmin; width:10vmin; height:20vmin">
+    <p><button style="font-size:6vmin; width:1.5em; background:rgba(255,255,255,0.5); border:0; height: 1.5em"
+               onclick="javascript: fontUp()">+</button></p>
+    <p><button style="font-size:6vmin; width:1.5em; background:rgba(255,255,255,0.5); border:0; height: 1.5em"
+               onclick="javascript: fontDown()">-</button></p>
+</div>
 <script src="fullscreenimage.js"></script>
 </body>
 </html>
