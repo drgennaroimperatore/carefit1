@@ -18,6 +18,7 @@ import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.EventSystem.DashboardDatabaseWatcher;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.EducationalListReader;
+import com.example.game_.other01_app.Utility.WeeklyPlanReader;
 
 import java.util.UUID;
 
@@ -58,6 +59,8 @@ public class DashboardActivity extends Activity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        new WeeklyPlanReader(AppDatabase.getDatabase(this).weeklyPlanDao()).execute();
 
         String UUIDstr = UUID.randomUUID().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE);

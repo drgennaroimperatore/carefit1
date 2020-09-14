@@ -42,12 +42,14 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
     private WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
     private int mPos;
     private CompendiumActivities mSelectedCompendium;
+    private AddActivityDialog mAddActivityDialog;
 
-    public CompendiumActivitiesDialog(@NonNull Context context, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter, int pos) {
+    public CompendiumActivitiesDialog(@NonNull Context context, AddActivityDialog addActivityDialog, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter, int pos) {
         super(context, R.style.Theme_Design_Light);
         mContext = context;
         mAdapter =adapter;
         mPos = pos;
+        mAddActivityDialog = addActivityDialog;
 
     }
 
@@ -67,9 +69,15 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
         addCompendiumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(mSelectedCompendium == null)
+                    return;
+                if(mSelectedCompendium.name ==null)
+                    return;
                 mAdapter.assignActivity(mSelectedCompendium.name, "",ExerciseTypes.OTHER,mPos);
+
+                mAdapter.notifyDataSetChanged();
                 dismiss();
+                mAddActivityDialog.dismiss();
 
             }
         });
