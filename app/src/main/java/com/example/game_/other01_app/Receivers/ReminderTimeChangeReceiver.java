@@ -28,15 +28,15 @@ public class ReminderTimeChangeReceiver extends BroadcastReceiver {
         protected Void doInBackground(Context... contexts) {
             AppDatabase db = AppDatabase.getDatabase(contexts[0]);
             ReminderDao reminderDao = db.reminderDao();
-            List<Reminder> allReminders = reminderDao.getAllRemindersNotLive();
-            for(Reminder current : allReminders){
+      //      List<Reminder> allReminders = reminderDao.getAllRemindersNotLive();
+       /*     for(Reminder current : allReminders){
                 AlarmCreator.deleteReminder(current, contexts[0]);
                 try {
                     AlarmCreator.createReminder(current, contexts[0]);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return null;
         }
     }

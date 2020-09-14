@@ -191,11 +191,17 @@ readData();
     }
 
 
-    public void assignActivity (ExerciseTypes t, int pos)
+    public void assignActivity (String name, String instructions, ExerciseTypes t, int pos)
     {
 
      mData.get(pos).status = DailyActivityStatus.ASSIGNED;
      mData.get(pos).type = t;
+
+
+     if(name !=null)
+         mData.get(pos).name = name;
+     if(instructions!=null)
+         mData.get(pos).instructions = instructions;
      updateActivity(mData.get(pos));
 
      if(mData.size()<3 && pos<=mData.size()-1)
@@ -331,6 +337,7 @@ readData();
             args.putInt("pos", getAdapterPosition());
             args.putString("type", mAdapter.mData.get(getAdapterPosition()).type.toString());
             args.putString("status", mAdapter.mData.get(getAdapterPosition()).status.toString());
+            args.putString("name", mAdapter.mData.get(getAdapterPosition()).name);
 
 
             if(DateTimeAssist.isDateToday( mAdapter.mDailyPlan.dayOfWeek)) {

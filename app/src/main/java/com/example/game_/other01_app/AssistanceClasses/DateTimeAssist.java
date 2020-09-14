@@ -50,12 +50,12 @@ public abstract class DateTimeAssist {
         return minute;
     }
 
-    public static long getCalendarTimeFromReminder(Reminder reminder, String day) throws ParseException {
+    public static long getCalendarTimeFromReminder(Reminder reminder) throws ParseException {
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DAY_OF_WEEK, dayToInt(day));
-        cal.set(Calendar.HOUR_OF_DAY, reminder.getTimeHrs());
-        cal.set(Calendar.MINUTE, reminder.getTimeMins());
-        cal.set(Calendar.MILLISECOND, 0);
+        cal.setTime(reminder.getDay());
+     cal.set(Calendar.HOUR_OF_DAY, reminder.getHour());
+       cal.set(Calendar.MINUTE, reminder.getMinute());
+        cal.set(Calendar.SECOND,0);
         return cal.getTimeInMillis();
     }
 

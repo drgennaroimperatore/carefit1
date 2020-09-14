@@ -14,13 +14,13 @@ import androidx.lifecycle.LiveData;
 
 public class ReminderViewModel extends AndroidViewModel {
 
-    private final ReminderRepository mRepository;
-    private final LiveData<List<Reminder>> mAllRemidners;
+    //private final ReminderRepository mRepository;
+   // private final LiveData<List<Reminder>> mAllRemidners;
 
     public ReminderViewModel(@NonNull Application application) {
         super(application);
-        mRepository = new ReminderRepository(application);
-        mAllRemidners = mRepository.getAllReminders();
+       /* mRepository = new ReminderRepository(application);
+        mAllRemidners = mRepository.getAllReminders();*/
     }
 
     /**
@@ -29,10 +29,10 @@ public class ReminderViewModel extends AndroidViewModel {
      */
     public void deleteReminder(Reminder reminder){
         AlarmCreator.deleteReminder(reminder, getApplication());
-        mRepository.deleteReminder(reminder);
+        //mRepository.deleteReminder(reminder);
     }
 
-    public LiveData<List<Reminder>> getAllRemidners() { return mAllRemidners; }
+    //public LiveData<List<Reminder>> getAllRemidners() { return mAllRemidners; }
 
     /**
      * Inserts a new Reminder into the AlarmManager and into the Database
@@ -44,5 +44,5 @@ public class ReminderViewModel extends AndroidViewModel {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        mRepository.insert(reminder); }
-}
+        //mRepository.insert(reminder); }
+}}

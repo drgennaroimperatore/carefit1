@@ -31,7 +31,7 @@ public class ReminderBootReceiver extends BroadcastReceiver {
         protected Void doInBackground(Context... contexts) {
             AppDatabase db = AppDatabase.getDatabase(contexts[0]);
             ReminderDao reminderDao = db.reminderDao();
-            List<Reminder> allReminders = reminderDao.getAllRemindersNotLive();
+           List<Reminder> allReminders = reminderDao.getAllRemindersNotLive();
             for (Reminder current : allReminders){
                 try {
                     AlarmCreator.createReminder(current, contexts[0]);

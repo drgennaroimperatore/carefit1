@@ -13,17 +13,17 @@ import androidx.lifecycle.LiveData;
 
 public class ReminderRepository {
     private final ReminderDao mReminderDao;
-    private final LiveData<List<Reminder>> mAllReminders;
+   // private final LiveData<List<Reminder>> mAllReminders;
 
     public ReminderRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mReminderDao = db.reminderDao();
-        mAllReminders = mReminderDao.getAllReminders();
+       /* mAllReminders = mReminderDao.getAllReminders();*/
     }
 
-    public LiveData<List<Reminder>> getAllReminders() {
+   /* public LiveData<List<Reminder>> getAllReminders() {
         return mAllReminders;
-    }
+    }*/
 
     public void insert(Reminder reminder) {
         new insertAsyncTask(mReminderDao).execute(reminder);

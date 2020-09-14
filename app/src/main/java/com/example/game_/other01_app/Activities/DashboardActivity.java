@@ -78,6 +78,7 @@ public class DashboardActivity extends Activity
         m_imageViewGoToPlanner = findViewById(R.id.dashboard_go_to_planner);
         m_imageviewGoToProfile = findViewById(R.id.dashboard_go_to_profile);
         m_imageViewGoToEducational = findViewById(R.id.dashboard_go_to_educational);
+        m_imageViewGoToSettings= findViewById(R.id.dashboard_go_to_settings);
       //  disableEducationalButton();
 
         m_imageviewGoToProfile.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +105,14 @@ public class DashboardActivity extends Activity
                 Intent intent3 = new Intent(DashboardActivity.this, EducationalActivity.class);
                 startActivity(intent3);
 
+            }
+        });
+
+        m_imageViewGoToSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent3 = new Intent(DashboardActivity.this, SettingsActivity.class);
+                startActivity(intent3);
             }
         });
 

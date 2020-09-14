@@ -35,6 +35,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 //A holder class that uses annotation to define the list of entities and
@@ -47,7 +48,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
         CompendiumActivities.class,
         EducationalList.class,
         EducationalListContent.class,
-        EducationalListContentResource.class},  version = 8, exportSchema = false)
+        EducationalListContentResource.class},  version = 10, exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -71,7 +72,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "app_database").fallbackToDestructiveMigration()
+                            AppDatabase.class, "app_database").addMigrations(MIGRATION_8_9,MIGRATION_9_10)
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -79,6 +80,30 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    static final Migration MIGRATION_8_9 = new Migration(8, 9) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("DROP TABLE OTHER01Reminders");
+            database.execSQL
+                    /*Expected:
+                    TableInfo{name='RemindersV2', columns={notificationID=Column{name='notificationID', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, id=Column{name='id', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=1}, hour=Column{name='hour', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, day=Column{name='day', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, minute=Column{name='minute', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}}, foreignKeys=[], indices=[]}
+   found:
+    TableInfo{name='RemindersV2', columns={hour=Column{name='hour', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, notificationID=Column{name='notificationID', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, id=Column{name='id', type='INTEGER', affinity='3', notNull=false, primaryKeyPosition=1}, day=Column{name='day', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, minute=Column{name='minute', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}}, foreignKeys=[], indices=[]}
+    */
+
+                    ("CREATE TABLE RemindersV2 ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, day INTEGER NOT NULL, hour INTEGER NOT NULL, minute INTEGER NOT NULL, notificationID INTEGER NOT NULL)");
+
+        }
+    };
+
+    static final Migration MIGRATION_9_10 = new Migration(9,10) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE RemindersV2 ADD COLUMN strReminderID TEXT");
+
+        }
+    };
     protected Watcher mDatabaseWatcher = null;
     public void addDatabaseWatcher(Watcher watcher)
     {
