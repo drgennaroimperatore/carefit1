@@ -94,6 +94,14 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
             }
         });
 
+        ImageView dismiss = findViewById(R.id.dialog_add_other_dismiss);
+        dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
 
         ListView favouritesListview = findViewById(R.id.add_activity_dialog_listView);
         favouritesListview.setAdapter(favouiriteCompendiumAdapter);
