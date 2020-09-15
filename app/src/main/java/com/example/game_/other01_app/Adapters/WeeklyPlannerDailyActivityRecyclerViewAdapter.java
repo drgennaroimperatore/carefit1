@@ -270,6 +270,8 @@ readData();
         DailyActivity da = mData.get(pos);
         da.type = ExerciseTypes.UNASSIGNED;
         da.status = DailyActivityStatus.NOT_ASSIGNED;
+        da.name ="";
+        da.instructions ="";
         updateActivity(da);
         notifyDataSetChanged();
     }

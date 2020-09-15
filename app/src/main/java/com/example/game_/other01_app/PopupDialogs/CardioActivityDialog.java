@@ -21,11 +21,6 @@ import com.example.game_.other01_app.R;
 
 public class CardioActivityDialog extends Dialog {
 
-    private long MilliTime, StartTime, TimeBuffer, UpdateTime = 0L;
-    private int Seconds, Minutes, MilliSeconds;
-    private TextView mTimerTV;
-    private ImageView mStartBtn;
-    private ImageView mStopButton;
     private ImageView mConfirmButton;
     private int mSelectedIntensity;
     private CardView mSelectedCardView;
@@ -36,11 +31,6 @@ public class CardioActivityDialog extends Dialog {
     private Context mContext;
     private Bundle mArgs;
 
-    public Handler getHandler() {
-        return handler;
-    }
-
-    private Handler handler;
 
     public CardioActivityDialog(@NonNull Context context, Bundle args, AddActivityDialog addActivityDialog,
                                 WeeklyPlannerDailyActivityRecyclerViewAdapter weeklyPlannerDailyActivityRecyclerViewAdapter) {
@@ -55,9 +45,7 @@ public class CardioActivityDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_add_cardio);
-        mTimerTV = findViewById(R.id.dialog_add_cardio_timer_textView);
-        mStartBtn = findViewById(R.id.dialog_add_cardio_start_timer_imageView);
-        mStopButton = findViewById(R.id.dialog_add_cardio_stop_timer_imageView);
+
         mConfirmButton = findViewById(R.id.dialog_add_cardio_confirm_imgview);
 
         cardioEx1 = findViewById(R.id.dialog_add_cardio_cardio_set1);
@@ -179,28 +167,7 @@ public class CardioActivityDialog extends Dialog {
             }
         });
 */
-        handler = new Handler();
 
-        mStartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                StartTime = SystemClock.uptimeMillis();
-                handler.postDelayed(runnable, 0);
-                TimeBuffer=0;
-
-            }
-        });
-        mStopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TimeBuffer += MilliTime;
-                handler.removeCallbacks(runnable);
-                mConfirmButton.setVisibility(View.VISIBLE);
-            }
-
-
-        });
 
 
     }
@@ -235,19 +202,5 @@ public class CardioActivityDialog extends Dialog {
 
     }
 
-    private final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            MilliTime = SystemClock.uptimeMillis() - StartTime;
-            UpdateTime = TimeBuffer + MilliTime;
-            Seconds = (int) (UpdateTime / 1000);
-            Minutes = Seconds / 60;
-            Seconds = Seconds % 60;
-            MilliSeconds = (int) (UpdateTime % 1000);
-            mTimerTV.setText("" + Minutes + ":"
-                    + String.format("%02d", Seconds) + ":"
-                    + String.format("%03d", MilliSeconds));
-            handler.postDelayed(this, 0);
-        }
-    };
+
 }

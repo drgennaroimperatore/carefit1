@@ -184,42 +184,6 @@
 
     </GridLayout>
 
-    <TextView
-        android:id="@+id/dialog_add_cardio_timer_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="45dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorBlack"
-        android:text="0:00:000"
-        android:visibility="gone">
-
-    </TextView>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/dialog_add_cardio_start_timer_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/play">
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/dialog_add_cardio_stop_timer_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pause">
-        </ImageView>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
