@@ -70,3 +70,11 @@ button, .customBtn {
     width: 15vw;
     height: auto;
  }
+ .biginlineicon{
+    width: 50vw;
+    height: auto;
+ }
+
+ .centred{
+    text-align: center;
+ }
