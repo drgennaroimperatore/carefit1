@@ -298,8 +298,6 @@ AddActivityDialog mAddActivityDialog;
                 handler.removeCallbacks(runnable);
 
             }
-
-
         });
     }
 

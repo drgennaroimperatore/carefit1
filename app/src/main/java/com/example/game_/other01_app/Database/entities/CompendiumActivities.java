@@ -47,6 +47,73 @@ public class CompendiumActivities
 
         ArrayList<CompendiumActivities> compendiumActivities = new ArrayList<>();
 
+        /*
+        * Bicycling – vigorous intensity
+
+Mild stretching – low intensity
+
+Aerobic step (6-8 mins) – vigorous intensity
+
+Aerobic step (10-12 mins) – vigorous intensity
+
+Dancing – moderate intensity
+
+Mopping – moderate intensity
+
+Household tasks (light effort) – low intensity
+
+Household tasks (moderate effort) – moderate intensity
+
+Vacuuming – moderate intensity
+
+Feeding animals – low intensity
+
+Watering plants – low intensity
+
+Carrying small children – moderate intensity
+
+Caring duties – moderate intensity
+
+Climbing stairs – moderate intensity
+
+Sitting playing with animal – low intensity
+
+Standing playing with animal – low intensity
+
+Walk animal – moderate intensity
+
+Run animal – vigorous intensity
+
+Painting house – moderate intensity
+
+Lying quietly – low intensity
+
+Sitting quietly – low intensity
+
+Mowing lawn – moderate intensity
+
+Standing – low intensity
+
+Lifting items (5- 10 kg) – moderate intensity
+
+Walking – moderate intensity
+
+Brisk walk – vigorous intensity
+
+Running – vigorous intensity
+
+Golf – moderate intensity
+
+Tennis – moderate intensity
+
+Travel (car/bus) – low intensity
+
+Pushing wheelchair/pram – moderate intensity
+
+Swimming – moderate intensity
+
+Water jogging – vigorous intensity*/
+
         compendiumActivities.add(new CompendiumActivities(initialid++,"Bicycling",8.0f, CompendiumActivitiesTypes.BICYCLING ));
         compendiumActivities.add(new CompendiumActivities(initialid++,"Mild Stretching",2.5f, CompendiumActivitiesTypes.CONDITIONING ));
         compendiumActivities.add(new CompendiumActivities(initialid++,"Aerobic Step(6-8in)",8.5f, CompendiumActivitiesTypes.DANCING ));
