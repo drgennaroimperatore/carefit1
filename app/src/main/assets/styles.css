@@ -51,7 +51,7 @@ button, .customBtn {
   text-align: center;
   text-decoration: none;
   font-size: 1.2rem;
-  margin-right: 1rem;
+  margin: 0.5rem;
 }
 
 .fullwidth{
@@ -63,12 +63,14 @@ button, .customBtn {
     float: left ;
     width: 15vw;
     height: auto;
+    padding: 0.5rem;
  }
 
  .floatrighticon{
     float: right;
     width: 15vw;
     height: auto;
+    padding: 0.5rem;
  }
  .biginlineicon{
     width: 50vw;

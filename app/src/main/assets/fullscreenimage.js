@@ -60,7 +60,19 @@ function showimg(src){
     //add close callbacks
     overlay.addEventListener('click', function() { overlay.style.display = "none"; });
     overlayimg.addEventListener('click', function() { overlay.style.display = "none"; });
-    }
+}
+
+function fontUp(){
+    let style = window.getComputedStyle(document.body);
+    let size = parseInt(style.fontSize,10);
+    document.body.style.fontSize = size * 1.2;
+}
+function fontDown(){
+    let style = window.getComputedStyle(document.body);
+    let size = parseInt(style.fontSize,10);
+    document.body.style.fontSize = size / 1.2;
+}
+
 
 function init(){
     //Add the overlay DIV for fullscreen images
