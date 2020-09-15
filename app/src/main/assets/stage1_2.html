@@ -1,98 +1,52 @@
-<style type="text/css">
+<!doctype html>
 
-
-@font-face {
-      font-family: "Gill Sans MT";
-    src: url("file:///android_res/font/gillsansmt.ttf")
-   }
-
-body {
-font-family: 'Gill Sans MT';
-        color: #FFFFFF;
-        font-size:80px;
-        background-color: #036bfc;
-
-        margin-top: auto;
-  margin-bottom: auto;
-  margin-right: 50px;
-  margin-left: 50px;
-
-       }
-
-        .customBtn {
-  background-color:#ffffff;
-  color: #036bfc;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 80px;
-}
-
-
-</style>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<h1>App Overview</h1>
+<p>
+    This CareFit app is designed to support you to carry out practical, safe, and fun exercises at
+    home. It is designed to help you know what types of things you can do, when you can do it and
+    how much is enough.
+</p>
+
+<img src="003 video-call.png" class="floatlefticon">
 
 <p>
-    This CareFit app is designed to support you to carry out practical, safe, and fun exercises at home. It is designed to help you know what types of things you can do, when you can do it and how much is enough.
-
-</p>
-<div>
-    <img src="003 video-call.png" style="float: left;" height="240" width="330"/>
-</div>
-<p>
-    The format of this educational section is to take you through a logical step by step process and allows you to focus on your personal needs and physical activity plans.  It complements the activities we have developed both in text and video.
+    The format of this educational section is to take you through a logical step by step process
+    and allows you to focus on your personal needs and physical activity plans.  It complements
+    the activities we have developed both in text and video.
 </p>
 
-<br>
 
-<p style="border : 5px solid white;">
-    We strongly suggest that you use the first seven days to spend 5 to 10 minutes each day to learn about physical activity and make a personalised plan.   This ensures that you will develop plans that are safe, effective and are personalised- this gives you the best chance of forming longer term habits.
+<p class="box">
+    We strongly suggest that you use the first seven days to spend 5 to 10 minutes each day
+    to learn about physical activity and make a personalised plan. 
+    This ensures that you will develop plans that are safe, effective and are personalised -
+    this gives you the best chance of forming longer term habits.
 </p>
 
 <div>
-    <img src="004_book.png" style="float: right;" height="240" width="330"/>
+    <img src="004_book.png" class="floatrighticon"/>
 </div>
 
 <p>
-    While we recommend that you complete the educational sections in full, if you wish to, you can skip to: 
-
+    While we recommend that you complete the educational sections in full, if you wish to,
+    you can use your phones back button at any pont to return home and try an activity. 
 </p>
-<div>
-    <div style="display:inline-block;">
-<form action="stage1_1.html">
-    <input class="customBtn" type="submit" value="Go to Stage 1" />
-</form>
 
-    </div>
+<p>
+    <button onclick="window.history.back()">◁ Home</button>
+</p>
 
-    <div style="display:inline-block;">
-        <form action="stage1_1.html">
-            <input class="customBtn" type="submit" value="Go to Stage 1" />
-        </form>
+<p class="centred">
+    <button onclick="location.href = 'stage1_1.html'">⇦ Back</button>
+    <button onclick="location.href = 'stage1_3.html'">Continue ⇨ </button>
+</p>
 
-    </div>
-
-    <div style="display:inline-block;">
-        <form action="stage1_1.html">
-            <input class="customBtn" type="submit" value="Go to Stage 1" />
-        </form>
-
-    </div>
-
-    <div style="display:inline-block;">
-        <form action="stage1_1.html">
-            <input class="customBtn" type="submit" value="Go to Stage 1" />
-        </form>
-
-    </div>
-
-
-</div>
-
-
-
-
-<h1 style="text-align: center"><a href="stage1_1.html">< </a>Stage 1 Page 1<a href="stage2.html"> > </a></h1>
-
+<script src="fullscreenimage.js"></script>
 </body>
+</html>

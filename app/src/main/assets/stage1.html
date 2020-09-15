@@ -1,53 +1,30 @@
-<style type="text/css">
-
-@font-face {
-      font-family: "Gill Sans MT";
-    src: url("file:///android_res/font/gillsansmt.ttf")
-   }
-
-body {
-font-family: 'Gill Sans MT';
-        color: #FFFFFF;
-        font-size:80px;
-        background-color: #036bfc;
-
-        margin-top: auto;
-  margin-bottom: auto;
-  margin-right: 50px;
-  margin-left: 50px;
-
-     }
-    .customBtn {
-  background-color: #036bfc;
-  border: 2px solid #ffffff;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 80px;
-}
-
-</style>
-
-<html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="user-scalable=0">
+</head>
 <body>
-<b>Stage 1: Welcome and Introduction</b>
-<br>
-<b>What do I need to know?</b>
 
-<br>
-<img src="001_question.png" style="float: right;" height="240" width="330">
+<h1>Stage 1: Welcome and Introduction</h1>
+
+<h2>What do I need to know?</h2>
+
+<img src="001_question.png" class="floatrighticon">
+
 <ol>
-    <li>Each “stage” is designed to take no more than 10 minutes. </li>
-    <li>Each "stage" begins with a summary page where you can
-    either "found out more" or "skip"</li>
+    <li>Each "stage" is designed to take no more than 10 minutes. </li>
+    <li>Each "stage" begins with a summary page where you can either "found out more" or "skip"</li>
     <li>Part of this app is dedicated to helping you make a plan for the next two weeks</li>
     <li>Some activities within this app are strongly encouraged for use-e.g. goal-setting and weekly planner</li>
     <li>Some activities within this app are optional extras such as relaxation or the quiz.</li>
 </ol>
 
-<form action="stage1_1.html">
-    <input class="customBtn" type="submit" value="Go to Stage 1" />
-</form>
+
+<p class="centred">
+<button onclick="location.href = 'stage1_1.html'">Go to Stage 1</button>
+</p>
+<script src="fullscreenimage.js"></script>
 </body>
 </html>

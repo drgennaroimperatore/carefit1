@@ -7,9 +7,9 @@
     To use the script simply add the following to the end of the body
         <script src="fullscreenimage.js"></script>
 
-    Images that have class noclick will be excluded
+    Images that have class noclick will be excluded as will images with any icon class
 
-    Script version 1.1 - Mark Dunlop 14/09/20
+    Script version 1.2 - Mark Dunlop 15/09/20
 */
 
 var overlay, overlayimg;
@@ -60,7 +60,19 @@ function showimg(src){
     //add close callbacks
     overlay.addEventListener('click', function() { overlay.style.display = "none"; });
     overlayimg.addEventListener('click', function() { overlay.style.display = "none"; });
-    }
+}
+
+function fontUp(){
+    let style = window.getComputedStyle(document.body);
+    let size = parseInt(style.fontSize,10);
+    document.body.style.fontSize = size * 1.2;
+}
+function fontDown(){
+    let style = window.getComputedStyle(document.body);
+    let size = parseInt(style.fontSize,10);
+    document.body.style.fontSize = size / 1.2;
+}
+
 
 function init(){
     //Add the overlay DIV for fullscreen images
@@ -85,7 +97,7 @@ function init(){
     //Inject the onClick listeners
     let imgs = document.getElementsByTagName("img");
     for (let i = 0; i < imgs.length; i++) {
-        if (!imgs[i].className.includes("noclick")){
+        if (!imgs[i].className.includes("noclick") && !imgs[i].className.includes("icon")){
             imgs[i].addEventListener("click",function(e){
                 showimg(imgs[i].src);
             });
