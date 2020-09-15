@@ -27,6 +27,10 @@ import com.example.game_.other01_app.Adapters.WeeklyPlannerDailyActivityRecycler
 import com.example.game_.other01_app.Database.AppDatabase;
 import com.example.game_.other01_app.Database.entities.CompendiumActivities;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
+import com.example.game_.other01_app.EventSystem.CurrentReschedulerWatcher;
+import com.example.game_.other01_app.EventSystem.DatabaseEvents;
+import com.example.game_.other01_app.EventSystem.FutureRescheduleWatcher;
+import com.example.game_.other01_app.EventSystem.WatcherNotInitialised;
 import com.example.game_.other01_app.R;
 import com.example.game_.other01_app.Utility.CompendiumActivitiesAutoComplete;
 import com.example.game_.other01_app.ViewModels.CompendiumActivitiesViewModel;
@@ -42,12 +46,14 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
     private WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
     private int mPos;
     private CompendiumActivities mSelectedCompendium;
+    private AddActivityDialog mAddActivityDialog;
 
-    public CompendiumActivitiesDialog(@NonNull Context context, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter, int pos) {
+    public CompendiumActivitiesDialog(@NonNull Context context, AddActivityDialog addActivityDialog, WeeklyPlannerDailyActivityRecyclerViewAdapter adapter, int pos) {
         super(context, R.style.Theme_Design_Light);
         mContext = context;
         mAdapter =adapter;
         mPos = pos;
+        mAddActivityDialog = addActivityDialog;
 
     }
 
@@ -67,10 +73,32 @@ public class CompendiumActivitiesDialog extends Dialog implements LifecycleOwner
         addCompendiumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(mSelectedCompendium == null)
+                    return;
+                if(mSelectedCompendium.name ==null)
+                    return;
                 mAdapter.assignActivity(mSelectedCompendium.name, "",ExerciseTypes.OTHER,mPos);
-                dismiss();
 
+                mAdapter.notifyDataSetChanged();
+                dismiss();
+                mAddActivityDialog.dismiss();
+                try {
+                    //Hack, force a refresh so that adapter shows activity was assigned
+                    CurrentReschedulerWatcher.getInstance().update(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
+                    FutureRescheduleWatcher.getInstance().update(DatabaseEvents.EDUCATIONAL_TABLE_CREATION_STARTED);
+                } catch (WatcherNotInitialised watcherNotInitialised) {
+                    watcherNotInitialised.printStackTrace();
+                }
+
+
+            }
+        });
+
+        ImageView dismiss = findViewById(R.id.dialog_add_other_dismiss);
+        dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
             }
         });
 

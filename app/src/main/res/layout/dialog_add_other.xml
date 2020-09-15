@@ -87,6 +87,7 @@
         </ImageView>
 
         <ImageView
+                android:id="@+id/dialog_add_other_dismiss"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_gravity="center_horizontal"
