@@ -56,8 +56,11 @@ AddActivityDialog mAddActivityDialog;
         confirmationSection.setVisibility(View.GONE);
         completionSection.setVisibility(View.GONE);
 
+
+
         if(mArgs!=null)
         {
+            int pos= mArgs.getInt("pos");
             TextView activityNameTV = findViewById(R.id.dialog_activity_desc_name);
             TextView activityDescTV = findViewById(R.id.dialog_activity_desc_description);
 
@@ -65,10 +68,21 @@ AddActivityDialog mAddActivityDialog;
                 activityNameTV.setText(mArgs.getString("Name"));
                 name = mArgs.getString("Name");
             }
+            else
+            {
+                name =mAdapter.getActivity(pos).name;
+
+            }
+
             if(mArgs.containsKey("Description")) {
                 activityDescTV.setText(mArgs.getString("Description"));
                 instructions =mArgs.getString("Description");
             }
+            else
+            {
+             instructions = mAdapter.getActivity(pos).instructions;
+            }
+
 
             String myVideoYoutubeId = "";
             ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
@@ -109,12 +123,6 @@ AddActivityDialog mAddActivityDialog;
             if(activityType.equals(ExerciseTypes.OTHER))
                 youTubeWeb.setVisibility(View.GONE);
 
-            int pos= mArgs.getInt("pos");
-
-
-
-            activityNameTV.setText(mAdapter.getActivity(pos).name);
-            activityDescTV.setText(mAdapter.getActivity(pos).instructions);
 
 
 
@@ -142,9 +150,10 @@ AddActivityDialog mAddActivityDialog;
             }
             else if(status == DailyActivityStatus.ASSIGNED )
             {
+                activityNameTV.setText(mAdapter.getActivity(pos).name);
+                activityDescTV.setText(mAdapter.getActivity(pos).instructions);
                 if(mArgs.getBoolean("isToday")) {
                     completionSection.setVisibility(View.VISIBLE);
-
 
 
                     ImageView completedActivityImgview, partiallyCompletedActivtyImgView;
