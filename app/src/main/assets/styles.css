@@ -11,7 +11,7 @@ html{
 
 body {
     color: #FFFFFF;
-    background-color: #036bfc;
+    background-color: #063F90;
 
     margin-top: auto;
     margin-bottom: auto;
@@ -80,3 +80,27 @@ button, .customBtn {
  .centred{
     text-align: center;
  }
+
+ .quote{
+    padding-left:2rem;
+    font-style: italic;
+ }
+
+ table{
+    border: 0.2rem white solid;
+  border-collapse: collapse;
+  margin-top:1rem;
+  margin-bottom: 1rem;
+}
+td, th{
+    border: 0.1rem white solid;
+    margin: 0;
+    text-align: center;
+}
+.noborder{
+    border:none;
+}
+
+#answer{
+    visibility: hidden;
+}

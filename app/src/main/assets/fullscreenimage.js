@@ -9,12 +9,18 @@
 
     Images that have class noclick will be excluded as will images with any icon class
 
-    Script version 1.2 - Mark Dunlop 15/09/20
+    Script version 1.3 - Mark Dunlop 15/09/20
 */
 
 var overlay, overlayimg;
 
+function debug(...str){
+//    console.log(str.join(" - "));
+}
+
 function showimg(src){
+    debug();
+
     // Setup
     overlayimg.src = src;
     overlay.style.display="block";
@@ -24,10 +30,12 @@ function showimg(src){
 
     let divWidth = overlay.clientWidth;
     let divHeight = overlay.clientHeight;
+    debug("Div size", divWidth, divHeight);
     let imgWidth = overlayimg.naturalWidth;
     let imgHeight = overlayimg.naturalHeight;
     let aspect = imgWidth/imgHeight;
     let rotated = imgWidth > imgHeight;
+    debug("Natural Size and aspect", imgWidth, imgHeight, aspect);
 
     overlayimg.style.width = imgWidth;
     overlayimg.style.height = imgHeight;
@@ -37,24 +45,25 @@ function showimg(src){
         overlayimg.className  = "rotatedImage";
         let rotatedWidth = Math.min ( divHeight, divWidth * aspect ) *0.95;
         let rotatedHeight = rotatedWidth / aspect;
-        overlayimg.style.width = rotatedWidth;
-        overlayimg.style.height = rotatedHeight;
+        debug("Rotated size", rotatedWidth, rotatedHeight);
+        overlayimg.style.width = rotatedWidth+"px";
+        overlayimg.style.height = rotatedHeight+"px";
        }
     else {
         let targetHeight = Math.min( divHeight, divWidth / aspect)
-        overlayimg.style.height = targetHeight;
-        overlayimg.style.width = targetHeight * aspect;
+        overlayimg.style.height = targetHeight+"px";
+        overlayimg.style.width = (targetHeight * aspect)+"px";
         }
 
     //calculate and set margins to centre new image
     imgWidth = overlayimg.clientWidth;
     imgHeight = overlayimg.clientHeight;
     if (rotated){
-        overlayimg.style.marginLeft =  (divWidth-imgHeight)/2 ;
-        overlayimg.style.marginTop = (divHeight-imgWidth)/2 ;
+        overlayimg.style.marginLeft =  (divWidth-imgHeight)/2+"px" ;
+        overlayimg.style.marginTop = (divHeight-imgWidth)/2+"px" ;
     } else {
-        overlayimg.style.marginLeft =  (divWidth-imgWidth)/2 ;
-        overlayimg.style.marginTop = (divHeight-imgHeight)/2 ;
+        overlayimg.style.marginLeft =  (divWidth-imgWidth)/2+"px" ;
+        overlayimg.style.marginTop = (divHeight-imgHeight)/2+"px" ;
     }
 
     //add close callbacks
@@ -77,7 +86,7 @@ function fontDown(){
 function init(){
     //Add the overlay DIV for fullscreen images
     overlay = document.createElement('div');
-    overlay.style.cssText = 'display:none;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: #333B;margin: 0;padding: 0;';
+    overlay.style.cssText = 'display:none;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: #333D;margin: 0;padding: 0;';
     document.body.appendChild(overlay);
 
     //Add the image to the fullscreen div
