@@ -1,0 +1,72 @@
+@font-face {
+    font-family: "Gill Sans MT";
+    src: url("gillsansmt.ttf")
+   }
+
+html{
+    font-size:4vw;
+    line-height: 1.1;
+    font-family: 'Gill Sans MT';
+}
+
+body {
+    color: #FFFFFF;
+    background-color: #036bfc;
+
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 3vw;
+    margin-left: 3vw;
+}
+
+h1{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+h2{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+p,ol,ul{
+    margin-bottom: 1.5rem;
+}
+.runon{
+    margin-bottom: 0;
+}
+.box{
+    padding:0.5rem;
+    border: 0.2rem white solid;
+    border-radius: 0.3rem;
+}
+li{
+    margin-bottom: 1rem;
+}
+
+button, .customBtn {
+  background-color: #0004;
+  border: 2px solid #ffffff;
+  color: white;
+  padding: 1vmin;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+.fullwidth{
+    width: 100%;
+    height: auto;
+ }
+
+ .floatlefticon{
+    float: left ;
+    width: 15vw;
+    height: auto;
+ }
+
+ .floatrighticon{
+    float: right;
+    width: 15vw;
+    height: auto;
+ }
