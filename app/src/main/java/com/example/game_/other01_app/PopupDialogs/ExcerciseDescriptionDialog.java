@@ -28,6 +28,11 @@ public class ExcerciseDescriptionDialog extends Dialog implements YouTubeJSLink.
 private Context mContext;
 private Bundle mArgs;
 private  WeeklyPlannerDailyActivityRecyclerViewAdapter mAdapter;
+private final String [] mMuscleBalanceURLs =
+        new String[]{"nsrHeSjp7UA","vC6b5zEpuZ4","4LaJ8hWoF4","7MRMl3Nt9z","X8kH_pFkDoI"};
+private final String [] mCardioURLs =
+            new String[]{"kB65Rp-IxA0","swLE64DXfNI","3nLPYSF74fY"};
+
 AddActivityDialog mAddActivityDialog;
       String name =  null;
      String instructions = null;
@@ -53,7 +58,33 @@ AddActivityDialog mAddActivityDialog;
 
         if(mArgs!=null)
         {
-            String myVideoYoutubeId = "cpr7qhexikY";
+            TextView activityNameTV = findViewById(R.id.dialog_activity_desc_name);
+            TextView activityDescTV = findViewById(R.id.dialog_activity_desc_description);
+
+            if(mArgs.containsKey("Name")) {
+                activityNameTV.setText(mArgs.getString("Name"));
+                name = mArgs.getString("Name");
+            }
+            if(mArgs.containsKey("Description")) {
+                activityDescTV.setText(mArgs.getString("Description"));
+                instructions =mArgs.getString("Description");
+            }
+
+            String myVideoYoutubeId = "";
+            ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
+
+            if(activityType.equals(ExerciseTypes.MUSCLE))
+            {
+                if(name.contains("1"))
+                    myVideoYoutubeId = mMuscleBalanceURLs[0];
+                if(name.contains("2"))
+                    myVideoYoutubeId = mMuscleBalanceURLs[1];
+                if(name.contains("3"))
+                    myVideoYoutubeId = mMuscleBalanceURLs[2];
+                if(name.contains("4"))
+                    myVideoYoutubeId = mMuscleBalanceURLs[3];
+            }
+
             WebView youTubeWeb = findViewById(R.id.dialog_activity_description_video);
 
 
@@ -73,28 +104,20 @@ AddActivityDialog mAddActivityDialog;
 
             youTubeWeb.loadUrl("file:///android_asset/youtubeshow.html?id=" + myVideoYoutubeId);//add &tstart=... and &tend=... to specify a start and end time
             DailyActivityStatus status = DailyActivityStatus.valueOf( mArgs.getString("status"));
-            ExerciseTypes activityType = ExerciseTypes.valueOf(mArgs.getString("type"));
+
 
             if(activityType.equals(ExerciseTypes.OTHER))
                 youTubeWeb.setVisibility(View.GONE);
 
             int pos= mArgs.getInt("pos");
 
-            TextView activityNameTV = findViewById(R.id.dialog_activity_desc_name);
-            TextView activityDescTV = findViewById(R.id.dialog_activity_desc_description);
+
 
             activityNameTV.setText(mAdapter.getActivity(pos).name);
             activityDescTV.setText(mAdapter.getActivity(pos).instructions);
 
 
-            if(mArgs.containsKey("Name")) {
-                activityNameTV.setText(mArgs.getString("Name"));
-                name = mArgs.getString("Name");
-            }
-            if(mArgs.containsKey("Description")) {
-                activityDescTV.setText(mArgs.getString("Description"));
-                instructions =mArgs.getString("Description");
-            }
+
 
             if(status == DailyActivityStatus.NOT_ASSIGNED)
             {
