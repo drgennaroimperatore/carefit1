@@ -97,3 +97,6 @@ td, th{
     margin: 0;
     text-align: center;
 }
+.noborder{
+    border:none;
+}
