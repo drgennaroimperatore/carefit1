@@ -24,7 +24,7 @@ public class ProgressOverviewDialogAdapter extends ArrayAdapter<CompletedDailyAc
 
     public ProgressOverviewDialogAdapter(@NonNull Context context, int resource, ArrayList items) {
         super(context, resource, items);
-        context = mContext;
+        mContext = context;
     }
 
     @NonNull

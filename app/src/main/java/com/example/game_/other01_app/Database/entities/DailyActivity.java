@@ -17,6 +17,7 @@ public class DailyActivity
     public DailyActivityStatus status;
     public ExerciseTypes type;
     public int dailyPlanId;
+    public int mins,secs,millisecs;
 
     public DailyActivity(int dailyPlanId)
     {
