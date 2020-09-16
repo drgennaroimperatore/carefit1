@@ -18,14 +18,17 @@ public class EducationalActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_educational);
+        EducationalFragment educationalFragment = new EducationalFragment();
+        Bundle args = new Bundle();
+        args.putInt("stage",0);
+        educationalFragment.setArguments(args);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.educational, EducationalListFragment.newInstance(1,this))
+                    .replace(R.id.educational, educationalFragment)
                     .commitNow();
         }
 
     }
-
     public void goToContentFragment(int i)
     {
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
