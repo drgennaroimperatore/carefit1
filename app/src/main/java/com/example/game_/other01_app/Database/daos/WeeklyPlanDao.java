@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.game_.other01_app.Database.entities.CompletedDailyActivities;
 import com.example.game_.other01_app.Database.entities.DailyActivity;
 import com.example.game_.other01_app.Database.entities.DailyPlan;
 import com.example.game_.other01_app.Database.entities.ExerciseTypes;
@@ -64,6 +65,13 @@ public interface WeeklyPlanDao {
             "FROM DailyActivity,DailyPlan WHERE DailyActivity.dailyPlanId = DailyPlan.id " +
             "AND DailyActivity.status = \"NOT_ASSIGNED\"/* AND DailyPlan.dayOfWeek >=DATE('now') */")
     List<UnassignedDailyActivities> getAllUnassignedActivities();
+
+    @Query("SELECT DailyActivity.id, DailyActivity.name, DailyActivity.dailyPlanId, DailyPlan.dayOfWeek, DailyActivity.status " +
+            "FROM DailyActivity,DailyPlan WHERE DailyActivity.dailyPlanId = DailyPlan.id " +
+            "AND DailyActivity.status = \"COMPLETED\" and DailyActivity.type =:activityType/* AND DailyPlan.dayOfWeek >=DATE('now') */")
+    List<CompletedDailyActivities> getAllCompletedActivities(ExerciseTypes activityType);
+
+
     @Insert
     long addDailyActivity(DailyActivity dailyActivity);
 

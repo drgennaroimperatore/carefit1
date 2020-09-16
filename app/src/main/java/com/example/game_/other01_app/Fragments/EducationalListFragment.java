@@ -57,7 +57,6 @@ public class EducationalListFragment extends Fragment {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
