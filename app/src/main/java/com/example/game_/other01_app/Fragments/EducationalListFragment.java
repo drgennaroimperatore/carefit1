@@ -98,6 +98,8 @@ public class EducationalListFragment extends Fragment {
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             EducationalActivity activity = (EducationalActivity) getActivity();
            int stage= educationalListArrayAdapter.getItem(i).stageNumber;
+           if(stage==1)
+               stage=0;
             activity.goToContentFragment(stage);
            }
        });
