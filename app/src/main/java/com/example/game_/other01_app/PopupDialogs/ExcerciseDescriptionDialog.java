@@ -177,7 +177,11 @@ AddActivityDialog mAddActivityDialog;
                     completedActivityImgview.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mAdapter.markActivityAsComplete(pos);
+                            if(activityType.equals(ExerciseTypes.MUSCLE) || activityType.equals(ExerciseTypes.OTHER))
+                                mAdapter.markActivityAsComplete(pos);
+                            if (activityType.equals(ExerciseTypes.CARDIO))
+                                mAdapter.markActivityAsComplete(pos, Minutes, Seconds,MilliSeconds);
+
                             dismiss();
 
                         }
@@ -186,7 +190,10 @@ AddActivityDialog mAddActivityDialog;
                     partiallyCompletedActivtyImgView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mAdapter.markActivityAsPartialComplete(pos);
+                            if(activityType.equals(ExerciseTypes.MUSCLE) || activityType.equals(ExerciseTypes.OTHER))
+                                mAdapter.markActivityAsPartialComplete(pos);
+                            if (activityType.equals(ExerciseTypes.CARDIO))
+                                mAdapter.markActivityAsPartialComplete(pos, Minutes, Seconds,MilliSeconds);
                             dismiss();
                         }
                     });

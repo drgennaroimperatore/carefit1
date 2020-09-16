@@ -255,7 +255,19 @@ readData();
         mData.get(pos).status = DailyActivityStatus.COMPLETED;
         notifyDataSetChanged();
         updateActivity(mData.get(pos));
+    }
 
+    public void markActivityAsComplete (int pos, int mins, int secs, int mills)
+    {
+        DailyActivity activity= mData.get(pos);
+
+      activity.status = DailyActivityStatus.COMPLETED;
+      activity.mins = mins;
+      activity.secs = secs;
+      activity.millisecs = mills;
+
+        notifyDataSetChanged();
+        updateActivity(mData.get(pos));
     }
 
     public void markActivityAsPartialComplete(int pos)
@@ -263,6 +275,19 @@ readData();
         mData.get(pos).status = DailyActivityStatus.PARTIALLY_COMPLETED;
         notifyDataSetChanged();
         updateActivity(mData.get(pos));
+    }
+
+    public void markActivityAsPartialComplete(int pos, int mins, int secs, int mills)
+    {
+        mData.get(pos).status = DailyActivityStatus.PARTIALLY_COMPLETED;
+
+        DailyActivity activity= mData.get(pos);
+        activity.mins = mins;
+        activity.secs = secs;
+        activity.millisecs = mills;
+        notifyDataSetChanged();
+        updateActivity(mData.get(pos));
+
     }
 
     public void unassignActivity(int pos)
