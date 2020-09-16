@@ -1,5 +1,6 @@
 package com.example.game_.other01_app.Database.entities;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -21,10 +22,10 @@ public class DailyActivity
 
     public DailyActivity(int dailyPlanId)
     {
-
         status = DailyActivityStatus.NOT_ASSIGNED;
         type = ExerciseTypes.UNASSIGNED;
         this.dailyPlanId = dailyPlanId;
+
     }
 
 }

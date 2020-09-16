@@ -48,7 +48,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
         CompendiumActivities.class,
         EducationalList.class,
         EducationalListContent.class,
-        EducationalListContentResource.class},  version = 10, exportSchema = false)
+        EducationalListContentResource.class},  version = 11, exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -72,7 +72,8 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "app_database").addMigrations(MIGRATION_8_9,MIGRATION_9_10)
+                            AppDatabase.class, "app_database")
+                            .addMigrations(MIGRATION_8_9,MIGRATION_9_10,MIGRATION_10_11)
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -104,6 +105,22 @@ public abstract class AppDatabase extends RoomDatabase {
 
         }
     };
+
+    static final Migration MIGRATION_10_11= new Migration(10,11) {
+
+        /*Expected:
+    TableInfo{name='DailyActivity', columns={instructions=Column{name='instructions', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0}, dailyPlanId=Column{name='dailyPlanId', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, mins=Column{name='mins', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, secs=Column{name='secs', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, millisecs=Column{name='millisecs', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, name=Column{name='name', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0}, id=Column{name='id', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=1}, type=Column{name='type', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0}, status=Column{name='status', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0}}, foreignKeys=[ForeignKey{referenceTable='DailyPlan', onDelete='CASCADE', onUpdate='NO ACTION', columnNames=[dailyPlanId], referenceColumnNames=[id]}], indices=[]}
+     Found:
+    TableInfo{name='DailyActivity', columns={instructions=Column{name='instructions', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0}, dailyPlanId=Column{name='dailyPlanId', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, mins=Column{name='mins', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, milliSecs=Column{name='milliSecs', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, secs=Column{name='secs', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0}, name=Column{name='name', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0}, id=Column{name='id', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=1}, type=Column{name='type', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0}, status=Column{name='status', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0}}, foreignKeys=[ForeignKey{referenceTable='DailyPlan', onDelete='CASCADE', onUpdate='NO ACTION', columnNames=[dailyPlanId], referenceColumnNames=[id]}], indices=[]}
+    */
+
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE DailyActivity ADD COLUMN mins INTEGER NOT NULL DEFAULT 0");
+            database.execSQL("ALTER TABLE DailyActivity ADD COLUMN secs INTEGER NOT NULL DEFAULT 0");
+            database.execSQL("ALTER TABLE DailyActivity ADD COLUMN millisecs INTEGER NOT NULL DEFAULT 0");
+        }
+    };
     protected Watcher mDatabaseWatcher = null;
     public void addDatabaseWatcher(Watcher watcher)
     {
@@ -129,8 +146,6 @@ public abstract class AppDatabase extends RoomDatabase {
                           new PopulateEducationalListAndContent(INSTANCE);
                   eduPopulator.attachWatcher(INSTANCE.getDatabaseWatcher());
                   eduPopulator.execute();
-
-
                 }
             };
 
