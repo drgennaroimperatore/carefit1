@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 <body>
 <img src="001_question.png" class="floatrighticon">
@@ -22,29 +22,10 @@
 </p>
 <p class="centred">
     <button onclick="location.href = 'stage1.html'">⇦⇦ Stage 1</button>
-    <button onclick="window.history.back()">◁ Home</button>
+    <button onclick="location.href = 'stage0.html'">⌂ Index</button>
     <button onclick="location.href = 'stage3.html'">Stage 3 ⇨⇨</button>
 </p>
 
-<script>
-    function fontUp(){
-        let style = window.getComputedStyle(document.body);
-        let size = parseInt(style.fontSize,10);
-        document.body.style.fontSize = size * 1.2;
-    }
-    function fontDown(){
-        let style = window.getComputedStyle(document.body);
-        let size = parseInt(style.fontSize,10);
-        document.body.style.fontSize = size / 1.2;
-    }
-</script>
-<div style="position: fixed; top:0; right:0; font-size: 5vmin; width:10vmin; height:20vmin">
-    <p><button style="font-size:6vmin; width:1.5em; background:rgba(255,255,255,0.5); border:0; height: 1.5em"
-               onclick="javascript: fontUp()">+</button></p>
-    <p><button style="font-size:6vmin; width:1.5em; background:rgba(255,255,255,0.5); border:0; height: 1.5em"
-               onclick="javascript: fontDown()">-</button></p>
-</div>
-
-<script src="fullscreenimage.js"></script>
+<script src="stages.js"></script>
 </body>
 </html>
